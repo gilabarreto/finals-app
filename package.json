@@ -39,8 +39,13 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+<<<<<<< HEAD
     "postcss": "^8.4.19",
     "tailwindcss": "^3.2.4"
   },
   "proxy": "https://api.setlist.fm"
+=======
+    "postcss": "^8.4.19"
+  }
+>>>>>>> refs/remotes/origin/master
 }

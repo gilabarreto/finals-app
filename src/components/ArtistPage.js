@@ -9,11 +9,11 @@ export default function ArtistPage(props) {
   const { results } = props;
   return (
     <div>
-      <div className="container-1 bg-red-200">
+      <div className="container-1">
         <TourDate />
         <ArtistTour />
-    </div>
-      <div className="flex justify-between">
+      </div>
+      <div className="container-4">
         <div className="container-2">
           <Setlist />
         </div>
