@@ -5,7 +5,8 @@ import TourDate from "./TourDate";
 import UpcomingConcerts from "./UpcomingConcerts";
 import "./styles/styles.css";
 
-export default function ArtistPage() {
+export default function ArtistPage(props) {
+  const { results } = props;
   return (
     <div>
       <div className="container-1 bg-red-200">
