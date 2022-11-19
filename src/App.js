@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import ArtistPage from "./ArtistPage";
+import ArtistPage from "./components/ArtistPage";
 
 function App() {
   return (
