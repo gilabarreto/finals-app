@@ -12,7 +12,7 @@ export default function ArtistPage() {
         <TourDate />
         <ArtistTour />
       </div>
-      <div className="flex justify-between">
+      <div className="container-4">
         <div className="container-2">
           <Setlist />
         </div>

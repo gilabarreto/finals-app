@@ -15,6 +15,11 @@
   width: 35%;
 }
 
+.container-4 {
+  display: flex;
+  justify-content: space-between;
+}
+
 .box-1{
   flex: 1;
   border: 1px solid black;
