@@ -8,10 +8,10 @@ import "./styles/styles.css";
 export default function ArtistPage() {
   return (
     <div>
-      <div className="container-1 bg-red-200">
+      <div className="container-1">
         <TourDate />
         <ArtistTour />
-    </div>
+      </div>
       <div className="flex justify-between">
         <div className="container-2">
           <Setlist />

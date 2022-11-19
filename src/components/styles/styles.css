@@ -7,37 +7,50 @@
   display: flex;
   width: 65%;
   justify-content: space-between;
-  background-color: blue;
 }
 
 .container-3 {
   display: flex;
   flex-direction: column;
   width: 35%;
-  background-color: green;
 }
 
-.container-1 div .container2 div .container-3 div{
+.box-1{
+  flex: 1;
   border: 1px solid black;
   padding: 10px;
-}
-
-.box-1 {
-  flex: 1;
+  border-radius: 25px;
+  background-color: #dfdfdf;
 }
 
 .box-2 {
   flex: 1;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #dfdfdf;
 }
 
 .box-3 {
   flex: 1;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #dfdfdf;
 }
 
 .box-4 {
   flex: 1;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #dfdfdf;
 }
 
 .box-5 {
   flex: 1;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #dfdfdf;
 }
