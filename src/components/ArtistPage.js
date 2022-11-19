@@ -3,16 +3,24 @@ import PreviousConcerts from "./PreviousConcerts";
 import Setlist from "./Setlist";
 import TourDate from "./TourDate";
 import UpcomingConcerts from "./UpcomingConcerts";
-import "./ArtistPage.css"
+import "./styles/styles.css";
 
 export default function ArtistPage() {
   return (
-    <div className="ArtistPage">
-      <TourDate />
-      <ArtistTour />
-      <Setlist />
-      <UpcomingConcerts />
-      <PreviousConcerts />
+    <div>
+      <div className="container-1 bg-red-200">
+        <TourDate />
+        <ArtistTour />
+    </div>
+      <div className="flex justify-between">
+        <div className="container-2">
+          <Setlist />
+        </div>
+        <div className="container-3">
+          <UpcomingConcerts />
+          <PreviousConcerts />
+        </div>
+      </div>
     </div>
   );
 }

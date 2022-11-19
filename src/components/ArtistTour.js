@@ -1,8 +1,6 @@
-import "./ArtistTour.css"
-
 export default function ArtistTour() {
   return (
-    <div className="ArtistTour">
+    <div className="box-2">
       <h2>Coldplay</h2>
       <h2>Tour: Yellow</h2>
       <h2>Venue: XXX</h2>

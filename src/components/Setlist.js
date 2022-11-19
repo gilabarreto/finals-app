@@ -1,8 +1,6 @@
-import "./Setlist.css"
-
 export default function Setlist() {
   return (
-    <ol className="Setlist">
+    <ol className="box-3">
       <li>Viva la Vida</li>
       <li>Hymn for the Weekend</li>
       <li>Let Somebody Go</li>
