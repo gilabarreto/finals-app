@@ -2,12 +2,13 @@ import logo from "../icons/logo.png";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
-import searchIcon from "../icons/search.png";
+
+import SearchBar from "./SearchBar";
 
 function Navbar() {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
-    setDropdownLogin(opened => !opened);
+    setDropdownLogin((opened) => !opened);
   }, [dropdownLogin]);
 
   const [isUserLogged, setisUserLogged] = useState(false);
@@ -31,16 +32,7 @@ function Navbar() {
             <img src={logo} className="logo"></img>
           </a>
         </div>
-        <div className="search">
-          <div className="input-container-search">
-            <img className="searchIcon" src={searchIcon}></img>
-            <input
-              className="input-text-search"
-              type="search"
-              placeholder="Search your favorite artist"
-            ></input>
-          </div>
-        </div>
+          <SearchBar />
         <div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
