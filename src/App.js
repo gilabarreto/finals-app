@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import "./App.css";
-import ArtistPage from "./ArtistPage";
+import ArtistPage from "./components/ArtistPage";
 
 function App() {
   return (
