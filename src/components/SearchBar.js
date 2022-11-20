@@ -24,8 +24,12 @@ export default function SearchBar(props) {
       }
     })
       .then((res) => {
-        console.log(res.data.setlist[0]);
-        props.setResults([res.data.setlist[0]])
+        console.log(res.data.setlist);
+        props.setResults(res.data.setlist)
+      })
+      .catch((res) => {
+        props.setResults([])
+        console.log("Artist not found")
       })
   }, [value])
 

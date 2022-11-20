@@ -1,47 +1,29 @@
 import React, { useEffect } from "react";
 
 export default function SearchPage(props) {
+  if (props.results.length === 0) {
+    return null;
+  }
+  
+  console.log("props.results:", props.results)
+  const last_concert = props.results[0];
+  console.log(last_concert)
+ 
+  const artist = last_concert.artist.name
 
-  /*   useEffect(() => {
-      console.log("search page", props)
-    }, []) */
+  const lastConcert = last_concert.eventDate
 
-  const artist = props.results.map((result) => {
+  const songs = last_concert.sets.set[0]?.song || [];
 
-    return result.artist.name
-  })
-  const lastConcert = props.results.map((result) => {
-
-    return result.eventDate
-  })
-
-  const songs = props.results.map((result) => {
-    if (result.sets.set[0] === undefined) {
-      return (result.sets.set)
-    } else {
-        return (result.sets.set[0].song)  
-    }
-  })
-
-  const list = songs.map((song) => {
-    const songsList = [];
-      for (let i = 0; i < song.length; i++) {
-        songsList.push(song[Object.keys(song)[i]].name);
-      }
-    return songsList;
-  })
-
-  const myLists = list[0]
-  // const myLists = ['Adib', 'Victor'];
-  const listItems = myLists.map((myList) => {
-    return <li>{myList}</li>;
+  const list = songs?.map((song) => {
+    return song.name
   })
 
   return (
     <div>
-      <h1>{artist}</h1>
+      <h1>{artist}</h1> 
       <h2>{lastConcert}</h2>
-      <ul>{listItems}</ul>
+      <ul>{list.map((item) => <li key={item}>{item}</li>)}</ul>
     </div>
   )
 
