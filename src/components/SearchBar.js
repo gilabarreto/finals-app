@@ -24,7 +24,7 @@ export default function SearchBar(props) {
       }
     })
       .then((res) => {
-        console.log(res.data.setlist);
+        console.log(res.data.setlist[0]);
         props.setResults([res.data.setlist[0]])
       })
   }, [value])
