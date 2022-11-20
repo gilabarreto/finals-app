@@ -5,15 +5,13 @@ export default function SearchPage(props) {
     return null;
   }
   
-  console.log("props.results:", props.results)
-  const last_concert = props.results[0];
-  console.log(last_concert)
+  const concert = props.results[0];
  
-  const artist = last_concert.artist.name
+  const artist = concert.artist.name
 
-  const lastConcert = last_concert.eventDate
+  const lastConcert = concert.eventDate
 
-  const songs = last_concert.sets.set[0]?.song || [];
+  const songs = concert.sets.set[0]?.song || [];
 
   const list = songs?.map((song) => {
     return song.name

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 
-// import useDebounce from "../hooks/useDebounce";
+import useDebounce from "../hooks/useDebounce";
 
 import searchIcon from "../icons/search.png";
 import axios from "axios";
@@ -10,7 +10,7 @@ export default function SearchBar(props) {
   const [value, setValue] = useState("");
   const handleChange = event => setValue(event.target.value)
 
-  // const term = useDebounce(value, 400);
+  const term = useDebounce(value, 700);
 
   useEffect(() => {
     axios.get('/rest/1.0/search/setlists', {
@@ -24,14 +24,13 @@ export default function SearchBar(props) {
       }
     })
       .then((res) => {
-        console.log(res.data.setlist);
         props.setResults(res.data.setlist)
       })
       .catch((res) => {
         props.setResults([])
         console.log("Artist not found")
       })
-  }, [value])
+  }, [term])
 
   return (
     <div className="search">
