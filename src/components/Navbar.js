@@ -5,7 +5,7 @@ import loginIcon from "../icons/login.png";
 
 import SearchBar from "./SearchBar";
 
-function Navbar() {
+function Navbar(props) {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
     setDropdownLogin((opened) => !opened);
@@ -32,7 +32,7 @@ function Navbar() {
             <img src={logo} className="logo"></img>
           </a>
         </div>
-          <SearchBar />
+          <SearchBar setResults={props.setResults} />
         <div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (

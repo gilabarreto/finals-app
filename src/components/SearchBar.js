@@ -5,7 +5,6 @@ import axios from "axios";
 export default function SearchBar(props) {
     
   const [value, setValue] = useState("");
-  const [results, setResults] = useState("");
 
   useEffect(() => {
     axios.get('/rest/1.0/search/setlists', {
@@ -20,7 +19,7 @@ export default function SearchBar(props) {
     })
       .then((res) => {
         console.log(res.data.setlist);
-        setResults([...res.data.setlist])
+        props.setResults([...res.data.setlist])
       })
   }, [value])
 

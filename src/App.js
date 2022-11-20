@@ -1,3 +1,5 @@
+import React, { useState} from 'react';
+
 import Navbar from "./components/Navbar";
 import "./App.css";
 import ArtistPage from "./components/ArtistPage";
@@ -5,16 +7,20 @@ import SearchPage from "./components/SearchPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
+
+  const [results, setResults] = useState([]);
+
   return (
-    <Router>
+    // <Router>
       <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<SearchPage />}></Route>
+        <Navbar setResults={setResults} />
+        <SearchPage results={results} />
+{/*         <Routes>
+          <Route path="/" element={<SearchPage results={results} />}></Route>
           <Route path="/artist" element={<ArtistPage />}></Route>
-        </Routes>
+        </Routes> */}
       </div>
-    </Router>
+    // </Router>
   );
 }
 
