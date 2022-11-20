@@ -1,10 +1,16 @@
-import React, { useEffect, useState }from "react";
+import React, { useEffect, useState, useCallback } from "react";
+
+import { useDebounce } from "../hooks/useDebounce";
+
 import searchIcon from "../icons/search.png";
 import axios from "axios";
 
 export default function SearchBar(props) {
-    
+
   const [value, setValue] = useState("");
+  const handleChange = event => setValue(event.target.value)
+
+  const term = useDebounce(value, 400);
 
   useEffect(() => {
     axios.get('/rest/1.0/search/setlists', {
@@ -21,7 +27,7 @@ export default function SearchBar(props) {
         console.log(res.data.setlist);
         props.setResults([...res.data.setlist])
       })
-  }, [value])
+  }, [term])
 
   return (
     <div className="search">
@@ -32,7 +38,7 @@ export default function SearchBar(props) {
           type="search"
           value={value}
           placeholder="Search your favorite artist"
-          onChange={event => setValue(event.target.value)}
+          onChange={handleChange}
         ></input>
       </form>
     </div>
