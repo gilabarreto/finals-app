@@ -13,23 +13,28 @@ export default function SearchBar(props) {
   const term = useDebounce(value, 700);
 
   useEffect(() => {
-    axios.get('/rest/1.0/search/setlists', {
-      params: {
-        'artistName': value,
-        'p': '1'
-      },
-      headers: {
-        'Accept': 'application/json',
-        'x-api-key': 'eY_2IYBgy3ovn4sRZSqa9cTZy1nldhaUCvif'
-      }
-    })
-      .then((res) => {
-        props.setResults(res.data.setlist)
+    if (term.length === 0) {
+      return
+    }
+    else {
+      axios.get('/rest/1.0/search/setlists', {
+        params: {
+          'artistName': value,
+          'p': '1'
+        },
+        headers: {
+          'Accept': 'application/json',
+          'x-api-key': 'eY_2IYBgy3ovn4sRZSqa9cTZy1nldhaUCvif'
+        }
       })
-      .catch((res) => {
-        props.setResults([])
-        console.log("Artist not found")
-      })
+        .then((res) => {
+          props.setResults(res.data.setlist)
+        })
+        .catch((res) => {
+          props.setResults([])
+          console.log("Artist not found")
+        })
+    }
   }, [term])
 
   return (

@@ -1,27 +1,27 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import "./App.css";
 
 import Navbar from "./components/Navbar";
-import "./App.css";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
 
   const [results, setResults] = useState([]);
 
   return (
-    // <Router>
+    <Router>
       <div className="App">
         <Navbar setResults={setResults} />
-        <SearchPage results={results} />
-        <ArtistPage results={results} />
-{/*         <Routes>
+        <Routes>
           <Route path="/" element={<SearchPage results={results} />}></Route>
-          <Route path="/artist" element={<ArtistPage />}></Route>
-        </Routes> */}
+          <Route path="/artist" element={<ArtistPage results={results} />}></Route>
+        </Routes>
       </div>
-    // </Router>
+    </Router>
   );
 }
 
