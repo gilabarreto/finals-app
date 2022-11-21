@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import "./styles/styles.css";
 
 export default function ArtistPage(props) {
@@ -10,10 +10,13 @@ export default function ArtistPage(props) {
     return null;
   }
 
-/*   const increase = () => {
+  const increase = () => {
+    if (index === artistInfo.length - 1) {
+      return
+    }
     setIndex(index + 1);
     return index
-  } */
+  }
 
   const decrease = () => {
     if (index === 0) {
@@ -54,7 +57,7 @@ export default function ArtistPage(props) {
       <div className="container-1">
         <div className="box-1">
 
-          <h2><span onClick={() => index === artistInfo.length - 1 ? {} : setIndex(index + 1)}>Increase</span>
+          <h2><span onClick={increase}>Increase</span>
             Concert Date: {concertDate}
             <span onClick={decrease}>Decrease</span>
           </h2>
