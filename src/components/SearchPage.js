@@ -9,6 +9,8 @@ export default function SearchPage(props) {
  
   const artist = concert.artist.name
 
+  const tour = concert.tour?.name
+
   const lastConcert = concert.eventDate
 
   const songs = concert.sets.set[0]?.song || [];
@@ -19,8 +21,10 @@ export default function SearchPage(props) {
 
   return (
     <div>
-      <h1>{artist}</h1> 
-      <h2>{lastConcert}</h2>
+      <h1>Arstist Name: {artist}</h1> 
+      <h2>Tour Name: {tour}</h2>
+      <h2>Last Concert: {lastConcert}</h2>
+      <h2>Last Setlist:</h2>
       <ul>{list.map((item) => <li key={item}>{item}</li>)}</ul>
     </div>
   )

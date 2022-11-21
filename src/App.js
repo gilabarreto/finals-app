@@ -15,6 +15,7 @@ function App() {
       <div className="App">
         <Navbar setResults={setResults} />
         <SearchPage results={results} />
+        <ArtistPage results={results} />
 {/*         <Routes>
           <Route path="/" element={<SearchPage results={results} />}></Route>
           <Route path="/artist" element={<ArtistPage />}></Route>
