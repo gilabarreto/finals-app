@@ -14,17 +14,19 @@ export default function ArtistPage(props) {
     if (index === artistInfo.length - 1) {
       return
     }
-    setIndex(index + 1);
-    return index
+    return setIndex(index + 1);
   }
 
   const decrease = () => {
     if (index === 0) {
       return
     }
-    setIndex(index - 1);
-    return index
+    return setIndex(index - 1);
   }
+
+  const upcomingConcerts = props.ticketmaster?.events.map((upcomingConcert) => {
+    return upcomingConcert.dates.start.localDate
+  })
 
   const artistInfo = props.results
 
@@ -71,13 +73,31 @@ export default function ArtistPage(props) {
       <div className="container-4">
         <div className="container-2">
           <ul className="box-3">
-            {list.length === 0 ? "There are no songs in this setlist because the concert hasn't happend yet. Please come back later" : list.map((song, songIndex) => <li key={songIndex}>{song}</li>)}
+            {list.length === 0 ?
+              "There are no songs in this setlist.\n Please come back later" :
+              list.map((song, songIndex) => <li key={songIndex}>{song}</li>
+              )}
           </ul>
         </div>
         <div className="container-3">
-          UpcomingConcerts
+          <div className="box-4">
+
+            Upcoming Concerts:
+            <p>
+              {upcomingConcerts === undefined ?
+                "There are no upcoming concerts.\n Please come back later" :
+                upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) =>
+                  <li key={upcomingConcertIndex}>{upcomingConcert}</li>
+                )}
+            </p>
+          </div>
           <div className="box-5">
-            {artistInfo.map((previousConcert, previousConcertIndex) => <li key={previousConcertIndex}>{previousConcert.eventDate}</li>)}
+            Previous Concerts:
+            <p>
+              {artistInfo.map((previousConcert, previousConcertIndex) =>
+                <li key={previousConcertIndex}>{previousConcert.eventDate}</li>
+              )}
+            </p>
           </div>
         </div>
       </div>
