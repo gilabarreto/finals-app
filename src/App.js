@@ -7,6 +7,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
+import Map from "./components/Map"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SearchPage results={results} ticketmaster={ticketmaster} />}></Route>
           <Route path="/artist" element={<ArtistPage results={results} ticketmaster={ticketmaster} />}></Route>
+          <Route path="/map" element={<Map />}></Route>
         </Routes>
       </div>
     </Router>
