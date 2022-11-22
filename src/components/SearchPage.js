@@ -11,6 +11,8 @@ export default function SearchPage(props) {
     return null;
   }
 
+  console.log(props.ticketmaster.events)
+
   const nextConcert = props.ticketmaster?.events.map((upcomingConcert) => {
     return upcomingConcert.dates.start.localDate
   }).sort()

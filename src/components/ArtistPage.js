@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 
+import Map from "./Map";
+
 import "./styles/styles.css";
 
 export default function ArtistPage(props) {
@@ -23,6 +25,7 @@ export default function ArtistPage(props) {
     }
     return setIndex(index - 1);
   }
+  console.log("coordinates", props.lat, props.long)
 
   const upcomingConcerts = props.ticketmaster?.events.map((upcomingConcert) => {
     return upcomingConcert.dates.start.localDate
@@ -56,6 +59,7 @@ export default function ArtistPage(props) {
 
   return (
     <div>
+      <Map />
       <div className="container-1">
         <div className="box-1">
           <h2><button onClick={increase}>Decrease</button>
@@ -84,7 +88,7 @@ export default function ArtistPage(props) {
         </div>
         <div className="container-3">
           <div className="box-4">
-            Next 10 Upcoming Concerts:
+            Upcoming Concerts:
             <p>
               {upcomingConcerts === undefined ?
                 "There are no upcoming concerts.\n Please come back later" :
@@ -94,7 +98,7 @@ export default function ArtistPage(props) {
             </p>
           </div>
           <div className="box-5">
-            Last 10 Previous Concerts:
+            Previous Concerts:
             <p>
               {artistInfo.map((previousConcert, previousConcertIndex) =>
                 <li key={previousConcertIndex}>{previousConcert.eventDate}</li>

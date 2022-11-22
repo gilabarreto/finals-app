@@ -32,7 +32,7 @@ function Navbar(props) {
         <div>
           <Link to='/'><img src={logo} className="logo"></img></Link>
         </div>
-          <SearchBar setResults={props.setResults} setTicketmaster={props.setTicketmaster}/>
+          <SearchBar setResults={props.setResults} setTicketmaster={props.setTicketmaster} setLat={props.setLat} setLong={props.setLong}/>
         <div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
