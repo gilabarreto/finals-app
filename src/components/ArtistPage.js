@@ -88,7 +88,7 @@ export default function ArtistPage(props) {
                 "There are no upcoming concerts.\n Please come back later" :
                 upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) =>
                   <li key={upcomingConcertIndex}>{upcomingConcert.split("-").reverse().join("-")}</li>
-                )}
+                ).slice(0, 10)}
             </p>
           </div>
           <div className="box-5">
@@ -96,7 +96,7 @@ export default function ArtistPage(props) {
             <p>
               {artistInfo.map((previousConcert, previousConcertIndex) =>
                 <li key={previousConcertIndex}>{previousConcert.eventDate}</li>
-              )}
+              ).slice(0, 10)}
             </p>
           </div>
         </div>
