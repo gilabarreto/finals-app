@@ -3,9 +3,11 @@ import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
 
+import { Link } from "react-router-dom"
+
 import SearchBar from "./SearchBar";
 
-function Navbar() {
+function Navbar(props) {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
     setDropdownLogin((opened) => !opened);
@@ -28,11 +30,9 @@ function Navbar() {
       <div className="annoucement"></div>
       <nav>
         <div>
-          <a>
-            <img src={logo} className="logo"></img>
-          </a>
+          <Link to='/'><img src={logo} className="logo"></img></Link>
         </div>
-          <SearchBar />
+          <SearchBar setResults={props.setResults} setTicketmaster={props.setTicketmaster}/>
         <div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
