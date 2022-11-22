@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-import "./App.css";
-
 import Navbar from "./components/Navbar";
+import "./App.css";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-
-  const [results, setResults] = useState([]);
-  const [ticketmaster, setTicketmaster] = useState([]);
-
   return (
     <Router>
       <div className="App">
-        <Navbar setResults={setResults} setTicketmaster={setTicketmaster} />
+        <Navbar />
         <Routes>
-          <Route path="/" element={<SearchPage results={results} ticketmaster={ticketmaster} />}></Route>
-          <Route path="/artist" element={<ArtistPage results={results} />}></Route>
+          <Route path="/" element={<SearchPage />}></Route>
+          <Route path="/artist" element={<ArtistPage />}></Route>
         </Routes>
       </div>
     </Router>
