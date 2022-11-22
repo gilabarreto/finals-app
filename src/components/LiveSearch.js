@@ -5,9 +5,5 @@ export default function LiveSearch() {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
 
-  useEffect(() => {
-
-
-  })
-
+  useEffect(() => {});
 }
