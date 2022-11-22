@@ -26,7 +26,7 @@ export default function ArtistPage(props) {
 
   const upcomingConcerts = props.ticketmaster?.events.map((upcomingConcert) => {
     return upcomingConcert.dates.start.localDate
-  })
+  }).sort()
 
   const artistInfo = props.results
 
@@ -87,7 +87,7 @@ export default function ArtistPage(props) {
               {upcomingConcerts === undefined ?
                 "There are no upcoming concerts.\n Please come back later" :
                 upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) =>
-                  <li key={upcomingConcertIndex}>{upcomingConcert}</li>
+                  <li key={upcomingConcertIndex}>{upcomingConcert.split("-").reverse().join("-")}</li>
                 )}
             </p>
           </div>

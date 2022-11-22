@@ -11,7 +11,9 @@ export default function SearchPage(props) {
     return null;
   }
 
-  const nextConcert = props.ticketmaster?.events[props.ticketmaster.events.length - 1].dates.start.localDate
+  const nextConcert = props.ticketmaster?.events.map((upcomingConcert) => {
+    return upcomingConcert.dates.start.localDate
+  }).sort()
 
   const concert = props.results[index];
 
@@ -29,7 +31,7 @@ export default function SearchPage(props) {
     <div>
       <h1 onClick={() => { navigate("/artist") }} >Artist Name: {artist}</h1>
       <h2>Tour Name: {tour}</h2>
-      <h2>Next concert: {nextConcert}</h2>
+      <h2>Next concert: {nextConcert[0].split("-").reverse().join("-")}</h2>
       <h2>Last Concert: <Link to='/artist'>{lastConcert}</Link></h2>
     </div>
   )
