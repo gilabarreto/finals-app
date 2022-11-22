@@ -56,10 +56,9 @@ export default function ArtistPage(props) {
     <div>
       <div className="container-1">
         <div className="box-1">
-
-          <h2><span onClick={increase}>Increase</span>
+          <h2><button onClick={increase}>Decrease</button>
             Concert Date: {concertDate}
-            <span onClick={decrease}>Decrease</span>
+            <button onClick={decrease}>Increase</button>
           </h2>
         </div>
         <div className="box-2">
@@ -72,13 +71,13 @@ export default function ArtistPage(props) {
       <div className="container-4">
         <div className="container-2">
           <ul className="box-3">
-            {list.length === 0 ? "There are no songs in this setlist because the concert hasn't happend yet. Please come back later" : list.map((song) => <li key={song.key}>{song}</li>)}
+            {list.length === 0 ? "There are no songs in this setlist because the concert hasn't happend yet. Please come back later" : list.map((song, songIndex) => <li key={songIndex}>{song}</li>)}
           </ul>
         </div>
         <div className="container-3">
           UpcomingConcerts
           <div className="box-5">
-            {artistInfo.map((previousConcert) => <li key={previousConcert.key}>{previousConcert.eventDate}</li>)}
+            {artistInfo.map((previousConcert, previousConcertIndex) => <li key={previousConcertIndex}>{previousConcert.eventDate}</li>)}
           </div>
         </div>
       </div>
