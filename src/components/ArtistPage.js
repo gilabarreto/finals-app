@@ -73,16 +73,18 @@ export default function ArtistPage(props) {
       <div className="container-4">
         <div className="container-2">
           <ul className="box-3">
-            {list.length === 0 ?
-              "There are no songs in this setlist.\n Please come back later" :
-              list.map((song, songIndex) => <li key={songIndex}>{song}</li>
-              )}
+            Setlist:
+            <p>
+              {list.length === 0 ?
+                "There are no songs in this setlist.\n Please come back later" :
+                list.map((song, songIndex) => <li key={songIndex}>{song}</li>
+                )}
+            </p>
           </ul>
         </div>
         <div className="container-3">
           <div className="box-4">
-
-            Upcoming Concerts:
+            Next 10 Upcoming Concerts:
             <p>
               {upcomingConcerts === undefined ?
                 "There are no upcoming concerts.\n Please come back later" :
@@ -92,7 +94,7 @@ export default function ArtistPage(props) {
             </p>
           </div>
           <div className="box-5">
-            Previous Concerts:
+            Last 10 Previous Concerts:
             <p>
               {artistInfo.map((previousConcert, previousConcertIndex) =>
                 <li key={previousConcertIndex}>{previousConcert.eventDate}</li>
