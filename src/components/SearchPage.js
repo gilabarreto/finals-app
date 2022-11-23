@@ -11,9 +11,15 @@ export default function SearchPage(props) {
     return null;
   }
 
+  if (props.ticketmaster.events === undefined) {
+    return null
+  }
+
   const nextConcert = props.ticketmaster?.events.map((upcomingConcert) => {
     return upcomingConcert.dates.start.localDate
   }).sort()
+
+  const artistImage = props.ticketmaster?.events[0].images[0].url;
 
   const concert = props.results[index];
 
@@ -28,11 +34,23 @@ export default function SearchPage(props) {
   }
 
   return (
-    <div>
-      <h1 onClick={() => { navigate("/artist") }} >Artist Name: {artist}</h1>
-      <h2>Tour Name: {tour}</h2>
-      <h2>Next concert: {nextConcert[0].split("-").reverse().join("-")}</h2>
-      <h2>Last Concert: <Link to='/artist'>{lastConcert}</Link></h2>
+    <div className="box-1">
+      <div className="box-2">
+        <img src = {artistImage} />
+      </div>
+      <div>
+        <h3 onClick={() => { navigate("/artist") }} >{artist}</h3>
+        {tour && <h2>Tour Name: {tour}</h2>}
+      </div>
+      <div className="box-3">
+        <h3>Next concert: {nextConcert[0].split("-").reverse().join("-")}</h3>
+      </div>
+      <div className="box-3">
+        <h3>Last Concert: <Link to='/artist'>{lastConcert}</Link></h3>
+      </div>
+      <div className="box-3">
+        <h3>Play now!</h3>
+      </div>
     </div>
   )
 
