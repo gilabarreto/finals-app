@@ -48,16 +48,16 @@ export default function SearchBar(props) {
         .then((res) => {
           props.setTicketmaster(res.data._embedded)
 
-          const latitude = res.data._embedded?.events.map((lat) => lat._embedded.venues?.map((venue) => {
-            return venue?.location.latitude
+/*           const latitude = res.data._embedded?.events.map((long) => long._embedded?.venues?.map((venue) => {
+            return venue.location.latitude
           }))
 
-          const longitude = res.data._embedded?.events.map((long) => long._embedded.venues?.map((venue) => {
+          const longitude = res.data._embedded?.events.map((long) => long._embedded?.venues?.map((venue) => {
             return venue.location.longitude
-          }))
+          })) */
 
-          props.setLat(latitude)
-          props.setLong(longitude)
+          // props.setLat(latitudeFinder(res.data._embedded))
+          // props.setLong(longitudeFinder(res.data._embedded))
         })
         .catch((err) => {
           props.setTicketmaster([])

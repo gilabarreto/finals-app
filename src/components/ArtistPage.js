@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 
+import { latitudeFinder, longitudeFinder } from "../helpers/selectors";
+
 import Map from "./Map";
 
 import "./styles/styles.css";
@@ -25,15 +27,19 @@ export default function ArtistPage(props) {
     }
     return setIndex(index - 1);
   }
-  console.log("coordinates", props.lat, props.long)
 
-  const upcomingConcerts = props.ticketmaster?.events.map((upcomingConcert) => {
+  console.log(props.results)
+  console.log(props.ticketmaster)
+
+  const upcomingConcerts = props.ticketmaster?.events?.map((upcomingConcert) => {
     return upcomingConcert.dates.start.localDate
   }).sort()
 
   const artistInfo = props.results
 
   const concert = props.results[index];
+
+  const coordinates = concert.venue.city.coords
 
   const artist = concert.artist.name
 
@@ -59,19 +65,21 @@ export default function ArtistPage(props) {
 
   return (
     <div>
-      <Map />
       <div className="container-1">
         <div className="box-1">
-          <h2><button onClick={increase}>Decrease</button>
-            Concert Date: {concertDate}
-            <button onClick={decrease}>Increase</button>
-          </h2>
+          <ol>
+            <h2><button onClick={increase}>Decrease</button>
+              Concert Date: {concertDate}
+              <button onClick={decrease}>Increase</button>
+            </h2>
+            <h2>Artist: {artist}</h2>
+            <h2>Tour: {tour}</h2>
+            <h2>Venue: {venue}</h2>
+            <h2>Location: {city}, {state}, {country}</h2>
+          </ol>
         </div>
         <div className="box-2">
-          <h2>Artist: {artist}</h2>
-          <h2>Tour: {tour}</h2>
-          <h2>Venue: {venue}</h2>
-          <h2>Location: {city}, {state}, {country}</h2>
+          {props.ticketmaster ? <Map latitude={coordinates.lat} longitude={coordinates.long} /> : null}
         </div>
       </div>
       <div className="container-4">

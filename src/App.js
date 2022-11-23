@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SearchPage results={results} ticketmaster={ticketmaster} />}></Route>
           <Route path="/artist" element={<ArtistPage results={results} ticketmaster={ticketmaster} lat={lat} long={long}/>}></Route>
-          <Route path="/map" element={<Map lat={lat} long={long} />}></Route>
+          <Route path="/map" element={<Map />}></Route>
         </Routes>
       </div>
     </Router>
