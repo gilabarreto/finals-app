@@ -1,26 +1,32 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import "./App.css";
 
 import Navbar from "./components/Navbar";
-import "./App.css";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Map from "./components/Map"
 
 function App() {
 
   const [results, setResults] = useState([]);
+  const [ticketmaster, setTicketmaster] = useState([]);
+  const [lat, setLat] = useState([])
+  const [long, setLong] = useState([])
 
   return (
-    // <Router>
+    <Router>
       <div className="App">
-        <Navbar setResults={setResults} />
-        <SearchPage results={results} />
-{/*         <Routes>
-          <Route path="/" element={<SearchPage results={results} />}></Route>
-          <Route path="/artist" element={<ArtistPage />}></Route>
-        </Routes> */}
+        <Navbar setResults={setResults} setTicketmaster={setTicketmaster} setLat={setLat} setLong={setLong}/>
+        <Routes>
+          <Route path="/" element={<SearchPage results={results} ticketmaster={ticketmaster} />}></Route>
+          <Route path="/artist" element={<ArtistPage results={results} ticketmaster={ticketmaster} lat={lat} long={long}/>}></Route>
+          <Route path="/map" element={<Map lat={lat} long={long} />}></Route>
+        </Routes>
       </div>
-    // </Router>
+    </Router>
   );
 }
 

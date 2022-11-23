@@ -1,3 +1,8 @@
+.map-container {
+  width: 20%;
+  height: 20vh;
+}
+
 .container-1 {
   display: flex;
   justify-content: center;
@@ -21,27 +26,33 @@
 }
 
 .box-1{
-  flex: 1;
-  border: 1px solid black;
+  display: flex;
+  border: 1px solid red;
+  border-width: 2px;
   padding: 10px;
   border-radius: 25px;
-  background-color: #dfdfdf;
+  background-color: white;
 }
 
 .box-2 {
   flex: 1;
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid red;
+  border-width: 1px;
+  padding: 7px;
   border-radius: 25px;
-  background-color: #dfdfdf;
+  background-color: white;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .box-3 {
   flex: 1;
-  border: 1px solid black;
+  border: 1px solid red;
   padding: 10px;
   border-radius: 25px;
-  background-color: #dfdfdf;
+  background-color: white;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .box-4 {
@@ -49,7 +60,7 @@
   border: 1px solid black;
   padding: 10px;
   border-radius: 25px;
-  background-color: #dfdfdf;
+  background-color: white;
 }
 
 .box-5 {
