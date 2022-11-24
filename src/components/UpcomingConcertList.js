@@ -7,8 +7,14 @@ export default function UpcomingConcertList(props) {
   const upcomingConcerts = props.ticketmaster?.events?.map((upcomingConcert) => {
     const str = upcomingConcert.dates.start.localDate;
     const [year, month, day] = str.split('-');
-    const date = new Date(+year, month - 1, +day).toDateString();
-    return date;
+    const date = new Date(year, month - 1, day);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
   })
 
   const mapConcerts = upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) => {

@@ -54,8 +54,16 @@ export default function ArtistPage(props) {
   const previousConcerts = artistInfo.map((previousConcert) => {
     const str = previousConcert.eventDate;
     const [day, month, year] = str.split('-');
-    const date = new Date(+year, month - 1, +day);
-    return (date.toDateString());
+    const date = new Date(year, month - 1, day);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const city = previousConcert.venue.city?.name
+    const state = previousConcert.venue.city?.state
+    const country = previousConcert.venue.city?.country.code
+    return `${date.toLocaleDateString("en-US", options)} || ${city}, ${state}, ${country}`;
   })
 
   console.log(previousConcerts);
@@ -74,8 +82,14 @@ export default function ArtistPage(props) {
 
   const concertDate = () => {
     const [day, month, year] = concert.eventDate.split('-');
-    const mainConcertDate = new Date(+year, month - 1, +day);
-    return (mainConcertDate.toDateString());
+    const mainConcertDate = new Date(year, month - 1, day);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return (mainConcertDate.toLocaleDateString("en-US", options));
     }
 
   const songs = concert.sets.set[0]?.song || [];

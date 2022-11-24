@@ -18,8 +18,14 @@ export default function SearchPage(props) {
   const nextConcert = props.ticketmaster?.events.map((upcomingConcert) => {
     const str = upcomingConcert.dates.start.localDate;
     const [year, month, day] = str.split('-');
-    const date = new Date(+year, month - 1, +day).toDateString();
-    return date;
+    const date = new Date(year, month - 1, day);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
   })
 
   const artistImage = props.ticketmaster?.events[0].images[0].url;
@@ -35,8 +41,14 @@ export default function SearchPage(props) {
   const lastConcertDate = () => {
     const str = concert.eventDate;
     const [day, month, year] = str.split('-');
-    const date = new Date(+year, month - 1, +day);
-    return date.toDateString();
+    const date = new Date(year, month - 1, day);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
   }
 
 
