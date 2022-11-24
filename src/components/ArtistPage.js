@@ -127,7 +127,7 @@ export default function ArtistPage(props) {
           <div className="box-5">
             Previous Concerts:
             <p>
-              {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>)}
+              {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
             </p>
           </div>
         </div>
