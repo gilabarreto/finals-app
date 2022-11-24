@@ -9,7 +9,6 @@ export default function UpcomingConcertList(props) {
     const [year, month, day] = str.split('-');
     const date = new Date(year, month - 1, day);
     const options = {
-      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",

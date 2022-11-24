@@ -63,7 +63,7 @@ export default function ArtistPage(props) {
     const city = previousConcert.venue.city?.name
     const state = previousConcert.venue.city?.state
     const country = previousConcert.venue.city?.country.code
-    return `${date.toLocaleDateString("en-US", options)} || ${city}, ${state}, ${country}`;
+    return `${date.toLocaleDateString("en-US", options)} (${city}, ${state}, ${country})`;
   })
 
   const tour = concert.tour?.name || "No tour name"
@@ -82,7 +82,6 @@ export default function ArtistPage(props) {
     const [day, month, year] = concert.eventDate.split('-');
     const mainConcertDate = new Date(year, month - 1, day);
     const options = {
-      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -101,9 +100,9 @@ export default function ArtistPage(props) {
       <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
           <ol>
-            <h2><button className="artist-page-increase-decrease" onClick={increase}>&lt;</button>
-              Concert Date: {concertDate()}
-              <button onClick={decrease}>&gt;</button>
+            <h2 className="artist-page-button-aligner"><button className="artist-page-increase-decrease" onClick={increase}>&lt;</button>
+            &ensp;Concert Date: {concertDate()}&ensp;
+              <button className="artist-page-increase-decrease" onClick={decrease}>&gt;</button>
             </h2>
             <h2>Artist: {artist}</h2>
             <h2>Tour: {tour}</h2>
