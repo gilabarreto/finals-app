@@ -137,5 +137,11 @@
   border: 1px solid black;
   padding: 10px;
   border-radius: 25px;
-  background-color: #dfdfdf;
+  background-color: white;
+}
+
+.prevConc {
+  /* add a cursor */
+  color: black;
+  cursor: pointer;
 }

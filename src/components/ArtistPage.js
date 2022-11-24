@@ -35,9 +35,13 @@ export default function ArtistPage(props) {
   console.log("props.ticketmaster", props.ticketmaster)
   console.log("ticketFinder", ticketFinder(props.ticketmaster))
 
-  const upcomingConcerts = props.ticketmaster?.events?.map((upcomingConcert) => {
-    return upcomingConcert.dates.start.localDate
-  }).sort()
+  const upcomingConcerts = props.ticketmaster?.events
+    ?.map((upcomingConcert) => {
+      const str = upcomingConcert.dates.start.localDate;
+      const [year, month, day] = str.split('-');
+      const newConcertDate = new Date(+year, month-1, +day);
+      return (newConcertDate.toDateString());
+    })
 
   const artistInfo = props.results
 
@@ -46,6 +50,15 @@ export default function ArtistPage(props) {
   const coordinates = concert.venue.city.coords
 
   const artist = concert.artist.name
+
+  const previousConcerts = artistInfo.map((previousConcert) => {
+    const str = previousConcert.eventDate;
+    const [day, month, year] = str.split('-');
+    const date = new Date(+year, month - 1, +day);
+    return (date.toDateString());
+  })
+
+  console.log(previousConcerts);
 
   const tour = concert.tour?.name
 
@@ -59,7 +72,11 @@ export default function ArtistPage(props) {
 
   const country = concert.venue.city?.country.code
 
-  const concertDate = concert.eventDate
+  const concertDate = () => {
+    const [day, month, year] = concert.eventDate.split('-');
+    const mainConcertDate = new Date(+year, month - 1, +day);
+    return (mainConcertDate.toDateString());
+    }
 
   const songs = concert.sets.set[0]?.song || [];
 
@@ -116,9 +133,7 @@ export default function ArtistPage(props) {
           <div className="box-5">
             Previous Concerts:
             <p>
-              {artistInfo.map((previousConcert, previousConcertIndex) =>
-                <li key={previousConcertIndex}>{previousConcert.eventDate}</li>
-              ).slice(0, 10)}
+              {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
             </p>
           </div>
         </div>
