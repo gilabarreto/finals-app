@@ -39,7 +39,7 @@ export default function ArtistPage(props) {
     ?.map((upcomingConcert) => {
       const str = upcomingConcert.dates.start.localDate;
       const [year, month, day] = str.split('-');
-      const newConcertDate = new Date(+year, month-1, +day);
+      const newConcertDate = new Date(+year, month - 1, +day);
       return (newConcertDate.toDateString());
     })
 
@@ -88,7 +88,7 @@ export default function ArtistPage(props) {
       day: "numeric",
     };
     return (mainConcertDate.toLocaleDateString("en-US", options));
-    }
+  }
 
   const songs = concert.sets.set[0]?.song || [];
 
@@ -98,10 +98,10 @@ export default function ArtistPage(props) {
 
   return (
     <div>
-      <div className="container-1">
+      <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
           <ol>
-            <h2><button className="button-17" onClick={increase}>&lt;</button>
+            <h2><button className="artist-page-increase-decrease" onClick={increase}>&lt;</button>
               Concert Date: {concertDate()}
               <button onClick={decrease}>&gt;</button>
             </h2>
@@ -115,30 +115,27 @@ export default function ArtistPage(props) {
           {props.ticketmaster ? <Map latitude={coordinates.lat} longitude={coordinates.long} /> : null}
         </div>
       </div>
-      <div className="container-4">
-        <div className="container-2">
-          <ul className="artist-page-setlist">
-            <h2>Setlist:</h2>
-            <p>
-              {list.length === 0 ?
-                "There are no songs in this setlist.\n Please come back later" :
-                list.map((song, songIndex) => <li key={songIndex}>{song}</li>
-                )}
-            </p>
-          </ul>
+      <div className="artist-page-bottom-container">
+        <div className="artist-page-bottom-left-container">
+          <div className="artist-page-setlist">
+            <ul>
+              <h2>Setlist:</h2>
+              <p>
+                {list.length === 0 ?
+                  "There are no songs in this setlist.\n Please come back later" :
+                  list.map((song, songIndex) => <li key={songIndex}>{song}</li>
+                  )}
+              </p>
+            </ul>
+          </div>
+          <div className="artist-page-spotify">
+            <h2>Spotify</h2>
+          </div>
         </div>
-        <div className="container-3">
+        <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
             Upcoming Concerts:
             <p>
-              {/*               {upcomingConcerts === undefined ?
-                "There are no upcoming concerts.\n Please come back later" :
-                upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) =>
-                  <li key={upcomingConcertIndex}>{upcomingConcert.split("-").reverse().join("-")}
-                  - <a href={ticketFinder(props.ticketmaster)} target="_blank" rel="noopener noreferrer">Get Tickets!</a>
-                  </li>
-                ).slice(0, 10)} */}
-
               <UpcomingConcertList ticketmaster={props.ticketmaster} />
             </p>
           </div>
