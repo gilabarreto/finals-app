@@ -1,16 +1,19 @@
 
 import { useState } from "react";
 
-import { latitudeFinder, longitudeFinder } from "../helpers/selectors";
+import { Link } from "react-router-dom";
+
+import { latitudeFinder, longitudeFinder, ticketFinder } from "../helpers/selectors";
 
 import Map from "./Map";
 
 import "./styles/styles.css";
+import UpcomingConcertList from "./UpcomingConcertList";
 
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
 
-  if (props.results.length === 0) {
+  if (props.results.length === 0 || props.ticketmaster === undefined) {
     return null;
   }
 
@@ -28,8 +31,9 @@ export default function ArtistPage(props) {
     return setIndex(index - 1);
   }
 
-  console.log(props.results)
-  console.log(props.ticketmaster)
+  // console.log(props.results)
+  console.log("props.ticketmaster", props.ticketmaster)
+  console.log("ticketFinder", ticketFinder(props.ticketmaster))
 
   const upcomingConcerts = props.ticketmaster?.events?.map((upcomingConcert) => {
     return upcomingConcert.dates.start.localDate
@@ -68,9 +72,9 @@ export default function ArtistPage(props) {
       <div className="container-1">
         <div className="box-1">
           <ol>
-            <h2><button onClick={increase}>Decrease</button>
+            <h2><button className="button-17" onClick={increase}>&lt;</button>
               Concert Date: {concertDate}
-              <button onClick={decrease}>Increase</button>
+              <button onClick={decrease}>&gt;</button>
             </h2>
             <h2>Artist: {artist}</h2>
             <h2>Tour: {tour}</h2>
@@ -98,11 +102,15 @@ export default function ArtistPage(props) {
           <div className="box-4">
             Upcoming Concerts:
             <p>
-              {upcomingConcerts === undefined ?
+              {/*               {upcomingConcerts === undefined ?
                 "There are no upcoming concerts.\n Please come back later" :
                 upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) =>
-                  <li key={upcomingConcertIndex}>{upcomingConcert.split("-").reverse().join("-")}</li>
-                ).slice(0, 10)}
+                  <li key={upcomingConcertIndex}>{upcomingConcert.split("-").reverse().join("-")}
+                  - <a href={ticketFinder(props.ticketmaster)} target="_blank" rel="noopener noreferrer">Get Tickets!</a>
+                  </li>
+                ).slice(0, 10)} */}
+
+              <UpcomingConcertList ticketmaster={props.ticketmaster} />
             </p>
           </div>
           <div className="box-5">

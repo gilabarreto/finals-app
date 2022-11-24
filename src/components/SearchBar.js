@@ -42,19 +42,20 @@ export default function SearchBar(props) {
       axios.get('https://app.ticketmaster.com/discovery/v2/events.json', {
         params: {
           'keyword': value,
+          // 'sort': 'name,asc',
           'apikey': 'kMv2pjo5bzSz5iyaz0h5aLqGnQcWyOSL'
         }
       })
         .then((res) => {
           props.setTicketmaster(res.data._embedded)
-
-/*           const latitude = res.data._embedded?.events.map((long) => long._embedded?.venues?.map((venue) => {
-            return venue.location.latitude
-          }))
-
-          const longitude = res.data._embedded?.events.map((long) => long._embedded?.venues?.map((venue) => {
-            return venue.location.longitude
-          })) */
+          console.log(res.data._embedded)
+          /*           const latitude = res.data._embedded?.events.map((long) => long._embedded?.venues?.map((venue) => {
+                      return venue.location.latitude
+                    }))
+          
+                    const longitude = res.data._embedded?.events.map((long) => long._embedded?.venues?.map((venue) => {
+                      return venue.location.longitude
+                    })) */
 
           // props.setLat(latitudeFinder(res.data._embedded))
           // props.setLong(longitudeFinder(res.data._embedded))
