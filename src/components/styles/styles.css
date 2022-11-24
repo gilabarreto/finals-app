@@ -3,6 +3,23 @@
   height: 100%;
 }
 
+a.prevConc {
+  color: blue;
+  cursor: pointer; 
+};
+
+a.prevConc:visited {
+  color: purple
+}
+
+a.prevConc:hover {
+  color: hotpink;
+}
+
+a.prevConc:active {
+  color: red;
+}
+
 .search-page-card {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2%;
@@ -174,16 +191,11 @@
   min-height: 70%;
   background: #fff;
   /* transition: all 300ms; */
-  color: #555;
+  /* color: #555; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-}
-
-.prevConc {
-  /* add a cursor */
-  color: black;
   cursor: pointer;
 }

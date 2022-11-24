@@ -134,16 +134,17 @@ export default function ArtistPage(props) {
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
-            Upcoming Concerts:
+          <span style={{fontWeight: "bold"}}>Upcoming Concerts:</span>
             <p>
               <UpcomingConcertList ticketmaster={props.ticketmaster} />
             </p>
           </div>
           <div className="artist-page-previous-concerts">
-            Previous Concerts:
-            <p>
-              {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
-            </p>
+            <span style={{fontWeight: "bold"}}>Previous Concerts:</span>
+            <br></br>
+              <div>
+                {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
+              </div>
           </div>
         </div>
       </div>
