@@ -28,8 +28,8 @@ export default function ArtistPage(props) {
     return setIndex(index - 1);
   }
 
-  console.log(props.results)
-  console.log(props.ticketmaster)
+  console.log("props.results", props.results)
+  console.log("props.ticketmaster", props.ticketmaster)
 
   const upcomingConcerts = props.ticketmaster?.events
     ?.map((upcomingConcert) => {
@@ -38,7 +38,6 @@ export default function ArtistPage(props) {
       const newConcertDate = new Date(+year, month-1, +day);
       return (newConcertDate.toDateString());
     })
-    .sort();
 
   const artistInfo = props.results
 
