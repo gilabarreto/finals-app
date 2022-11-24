@@ -66,10 +66,10 @@ export default function SearchPage(props) {
         {tour && <h2>Tour Name: {tour}</h2>}
       </div>
       <div className="search-page-box">
-        <h3>Next concert: {nextConcert[0]}</h3>
+        <h3>Next concert: <br></br>{nextConcert[0]}</h3>
       </div>
       <div className="search-page-box">
-        <h3>Last Concert: <Link to='/artist'>{lastConcertDate()}</Link></h3>
+        <h3>Last Concert: <br></br><Link to='/artist'>{lastConcertDate()}</Link></h3>
       </div>
       <div className="search-page-box">
         <h3>Play now!</h3>

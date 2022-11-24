@@ -66,7 +66,7 @@ export default function ArtistPage(props) {
     return `${date.toLocaleDateString("en-US", options)} || ${city}, ${state}, ${country}`;
   })
 
-  const tour = concert.tour?.name
+  const tour = concert.tour?.name || "No tour name"
 
   const venue = concert.venue?.name
 
