@@ -70,3 +70,9 @@
   border-radius: 25px;
   background-color: #dfdfdf;
 }
+
+.prevConc {
+  /* add a cursor */
+  color: black;
+  cursor: pointer;
+}

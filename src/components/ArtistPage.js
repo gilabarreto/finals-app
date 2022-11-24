@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 
+import { useNavigate, Link } from "react-router-dom"
+
 import { latitudeFinder, longitudeFinder } from "../helpers/selectors";
 
 import Map from "./Map";
@@ -54,7 +56,7 @@ export default function ArtistPage(props) {
     return (date.toDateString());
   })
 
-  // console.log(previousConcerts);
+  console.log(previousConcerts);
 
   const tour = concert.tour?.name
 
@@ -125,7 +127,7 @@ export default function ArtistPage(props) {
           <div className="box-5">
             Previous Concerts:
             <p>
-              {previousConcerts.map((previousConcert) => <li key={previousConcert}>{previousConcert}</li>).slice(0, 10)}
+              {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>)}
             </p>
           </div>
         </div>
