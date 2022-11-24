@@ -8,7 +8,7 @@ export default function UpcomingConcertList(props) {
     return upcomingConcert.dates.start.localDate
   }).sort()
 
-  const mapConcerts = upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) => {
+  const mapConcerts = upcomingConcerts?.map((upcomingConcert, upcomingConcertIndex) => {
 
     const ticketArr = ticketFinder(props.ticketmaster)
     const ticketsUrl = ticketArr[upcomingConcertIndex]

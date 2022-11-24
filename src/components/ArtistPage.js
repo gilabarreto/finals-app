@@ -32,8 +32,8 @@ export default function ArtistPage(props) {
   }
 
   // console.log(props.results)
-  console.log("props.ticketmaster", props.ticketmaster)
-  console.log("ticketFinder", ticketFinder(props.ticketmaster))
+  // console.log("props.ticketmaster", props.ticketmaster)
+  // console.log("ticketFinder", ticketFinder(props.ticketmaster))
 
   const upcomingConcerts = props.ticketmaster?.events
     ?.map((upcomingConcert) => {
@@ -57,8 +57,6 @@ export default function ArtistPage(props) {
     const date = new Date(+year, month - 1, +day);
     return (date.toDateString());
   })
-
-  console.log(previousConcerts);
 
   const tour = concert.tour?.name
 
@@ -87,7 +85,7 @@ export default function ArtistPage(props) {
   return (
     <div>
       <div className="container-1">
-        <div className="box-1">
+        <div className="artist-page-concert-info">
           <ol>
             <h2><button className="button-17" onClick={increase}>&lt;</button>
               Concert Date: {concertDate}
@@ -99,14 +97,14 @@ export default function ArtistPage(props) {
             <h2>Location: {city}, {state}, {country}</h2>
           </ol>
         </div>
-        <div className="box-2">
+        <div className="artist-page-map">
           {props.ticketmaster ? <Map latitude={coordinates.lat} longitude={coordinates.long} /> : null}
         </div>
       </div>
       <div className="container-4">
         <div className="container-2">
-          <ul className="box-3">
-            Setlist:
+          <ul className="artist-page-setlist">
+            <h2>Setlist:</h2>
             <p>
               {list.length === 0 ?
                 "There are no songs in this setlist.\n Please come back later" :
@@ -116,7 +114,7 @@ export default function ArtistPage(props) {
           </ul>
         </div>
         <div className="container-3">
-          <div className="box-4">
+          <div className="artist-page-upcoming-concerts">
             Upcoming Concerts:
             <p>
               {/*               {upcomingConcerts === undefined ?
@@ -130,7 +128,7 @@ export default function ArtistPage(props) {
               <UpcomingConcertList ticketmaster={props.ticketmaster} />
             </p>
           </div>
-          <div className="box-5">
+          <div className="artist-page-previous-concerts">
             Previous Concerts:
             <p>
               {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
