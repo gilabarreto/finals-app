@@ -90,7 +90,7 @@ export default function ArtistPage(props) {
         <div className="box-1">
           <ol>
             <h2><button className="button-17" onClick={increase}>&lt;</button>
-              Concert Date: {concertDate}
+              Concert Date: {concertDate()}
               <button onClick={decrease}>&gt;</button>
             </h2>
             <h2>Artist: {artist}</h2>
