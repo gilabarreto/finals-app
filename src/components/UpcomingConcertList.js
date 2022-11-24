@@ -17,7 +17,7 @@ export default function UpcomingConcertList(props) {
     return date.toLocaleDateString("en-US", options);
   })
 
-  const mapConcerts = upcomingConcerts.map((upcomingConcert, upcomingConcertIndex) => {
+  const mapConcerts = upcomingConcerts?.map((upcomingConcert, upcomingConcertIndex) => {
 
     const ticketArr = ticketFinder(props.ticketmaster)
     const ticketsUrl = ticketArr[upcomingConcertIndex]
