@@ -101,7 +101,7 @@ export default function ArtistPage(props) {
         <div className="artist-page-concert-info">
           <ol>
             <h2 className="artist-page-button-aligner"><button className="artist-page-increase-decrease" onClick={increase}>&lt;</button>
-            &ensp;Concert Date: {concertDate()}&ensp;
+              &ensp;Concert Date: {concertDate()}&ensp;
               <button className="artist-page-increase-decrease" onClick={decrease}>&gt;</button>
             </h2>
             <h2>Artist: {artist}</h2>
@@ -117,8 +117,8 @@ export default function ArtistPage(props) {
       <div className="artist-page-bottom-container">
         <div className="artist-page-bottom-left-container">
           <div className="artist-page-setlist">
+            <h2>Setlist:</h2>
             <ul>
-              <h2>Setlist:</h2>
               <p>
                 {list.length === 0 ?
                   "There are no songs in this setlist.\n Please come back later" :
@@ -133,17 +133,18 @@ export default function ArtistPage(props) {
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
-          <span style={{fontWeight: "bold"}}>Upcoming Concerts:</span>
+            <span style={{ fontWeight: "bold" }}>Upcoming Concerts:</span>
             <p>
               <UpcomingConcertList ticketmaster={props.ticketmaster} />
             </p>
           </div>
           <div className="artist-page-previous-concerts">
-            <span style={{fontWeight: "bold"}}>Previous Concerts:</span>
-            <br></br>
+            <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
+            <p>
               <div>
                 {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
               </div>
+            </p>
           </div>
         </div>
       </div>

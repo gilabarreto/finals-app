@@ -16,7 +16,6 @@ export default function SearchPage(props) {
     const [year, month, day] = str.split('-');
     const date = new Date(year, month - 1, day);
     const options = {
-      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -41,7 +40,6 @@ export default function SearchPage(props) {
     const [day, month, year] = str.split('-');
     const date = new Date(year, month - 1, day);
     const options = {
-      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -55,21 +53,23 @@ export default function SearchPage(props) {
 
   return (
     <div className="search-page-card">
-      <div className="search-page-box">
-          <img src={artistImage} className="search-page-image" onClick={() => { navigate("/artist") }}/>
+      <div className="search-page-image-box">
+        <img src={artistImage} className="search-page-image" onClick={() => { navigate("/artist") }} />
       </div>
-      <div>
-        <h3 className = "prevConc" onClick={() => { navigate("/artist") }} >{artist}</h3>
-        {tour && <h2>Tour Name: {tour}</h2>}
-      </div>
-      <div className="search-page-box">
-        <h3>Next concert: {nextConcert[0]}</h3>
+      <div className="search-page-info-box">
+        <h1>{artist}</h1>
+        {tour && <h3>Tour: {tour}</h3>}
       </div>
       <div className="search-page-box">
-        <h3>Last Concert: <Link to='/artist'>{lastConcertDate()}</Link></h3>
+        <button className="search-page-button">Next concert</button>
+        <h3>{nextConcert[0]}</h3>
       </div>
       <div className="search-page-box">
-        <h3><a href={spotify} target="_blank" rel="noopener noreferrer" className="search-page-button">Play now!</a></h3>
+        <button className="search-page-button"><Link to='/artist' >Last Concert</Link></button>
+        <h3>{lastConcertDate()}</h3>
+      </div>
+      <div className="search-page-box">
+        <button className="search-page-button"><a href={spotify} target="_blank" rel="noopener noreferrer">Play now!</a></button>
       </div>
     </div>
   )
