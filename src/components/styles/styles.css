@@ -184,16 +184,16 @@ a.prevConc:active {
 }
 
 .artist-page-top-container {
-  border-color: blue;
-  border-style: solid;
+  /* border-color: blue; */
+  /* border-style: solid; */
   display: flex;
   justify-content: space-around;
   flex-direction: row;
 }
 
 .artist-page-bottom-container {
-  border-color: blue;
-  border-style: solid;
+  /* border-color: blue; */
+  /* border-style: solid; */
   display: flex;
   flex-direction: row;
 }
@@ -203,7 +203,6 @@ a.prevConc:active {
   border-radius: 0.5em;
   padding-right: 2em;
   margin: 1em;
-  min-width: 40%;
   min-height: 100%;
   word-break: break-word;
   background: #fff;
@@ -232,8 +231,8 @@ a.prevConc:active {
 }
 
 .artist-page-bottom-left-container {
-  border-color: red;
-  border-style: solid;
+  /* border-color: red; */
+  /* border-style: solid; */
   padding: 1em;
   display: flex;
   width: 60%;
@@ -247,6 +246,7 @@ a.prevConc:active {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 0.5em;
   padding-right: 2em;
+  margin-left: 1em;
   min-height: 100%;
   width: 50%;
   background: #fff;
@@ -276,8 +276,8 @@ a.prevConc:active {
 }
 
 .artist-page-bottom-right-container {
-  border-color: red;
-  border-style: solid;
+  /* border-color: red; */
+  /* border-style: solid; */
   padding: 1em;
   display: flex;
   width: 40%;
@@ -290,6 +290,7 @@ a.prevConc:active {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 0.5em;
   padding: 2em;
+  margin-right: 1em;
   background: #fff;
   /* transition: all 300ms; */
   color: #555;
@@ -303,6 +304,7 @@ a.prevConc:active {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 0.5em;
   margin-top: 1em;
+  margin-right: 1em;
   padding: 2em;
   background: #fff;
   /* transition: all 300ms; */

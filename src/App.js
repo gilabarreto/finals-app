@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
 import Map from "./components/Map"
+import Main from './components/Main';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<SearchPage results={results} ticketmaster={ticketmaster} />}></Route>
           <Route path="/artist" element={<ArtistPage results={results} ticketmaster={ticketmaster} lat={lat} long={long}/>}></Route>
           <Route path="/map" element={<Map />}></Route>
+          <Route path="/main" element={<Main />}></Route>
         </Routes>
       </div>
     </Router>

@@ -43,12 +43,14 @@ export default function SearchBar(props) {
       axios.get('https://app.ticketmaster.com/discovery/v2/suggest', {
         params: {
           'keyword': `"${value}"`,
-          // 'sort': 'name,asc',
+          'segmentId': 'KZFzniwnSyZfZ7v7nJ', 
+          'sort': 'name,asc',
           'apikey': 'kMv2pjo5bzSz5iyaz0h5aLqGnQcWyOSL'
         }
       })
         .then((res) => {
           props.setTicketmaster(res.data._embedded)
+          console.log(res.data._embedded)
         })
         .catch((err) => {
           props.setTicketmaster([])

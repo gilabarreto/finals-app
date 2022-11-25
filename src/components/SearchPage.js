@@ -29,7 +29,7 @@ export default function SearchPage(props) {
 
   const artist = concert.artist.name
 
-  const tour = concert.tour?.name
+  const tour = concert?.tour?.name
 
   const spotify = props.ticketmaster?.attractions[index]?.externalLinks?.spotify[index]?.url
 
