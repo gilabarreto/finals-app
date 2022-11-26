@@ -2,12 +2,15 @@ import logo from "../icons/logo.png";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
-import searchIcon from "../icons/search.png";
 
-function Navbar() {
+import { Link } from "react-router-dom"
+
+import SearchBar from "./SearchBar";
+
+function Navbar(props) {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
-    setDropdownLogin(opened => !opened);
+    setDropdownLogin((opened) => !opened);
   }, [dropdownLogin]);
 
   const [isUserLogged, setisUserLogged] = useState(false);
@@ -27,19 +30,14 @@ function Navbar() {
       <div className="annoucement"></div>
       <nav>
         <div>
-          <a>
-            <img src={logo} className="logo"></img>
-          </a>
+          <Link to='/'><img src={logo} className="logo"></img></Link>
         </div>
-        <div className="search">
-          <div className="input-container-search">
-            <img className="searchIcon" src={searchIcon}></img>
-            <input
-              className="input-text-search"
-              type="search"
-              placeholder="Search your favorite artist"
-            ></input>
-          </div>
+        <div>
+          {/* Home · About · Contact */}
+        </div>
+        <SearchBar setResults={props.setResults} setTicketmaster={props.setTicketmaster} setLat={props.setLat} setLong={props.setLong} />
+        <div>
+          {/* Follow: Twitter · Instagram · Spotify */}
         </div>
         <div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
