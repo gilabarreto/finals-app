@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 
@@ -44,3 +45,10 @@ export default function Main() {
 //     </>
 //   )
 // }
+=======
+import main-img from "./public/imgs/main-img.png"
+
+export default function Main() {
+  
+}
+>>>>>>> e23f3b0ad2434fc0f0f4a335c418d413d73b8692
