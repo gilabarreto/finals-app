@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import { latitudeFinder, longitudeFinder, ticketFinder } from "../helpers/selectors";
 
+import SpotifyPlayer from 'react-spotify-player';
+
 import Map from "./Map";
 
 import "./styles/styles.css";
@@ -95,6 +97,16 @@ export default function ArtistPage(props) {
     return song.name
   })
 
+  // Spotify Player
+  const spotify = props.ticketmaster?.attractions[index]?.externalLinks?.spotify[index]?.url
+
+  const size = {
+    width: '100%',
+    height: 500,
+  };
+  const view = 'list'; // or 'coverart'
+  const theme = 'black'; // or 'white'
+
   return (
     <div>
       <div className="artist-page-top-container">
@@ -128,8 +140,12 @@ export default function ArtistPage(props) {
             </ul>
           </div>
           <div className="artist-page-spotify">
-            <h2>Spotify</h2>
-          </div>
+            <SpotifyPlayer
+              uri={spotify}
+              size={size}
+              view={view}
+              theme={theme}
+            />          </div>
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
