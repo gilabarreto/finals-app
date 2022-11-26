@@ -1,5 +1,5 @@
-import main-img from "./public/imgs/main-img.png"
+// import main-img from "./public/imgs/main-img.png"
 
-export default function Main() {
-  
-}
+// export default function Main() {
+
+// }
