@@ -166,6 +166,7 @@ a.prevConc:active {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .search-page-image-box {
@@ -190,6 +191,18 @@ a.prevConc:active {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.search-tour {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  text-align: left;
 }
 
 .search-page-info-box {
@@ -197,11 +210,11 @@ a.prevConc:active {
   background: #fff;
   /* transition: all 600ms; */
   color: #555;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .search-page-box {
