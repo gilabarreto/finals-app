@@ -98,7 +98,7 @@ export default function ArtistPage(props) {
   })
 
   // Spotify Player
-  const spotify = props.ticketmaster?.attractions[index]?.externalLinks?.spotify[index]?.url
+  const spotify = props.ticketmaster.attractions ? props.ticketmaster.attractions[index].externalLinks.spotify[index].url : null
 
   const size = {
     width: '100%',

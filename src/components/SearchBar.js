@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 
 import searchIcon from "../icons/search.png";
+
 import axios from "axios";
 
 export default function SearchBar(props) {
@@ -68,7 +69,6 @@ export default function SearchBar(props) {
       })
         .then((res) => {
           props.setTicketmaster(res.data._embedded)
-          console.log(res.data._embedded)
         })
         .catch((err) => {
           props.setTicketmaster([])
