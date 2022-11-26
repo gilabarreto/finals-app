@@ -63,7 +63,7 @@ export default function SearchPage(props) {
         </div>
         <div className="search-page-info-box">
           <h1 className="search-artist">{artist}</h1>
-          {tour && <h3 className="search-tour">Tour: <br></br>{tour}</h3>}
+          {tour && <h3 className="search-tour">Tour: {tour}</h3>}
         </div>
         <div className="search-page-box">
           <a className="next-concert-button">Next concert</a>
