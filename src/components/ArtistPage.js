@@ -112,18 +112,33 @@ export default function ArtistPage(props) {
       <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
           <ol>
-            <h2 className="artist-page-button-aligner"><button className="artist-page-increase-decrease" onClick={increase}>&lt;</button>
+            <h2 className="artist-page-button-aligner">
+              <button
+                className="artist-page-increase-decrease"
+                onClick={increase}
+              >
+                &lt;
+              </button>
               &ensp;Concert Date: {concertDate()}&ensp;
-              <button className="artist-page-increase-decrease" onClick={decrease}>&gt;</button>
+              <button
+                className="artist-page-increase-decrease"
+                onClick={decrease}
+              >
+                &gt;
+              </button>
             </h2>
             <h2>Artist: {artist}</h2>
             <h2>Tour: {tour}</h2>
             <h2>Venue: {venue}</h2>
-            <h2>Location: {city}, {state}, {country}</h2>
+            <h2>
+              Location: {city}, {state}, {country}
+            </h2>
           </ol>
         </div>
         <div className="artist-page-map">
-          {props.ticketmaster ? <Map latitude={coordinates.lat} longitude={coordinates.long} /> : null}
+          {props.ticketmaster ? (
+            <Map latitude={coordinates.lat} longitude={coordinates.long} />
+          ) : null}
         </div>
       </div>
       <div className="artist-page-bottom-container">
@@ -132,10 +147,11 @@ export default function ArtistPage(props) {
             <h2>Setlist:</h2>
             <ul>
               <p>
-                {list.length === 0 ?
-                  "There are no songs in this setlist.\n Please come back later" :
-                  list.map((song, songIndex) => <li key={songIndex}>{song}</li>
-                  )}
+                {list.length === 0
+                  ? "There are no songs in this setlist.\n Please come back later"
+                  : list.map((song, songIndex) => (
+                      <li key={songIndex}>{song}</li>
+                    ))}
               </p>
             </ul>
           </div>
@@ -145,7 +161,8 @@ export default function ArtistPage(props) {
               size={size}
               view={view}
               theme={theme}
-            />          </div>
+            />
+          </div>
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
@@ -158,7 +175,15 @@ export default function ArtistPage(props) {
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                {previousConcerts.map((previousConcert, index) => <li key={previousConcert}><a className="prevConc" onClick={() => setIndex(index)}>{previousConcert}</a></li>).slice(0, 10)}
+                {previousConcerts
+                  .map((previousConcert, index) => (
+                    <li key={previousConcert}>
+                      <a className="prevConc" onClick={() => setIndex(index)}>
+                        {previousConcert}
+                      </a>
+                    </li>
+                  ))
+                  .slice(0, 10)}
               </div>
             </p>
           </div>

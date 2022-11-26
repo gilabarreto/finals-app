@@ -15,20 +15,41 @@ export default function SearchPage(props) {
     )
   }
 
-  const nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
-    const str = upcomingConcert.dates.start.localDate;
-    const [year, month, day] = str.split('-');
-    const date = new Date(year, month - 1, day);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    return date.toLocaleDateString("en-US", options);
-  })
+  let nextConcert = '';
 
-  const artistImage = props.ticketmaster?.events[0]?.images[0]?.url || null
+  try {
+    const nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
+      const str = upcomingConcert.dates.start.localDate;
+      const [year, month, day] = str.split("-");
+      const date = new Date(year, month - 1, day);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      return date.toLocaleDateString("en-US", options);
+    });
+  } catch (error) {
+    return (
+      <div>
+        <h1>Error</h1>
+      </div>
+    );
+  }
 
+  console.log(props.ticketmaster);
+
+  let artistImage = '';
+
+  try {
+   artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
+  } catch (error) {
+    return (
+      <div>
+        <h1>Error</h1>
+      </div>)
+  }
+  
   const concert = props.results[index];
 
   const artist = concert.artist.name
