@@ -18,7 +18,7 @@ export default function SearchPage(props) {
   let nextConcert = '';
 
   try {
-    const nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
+      nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
       const str = upcomingConcert.dates.start.localDate;
       const [year, month, day] = str.split("-");
       const date = new Date(year, month - 1, day);
@@ -36,8 +36,6 @@ export default function SearchPage(props) {
       </div>
     );
   }
-
-  console.log(props.ticketmaster);
 
   let artistImage = '';
 
