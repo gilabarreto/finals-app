@@ -1,12 +1,18 @@
-import mainImg from "../imgs/main-img.jpeg"
+import SearchPage from "./SearchPage"
 
 import "./Main.css"
 
-export default function Main() {
-  
+export default function Main(props) {
+
+  console.log(props)
+
   return (
-  <div className="main-top-container">
-    <h1>Keep track of your favorite artists</h1>
-  </div>
+    <>
+      {!props.result ?
+        <div className="main-page-card">
+          <h1>Keep track of your favorite artist.</h1>
+        </div> :
+        <SearchPage results={props.results} ticketmaster={props.ticketmaster} />}
+    </>
   )
 }

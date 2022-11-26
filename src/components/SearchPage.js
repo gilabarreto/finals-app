@@ -8,7 +8,11 @@ export default function SearchPage(props) {
   const navigate = useNavigate()
 
   if (props.results.length === 0) {
-    return null;
+    return (
+      <div className="main-page-card">
+        <h1>Keep track of your favorite artist.</h1>
+      </div>
+    )
   }
 
   const nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
@@ -23,7 +27,7 @@ export default function SearchPage(props) {
     return date.toLocaleDateString("en-US", options);
   })
 
-  const artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
+  const artistImage = props.ticketmaster?.events[0]?.images[0]?.url || null
 
   const concert = props.results[index];
 
@@ -52,26 +56,33 @@ export default function SearchPage(props) {
   }
 
   return (
-    <div className="search-page-card">
-      <div className="search-page-image-box">
-        <img src={artistImage} className="search-page-image" onClick={() => { navigate("/artist") }} />
+    <>
+      <div className="search-page-card">
+        <div className="search-page-image-box">
+          <img src={artistImage} className="search-page-image" onClick={() => { navigate("/artist"); }} />
+        </div>
+        <div className="search-page-info-box">
+          <h1>{artist}</h1>
+          {tour && <h3>Tour: {tour}</h3>}
+        </div>
+        <div className="search-page-box">
+          <button className="search-page-button">Next concert</button>
+          <h3>{nextConcert[0]}</h3>
+        </div>
+        <div className="search-page-box">
+          <button className="search-page-button"><Link to='/artist'>Last Concert</Link></button>
+          <h3>{lastConcertDate()}</h3>
+        </div>
+        <div className="search-page-box">
+          <button className="search-page-button"><a href={spotify} target="_blank" rel="noopener noreferrer">Play now!</a></button>
+        </div>
       </div>
-      <div className="search-page-info-box">
-        <h1>{artist}</h1>
-        {tour && <h3>Tour: {tour}</h3>}
-      </div>
-      <div className="search-page-box">
-        <button className="search-page-button">Next concert</button>
-        <h3>{nextConcert[0]}</h3>
-      </div>
-      <div className="search-page-box">
-        <button className="search-page-button"><Link to='/artist' >Last Concert</Link></button>
-        <h3>{lastConcertDate()}</h3>
-      </div>
-      <div className="search-page-box">
-        <button className="search-page-button"><a href={spotify} target="_blank" rel="noopener noreferrer">Play now!</a></button>
-      </div>
-    </div>
+      {props.results ?
+        <div className="main-page-card">
+          <h1>Keep track of your favorite artist.</h1>
+        </div> :
+        console.log("No results")}
+    </>
   )
 
 }

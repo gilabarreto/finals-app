@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={<SearchPage results={results} ticketmaster={ticketmaster} />}></Route>
           <Route path="/artist" element={<ArtistPage results={results} ticketmaster={ticketmaster} lat={lat} long={long}/>}></Route>
           <Route path="/map" element={<Map />}></Route>
-          <Route path="/main" element={<Main />}></Route>
+          <Route path="/main" element={<Main results={results} ticketmaster={ticketmaster} />}></Route>
         </Routes>
       </div>
     </Router>
