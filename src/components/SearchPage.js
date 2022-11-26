@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import { useNavigate, Link } from "react-router-dom"
 
-import "./Main.css"
-
 export default function SearchPage(props) {
   const [index, setIndex] = useState(0);
 
@@ -57,8 +55,6 @@ export default function SearchPage(props) {
     return setIndex(index + 1)
   }
 
-
-
   return (
     <>
       <div className="search-page-card">
@@ -70,7 +66,7 @@ export default function SearchPage(props) {
           {tour && <h3>Tour: {tour}</h3>}
         </div>
         <div className="search-page-box">
-          <button className="search-page-button">Next concert</button>
+          <a className="next-concert-button">Next concert</a>
           <h3>{nextConcert[0]}</h3>
         </div>
         <div className="search-page-box">
@@ -81,10 +77,11 @@ export default function SearchPage(props) {
           <button className="search-page-button"><a href={spotify} target="_blank" rel="noopener noreferrer">Play now!</a></button>
         </div>
       </div>
-      {props.results ?
+      {/* {props.results ?
         <div className="main-page-card">
           <h1>Keep track of your favorite artist.</h1>
-        </div> : console.log("No artists")}
+        </div> :
+        console.log("No results")} */}
     </>
   )
 
