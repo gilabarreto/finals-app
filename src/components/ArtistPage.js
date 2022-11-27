@@ -104,10 +104,10 @@ export default function ArtistPage(props) {
     return song.name;
   });
 
-  // Spotify Player
-  const spotify = props.ticketmaster.attractions
-    ? props.ticketmaster.attractions[index].externalLinks.spotify[index].url
-    : null;
+  // // Spotify Player
+  // const spotify = props.ticketmaster.attractions
+  //   ? props.ticketmaster.attractions[index].externalLinks.spotify[index].url
+  //   : null;
 
   const size = {
     width: "100%",
@@ -117,6 +117,24 @@ export default function ArtistPage(props) {
   const theme = "black"; // or 'white'
 
   console.log("ArtistPage props.token -----", props.token);
+
+  console.log("songs----", songs);
+  console.log("list----", list);
+
+  // const searchMusics = async e => {
+  //   e.preventDefault();
+  //   const { data } = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${props.token}`,
+  //     },
+  //     params: {
+  //       q: searchKey,
+  //       type: "track",
+  //     },
+  //   });
+
+  //   setArtists(data.artists.items);
+  // };
 
   return (
     <div>
