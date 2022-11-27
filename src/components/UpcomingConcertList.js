@@ -5,8 +5,16 @@ import UpcomingConcertListItem from "./UpcomingConcertListItem"
 export default function UpcomingConcertList(props) {
 
   const upcomingConcerts = props.ticketmaster?.events?.map((upcomingConcert) => {
-    return upcomingConcert.dates.start.localDate
-  }).sort()
+    const str = upcomingConcert.dates.start.localDate;
+    const [year, month, day] = str.split('-');
+    const date = new Date(year, month - 1, day);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
+  })
 
   const mapConcerts = upcomingConcerts?.map((upcomingConcert, upcomingConcertIndex) => {
 

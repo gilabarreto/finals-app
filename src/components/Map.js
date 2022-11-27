@@ -7,7 +7,7 @@ import "./styles/styles.css";
 export default function Map(props) {
   // Use ENV FILE to Hide Google API Key
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyD8AVh8DuRPrQrNM1Dp0TCX0SA02dI9ADU"
+    googleMapsApiKey: 'AIzaSyD8AVh8DuRPrQrNM1Dp0TCX0SA02dI9ADU'
   })
 
   if (!isLoaded) return <div>Loading...</div>
