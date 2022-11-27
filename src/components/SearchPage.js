@@ -65,7 +65,9 @@ export default function SearchPage(props) {
   const tour = concert?.tour?.name;
 
   const spotify =
-    props.ticketmaster?.attractions[index]?.externalLinks?.spotify[index]?.url;
+  props.ticketmaster.attractions
+  ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
+  : null;
 
   const lastConcert = concert.eventDate;
 
