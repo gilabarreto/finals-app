@@ -85,9 +85,9 @@ export default function SearchPage(props) {
         <div className="search-page-image-box">
           <img src={artistImage} className="search-page-image" onClick={() => { navigate("/artist"); }} />
         </div>
-        <div className="search-page-info-box" onClick={() => { navigate("/artist"); }}>
-          <h1 className="search-artist">{artist} </h1>
-          {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+        <div className="search-page-info-box">
+          <h1>{artist}</h1>
+          {tour && <h3>Tour: {tour}</h3>}
         </div>
         <div className="search-page-box">
           <button className="search-page-button">Next concert</button>
