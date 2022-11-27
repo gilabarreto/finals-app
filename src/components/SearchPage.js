@@ -68,9 +68,9 @@ export default function SearchPage(props) {
   //     return date.toLocaleDateString("en-US", options);
   //   }) : [];
 
-  // const spotify = props.ticketmaster.attractions
-  //   ? props.ticketmaster.attractions[index].externalLinks.spotify[index].url
-  //   : null;
+  const spotify = props.ticketmaster.attractions
+    ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
+    : null;
 
   const concert = props.results[index];
 

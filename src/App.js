@@ -41,6 +41,7 @@ function App() {
               />
             }
           ></Route>
+
           <Route path="/#" element={<SpotifyAuth />}></Route>
           <Route
             path="/artist"
