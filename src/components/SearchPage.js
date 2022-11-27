@@ -19,7 +19,7 @@ export default function SearchPage(props) {
           Keep track of your favorite artist by login in to your Spotify
           Account.
         </h1>
-        <SpotifyAuth />
+        <SpotifyAuth setGlobalSpotifyToken={props.setGlobalSpotifyToken} />
       </div>
     );
   }
@@ -118,9 +118,9 @@ export default function SearchPage(props) {
         </div>
         <div className="search-page-box">
           <button className="search-page-button">
-            <a href={spotify} target="_blank" rel="noopener noreferrer">
+            {/* <a href={spotify} target="_blank" rel="noopener noreferrer">
               Play now!
-            </a>
+            </a> */}
           </button>
         </div>
       </div>

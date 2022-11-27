@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
-export default function SpotifyAuth() {
+export default function SpotifyAuth(props) {
   const CLIENT_ID = "0ef6de7e366a4feaac8a1bb1c754c909";
   const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
   const [token, setToken] = useState("");
+
+  // console.log("props on SpotifyAuth -----", props);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -32,6 +34,12 @@ export default function SpotifyAuth() {
     setToken("");
     window.localStorage.removeItem("token");
   };
+
+  useEffect(() => {
+    if (token) {
+      props.setGlobalSpotifyToken(token);
+    }
+  }, [token]);
 
   return (
     <div className="page-spotify">
