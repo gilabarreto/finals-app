@@ -10,6 +10,11 @@ import SearchPage from "./components/SearchPage";
 import Map from "./components/Map";
 import Main from "./components/Main";
 
+<<<<<<< HEAD
+=======
+import SpotifyAuth from "./components/SpotifyAuth";
+
+>>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
 function App() {
   const [results, setResults] = useState([]);
   const [ticketmaster, setTicketmaster] = useState([]);
@@ -32,6 +37,10 @@ function App() {
               <SearchPage results={results} ticketmaster={ticketmaster} />
             }
           ></Route>
+<<<<<<< HEAD
+=======
+          <Route path="/#" element={<SpotifyAuth />}></Route>
+>>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
           <Route
             path="/artist"
             element={
@@ -44,7 +53,10 @@ function App() {
             }
           ></Route>
           <Route path="/map" element={<Map />}></Route>
-          <Route path="/main" element={<Main />}></Route>
+          <Route
+            path="/main"
+            element={<Main results={results} ticketmaster={ticketmaster} />}
+          ></Route>
         </Routes>
       </div>
     </Router>
