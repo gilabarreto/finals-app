@@ -42,12 +42,12 @@ export default function ArtistPage(props) {
   // console.log("props.ticketmaster", props.ticketmaster)
   // console.log("ticketFinder", ticketFinder(props.ticketmaster))
 
-  const upcomingConcerts = props.ticketmaster?.events?.map(upcomingConcert => {
-    const str = upcomingConcert.dates.start.localDate;
-    const [year, month, day] = str.split("-");
-    const newConcertDate = new Date(+year, month - 1, +day);
-    return newConcertDate.toDateString();
-  });
+  // const upcomingConcerts = props.ticketmaster?.events?.map(upcomingConcert => {
+  //   const str = upcomingConcert.dates.start.localDate;
+  //   const [year, month, day] = str.split("-");
+  //   const newConcertDate = new Date(+year, month - 1, +day);
+  //   return newConcertDate.toDateString();
+  // });
 
   const artistInfo = props.results;
 
@@ -106,7 +106,7 @@ export default function ArtistPage(props) {
 
   // Spotify Player
   const spotify = props.ticketmaster.attractions
-    ? props.ticketmaster.attractions[index].externalLinks.spotify[index].url
+    ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
     : null;
 
   const size = {
