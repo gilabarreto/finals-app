@@ -74,6 +74,26 @@ export default function SearchBar(props) {
           console.log("Setlist Get Resquest Error:", err)
         })
 
+<<<<<<< HEAD
+=======
+      axios.get('https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks', {
+        params: {
+          'market': 'ES'
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': '1b96527ae88b428e9df149a9ef210091'
+        }
+      })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log("Setlist Get Resquest Error:", err)
+        })
+
+>>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
 
       // GET Request Ticketmaster
       // axios.get('https://app.ticketmaster.com/discovery/v2/events.json', {
@@ -97,6 +117,9 @@ export default function SearchBar(props) {
       })
         .then((res) => {
           props.setTicketmaster(res.data._embedded)
+<<<<<<< HEAD
+>>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
+=======
 >>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
         })
         .then(res => {

@@ -11,6 +11,11 @@ import Map from "./components/Map";
 import Main from "./components/Main";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import SpotifyAuth from "./components/SpotifyAuth";
+
+>>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
 =======
 import SpotifyAuth from "./components/SpotifyAuth";
 
@@ -38,6 +43,10 @@ function App() {
             }
           ></Route>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+          <Route path="/#" element={<SpotifyAuth />}></Route>
+>>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
 =======
           <Route path="/#" element={<SpotifyAuth />}></Route>
 >>>>>>> 82c94d92e95205d75ac7da2bc0cb2328d06c7348
