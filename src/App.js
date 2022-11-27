@@ -10,6 +10,8 @@ import SearchPage from "./components/SearchPage";
 import Map from "./components/Map";
 import Main from "./components/Main";
 
+import SpotifyAuth from "./components/SpotifyAuth";
+
 function App() {
   const [results, setResults] = useState([]);
   const [ticketmaster, setTicketmaster] = useState([]);
@@ -32,6 +34,7 @@ function App() {
               <SearchPage results={results} ticketmaster={ticketmaster} />
             }
           ></Route>
+          <Route path="/#" element={<SpotifyAuth />}></Route>
           <Route
             path="/artist"
             element={
