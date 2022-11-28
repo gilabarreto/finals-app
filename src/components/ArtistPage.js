@@ -213,14 +213,14 @@ export default function ArtistPage(props) {
               <h1>Listen to the Setlist songs here</h1>
             </p>
           </div>
-          {/* <div className="artist-page-spotify">
+          <div className="artist-page-spotify">
             <SpotifyPlayer
               uri={spotify}
               size={size}
               view={view}
               theme={theme}
             />
-          </div> */}
+          </div>
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
