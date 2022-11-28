@@ -17,6 +17,9 @@ function App() {
   const [ticketmaster, setTicketmaster] = useState([]);
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
+  const [token, setToken] = useState("");
+
+  // console.log("App.js token ------ ", token);
 
   return (
     <Router>
@@ -31,9 +34,14 @@ function App() {
           <Route
             path="/"
             element={
-              <SearchPage results={results} ticketmaster={ticketmaster} />
+              <SearchPage
+                results={results}
+                ticketmaster={ticketmaster}
+                setGlobalSpotifyToken={setToken}
+              />
             }
           ></Route>
+
           <Route path="/#" element={<SpotifyAuth />}></Route>
           <Route
             path="/artist"
@@ -43,14 +51,15 @@ function App() {
                 ticketmaster={ticketmaster}
                 lat={lat}
                 long={long}
+                token={token}
               />
             }
           ></Route>
           <Route path="/map" element={<Map />}></Route>
-          <Route
+          {/* <Route
             path="/main"
             element={<Main results={results} ticketmaster={ticketmaster} />}
-          ></Route>
+          ></Route> */}
         </Routes>
       </div>
     </Router>

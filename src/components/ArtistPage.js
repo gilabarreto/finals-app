@@ -44,12 +44,12 @@ export default function ArtistPage(props) {
   // console.log("props.ticketmaster", props.ticketmaster)
   // console.log("ticketFinder", ticketFinder(props.ticketmaster))
 
-  const upcomingConcerts = props.ticketmaster?.events?.map(upcomingConcert => {
-    const str = upcomingConcert.dates.start.localDate;
-    const [year, month, day] = str.split("-");
-    const newConcertDate = new Date(+year, month - 1, +day);
-    return newConcertDate.toDateString();
-  });
+  // const upcomingConcerts = props.ticketmaster?.events?.map(upcomingConcert => {
+  //   const str = upcomingConcert.dates.start.localDate;
+  //   const [year, month, day] = str.split("-");
+  //   const newConcertDate = new Date(+year, month - 1, +day);
+  //   return newConcertDate.toDateString();
+  // });
 
   const artistInfo = props.results;
 
@@ -119,6 +119,26 @@ export default function ArtistPage(props) {
   };
   const view = "list"; // or 'coverart'
   const theme = "black"; // or 'white'
+
+  console.log("ArtistPage props.token -----", props.token);
+
+  console.log("songs----", songs);
+  console.log("list----", list);
+
+  // const searchMusics = async e => {
+  //   e.preventDefault();
+  //   const { data } = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${props.token}`,
+  //     },
+  //     params: {
+  //       q: searchKey,
+  //       type: "track",
+  //     },
+  //   });
+
+  //   setArtists(data.artists.items);
+  // };
 
   return (
     <div>
@@ -193,14 +213,14 @@ export default function ArtistPage(props) {
               <h1>Listen to the Setlist songs here</h1>
             </p>
           </div>
-          <div className="artist-page-spotify">
+          {/* <div className="artist-page-spotify">
             <SpotifyPlayer
               uri={spotify}
               size={size}
               view={view}
               theme={theme}
             />
-          </div>
+          </div> */}
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
