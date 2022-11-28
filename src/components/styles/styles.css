@@ -20,6 +20,10 @@ a.prevConc:active {
   height: 100%;
 }
 
+.tour {
+  margin-top: 0%; 
+}
+
 .next-concert-button {
   align-items: center;
   background-color: #75ABBC;

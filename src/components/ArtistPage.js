@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 import {
@@ -104,6 +106,8 @@ export default function ArtistPage(props) {
     return song.name;
   });
 
+  console.log(props.ticketmaster.attractions[0].externalLinks)
+
   // Spotify Player
   const spotify = props.ticketmaster.attractions
     ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
@@ -136,8 +140,30 @@ export default function ArtistPage(props) {
                 &gt;
               </button>
             </h2>
-            <h2>Artist: {artist}</h2>
-            <h2>Tour: {tour}</h2>
+            <h2>
+              Artist: {artist}
+              <a href={
+                  props.ticketmaster.attractions[0].externalLinks.youtube[0].url
+                } target="_blank"
+              >
+                <FaYoutube
+                  style={{ color: "red", paddingLeft: 5, paddingRight: 5 }}
+                />
+              </a>
+              <a href={
+                  props.ticketmaster.attractions[0].externalLinks.instagram[0].url
+                } target="_blank"
+              >
+                <FaInstagram style={{ color: "hotpink", paddingRight: 5 }} />
+              </a>
+              <a href={
+                  props.ticketmaster.attractions[0].externalLinks.twitter[0].url
+                } target="_blank"
+              >
+                <FaTwitter style={{ color: "#1DA1F2" }} />
+              </a>
+            </h2>
+            <h2 className="tour">Tour: {tour}</h2>
             <h2>Venue: {venue}</h2>
             <h2>
               Location: {city}, {state}, {country}
