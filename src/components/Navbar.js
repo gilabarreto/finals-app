@@ -31,12 +31,12 @@ function Navbar(props) {
         password: password,
       })
       .then((res) => {
+        setisUserLogged(true);
         console.log("login res", res);
       })
       .catch((err) => {
         console.log(err.message);
       });
-    setisUserLogged(true);
     setDropdownLogin(false);
   };
 
@@ -49,12 +49,12 @@ function Navbar(props) {
         password: password,
       })
       .then((res) => {
+        setisUserLogged(true);
         console.log("login res", res);
       })
       .catch((err) => {
         console.log(err.message);
       });
-    setisUserLogged(true);
     setDropdownLogin(false);
   };
 

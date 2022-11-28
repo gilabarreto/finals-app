@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
 import Map from "./components/Map";
+import Favourites from "./components/Favourites";
 import Main from "./components/Main";
 
 import SpotifyAuth from "./components/SpotifyAuth";
@@ -34,11 +35,18 @@ function App() {
           <Route
             path="/"
             element={
-              <SearchPage
-                results={results}
-                ticketmaster={ticketmaster}
-                setGlobalSpotifyToken={setToken}
-              />
+              <>
+                <Favourites
+                  results={results}
+                  ticketmaster={ticketmaster}
+                  setGlobalSpotifyToken={setToken}
+                />
+                <SearchPage
+                  results={results}
+                  ticketmaster={ticketmaster}
+                  setGlobalSpotifyToken={setToken}
+                />
+              </>
             }
           ></Route>
 
