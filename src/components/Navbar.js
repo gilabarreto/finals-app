@@ -90,9 +90,6 @@ function Navbar(props) {
                 </button>
               ) : (
                 <>
-                  <button onClick={() => setIsRegistered((prev) => !prev)}>
-                    Button
-                  </button>
                   {isRegistered === false && (
                     <span id="login-form">
                       <form onSubmit={login}>
@@ -168,6 +165,22 @@ function Navbar(props) {
                         </div>
                       </form>
                     </span>
+                  )}
+                  {isRegistered === false && (
+                    <>
+                    <span>Not a member? </span>
+                    <button onClick={() => setIsRegistered((prev) => !prev)}>
+                      Register
+                    </button>
+                    </>
+                  )}
+                  {isRegistered === true && (
+                    <>
+                    <span>Have an account? </span>
+                    <button onClick={() => setIsRegistered((prev) => !prev)}>
+                      Login
+                    </button>
+                    </>
                   )}
                 </>
               )}
