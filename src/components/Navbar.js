@@ -169,17 +169,17 @@ function Navbar(props) {
                   {isRegistered === false && (
                     <>
                     <span>Not a member? </span>
-                    <button onClick={() => setIsRegistered((prev) => !prev)}>
+                    <span className="toggle-register-login" onClick={() => setIsRegistered((prev) => !prev)}>
                       Register
-                    </button>
+                    </span>
                     </>
                   )}
                   {isRegistered === true && (
                     <>
                     <span>Have an account? </span>
-                    <button onClick={() => setIsRegistered((prev) => !prev)}>
+                    <span className="toggle-register-login" onClick={() => setIsRegistered((prev) => !prev)}>
                       Login
-                    </button>
+                    </span>
                     </>
                   )}
                 </>
