@@ -8,8 +8,6 @@ export default function SpotifyAuth(props) {
 
   const [token, setToken] = useState("");
 
-  // console.log("props on SpotifyAuth -----", props);
-
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");

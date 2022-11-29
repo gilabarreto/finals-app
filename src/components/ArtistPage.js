@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import axios from "axios";
+
 import { FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
@@ -17,10 +19,9 @@ import Map from "./Map";
 import "./styles/styles.css";
 import UpcomingConcertList from "./UpcomingConcertList";
 
-import SpotifyApp from "./SpotifyAuth";
-
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
+  const [spotifyArtist, setSpotifyArtist] = useState([]); // or track
 
   if (props.results.length === 0 || props.ticketmaster === undefined) {
     return null;
@@ -40,7 +41,7 @@ export default function ArtistPage(props) {
     return setIndex(index - 1);
   };
 
-  // console.log(props);
+  console.log(props);
   // console.log("props.ticketmaster", props.ticketmaster)
   // console.log("ticketFinder", ticketFinder(props.ticketmaster))
 
@@ -106,12 +107,14 @@ export default function ArtistPage(props) {
     return song.name;
   });
 
-  console.log(props.ticketmaster.attractions[0].externalLinks)
+  // console.log(props.ticketmaster.attractions[0].externalLinks)
 
   // Spotify Player
   const spotify = props.ticketmaster.attractions
     ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
     : null;
+
+  console.log("spotify------", spotify);
 
   const size = {
     width: "100%",
@@ -120,25 +123,22 @@ export default function ArtistPage(props) {
   const view = "list"; // or 'coverart'
   const theme = "black"; // or 'white'
 
-  console.log("ArtistPage props.token -----", props.token);
+  const searchArtists = async () => {
+    const response = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${props.token}`,
+      },
+      params: {
+        q: artist,
+        type: "artist",
+      },
+    });
+    setSpotifyArtist(response.data.artists.items[0].uri);
+    console.log("spotifyArtist------", spotifyArtist);
+    return spotifyArtist;
+  };
 
-  console.log("songs----", songs);
-  console.log("list----", list);
-
-  // const searchMusics = async e => {
-  //   e.preventDefault();
-  //   const { data } = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${props.token}`,
-  //     },
-  //     params: {
-  //       q: searchKey,
-  //       type: "track",
-  //     },
-  //   });
-
-  //   setArtists(data.artists.items);
-  // };
+  searchArtists();
 
   return (
     <div>
@@ -162,23 +162,30 @@ export default function ArtistPage(props) {
             </h2>
             <h2>
               Artist: {artist}
-              <a href={
+              <a
+                href={
                   props.ticketmaster.attractions[0].externalLinks.youtube[0].url
-                } target="_blank"
+                }
+                target="_blank"
               >
                 <FaYoutube
                   style={{ color: "red", paddingLeft: 5, paddingRight: 5 }}
                 />
               </a>
-              <a href={
-                  props.ticketmaster.attractions[0].externalLinks.instagram[0].url
-                } target="_blank"
+              <a
+                href={
+                  props.ticketmaster.attractions[0].externalLinks.instagram[0]
+                    .url
+                }
+                target="_blank"
               >
                 <FaInstagram style={{ color: "hotpink", paddingRight: 5 }} />
               </a>
-              <a href={
+              <a
+                href={
                   props.ticketmaster.attractions[0].externalLinks.twitter[0].url
-                } target="_blank"
+                }
+                target="_blank"
               >
                 <FaTwitter style={{ color: "#1DA1F2" }} />
               </a>
@@ -215,7 +222,7 @@ export default function ArtistPage(props) {
           </div>
           <div className="artist-page-spotify">
             <SpotifyPlayer
-              uri={spotify}
+              uri={spotifyArtist}
               size={size}
               view={view}
               theme={theme}
