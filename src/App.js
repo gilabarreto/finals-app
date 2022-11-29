@@ -24,8 +24,6 @@ function App() {
   const [token, setToken] = useState("");
   library.add(fab, faHeart)
 
-  // console.log("App.js token ------ ", token);
-
   return (
     <Router>
       <div className="App">

@@ -11,7 +11,7 @@ import axios from "axios";
 function Navbar(props) {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
-    setDropdownLogin((opened) => !opened);
+    setDropdownLogin(opened => !opened);
   }, [dropdownLogin]);
 
   const [isUserLogged, setisUserLogged] = useState(false);
@@ -21,7 +21,7 @@ function Navbar(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const register = (e) => {
+  const register = e => {
     e.preventDefault();
     console.log("logged in");
     axios
@@ -30,17 +30,17 @@ function Navbar(props) {
         email: email,
         password: password,
       })
-      .then((res) => {
+      .then(res => {
         setisUserLogged(true);
         console.log("login res", res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err.message);
       });
     setDropdownLogin(false);
   };
 
-  const login = (e) => {
+  const login = e => {
     e.preventDefault();
     console.log("logged in");
     axios
@@ -48,11 +48,11 @@ function Navbar(props) {
         email: email,
         password: password,
       })
-      .then((res) => {
+      .then(res => {
         setisUserLogged(true);
         console.log("login res", res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err.message);
       });
     setDropdownLogin(false);
@@ -100,7 +100,7 @@ function Navbar(props) {
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={(event) => setEmail(event.target.value)}
+                            onChange={event => setEmail(event.target.value)}
                           />
                         </div>
                         <div className="input-container">
@@ -110,9 +110,7 @@ function Navbar(props) {
                             type="password"
                             placeholder="Password"
                             value={password}
-                            onChange={(event) =>
-                              setPassword(event.target.value)
-                            }
+                            onChange={event => setPassword(event.target.value)}
                           />
                         </div>
                         <div>
@@ -133,7 +131,7 @@ function Navbar(props) {
                             type="text"
                             placeholder="Name"
                             value={name}
-                            onChange={(event) => setName(event.target.value)}
+                            onChange={event => setName(event.target.value)}
                           />
                         </div>
                         <div className="input-container">
@@ -143,7 +141,7 @@ function Navbar(props) {
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={(event) => setEmail(event.target.value)}
+                            onChange={event => setEmail(event.target.value)}
                           />
                         </div>
                         <div className="input-container">
@@ -153,9 +151,7 @@ function Navbar(props) {
                             type="password"
                             placeholder="Password"
                             value={password}
-                            onChange={(event) =>
-                              setPassword(event.target.value)
-                            }
+                            onChange={event => setPassword(event.target.value)}
                           />
                         </div>
                         <div>
@@ -168,18 +164,24 @@ function Navbar(props) {
                   )}
                   {isRegistered === false && (
                     <>
-                    <span>Not a member? </span>
-                    <span className="toggle-register-login" onClick={() => setIsRegistered((prev) => !prev)}>
-                      Register
-                    </span>
+                      <span>Not a member? </span>
+                      <span
+                        className="toggle-register-login"
+                        onClick={() => setIsRegistered(prev => !prev)}
+                      >
+                        Register
+                      </span>
                     </>
                   )}
                   {isRegistered === true && (
                     <>
-                    <span>Have an account? </span>
-                    <span className="toggle-register-login" onClick={() => setIsRegistered((prev) => !prev)}>
-                      Login
-                    </span>
+                      <span>Have an account? </span>
+                      <span
+                        className="toggle-register-login"
+                        onClick={() => setIsRegistered(prev => !prev)}
+                      >
+                        Login
+                      </span>
                     </>
                   )}
                 </>
