@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function SpotifyAuth(props) {
-  const CLIENT_ID = "0ef6de7e366a4feaac8a1bb1c754c909";
+  const CLIENT_ID = "c2f3fb7ecbaf49e4bc897bbdb94c9528";
   const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";

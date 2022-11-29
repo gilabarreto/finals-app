@@ -20,8 +20,6 @@ function App() {
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
 
-  // console.log("App.js token ------ ", token);
-
   return (
     <Router>
       <div className="App">

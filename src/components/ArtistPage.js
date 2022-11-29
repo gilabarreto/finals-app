@@ -1,23 +1,17 @@
 import { useState } from "react";
 
 import axios from "axios";
-
-import { FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
+import SpotifyPlayer from "react-spotify-player";
 
 import { Link } from "react-router-dom";
 
-import {
-  latitudeFinder,
-  longitudeFinder,
-  ticketFinder,
-} from "../helpers/selectors";
-
-import SpotifyPlayer from "react-spotify-player";
+import "./styles/styles.css";
 
 import Map from "./Map";
-
-import "./styles/styles.css";
-import UpcomingConcertList from "./UpcomingConcertList";
+import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
+import PreviousConcerts from "./ArtistPage/PreviousConcerts";
+import ConcertInfo from "./ArtistPage/ConcertInfo";
+import Setlist from "./ArtistPage/Setlist";
 
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
@@ -27,31 +21,6 @@ export default function ArtistPage(props) {
     return null;
   }
 
-  const increase = () => {
-    if (index === artistInfo.length - 1) {
-      return;
-    }
-    return setIndex(index + 1);
-  };
-
-  const decrease = () => {
-    if (index === 0) {
-      return;
-    }
-    return setIndex(index - 1);
-  };
-
-  console.log(props);
-  // console.log("props.ticketmaster", props.ticketmaster)
-  // console.log("ticketFinder", ticketFinder(props.ticketmaster))
-
-  // const upcomingConcerts = props.ticketmaster?.events?.map(upcomingConcert => {
-  //   const str = upcomingConcert.dates.start.localDate;
-  //   const [year, month, day] = str.split("-");
-  //   const newConcertDate = new Date(+year, month - 1, +day);
-  //   return newConcertDate.toDateString();
-  // });
-
   const artistInfo = props.results;
 
   const concert = props.results[index];
@@ -59,24 +28,6 @@ export default function ArtistPage(props) {
   const coordinates = concert.venue.city.coords;
 
   const artist = concert.artist.name;
-
-  const previousConcerts = artistInfo.map(previousConcert => {
-    const str = previousConcert.eventDate;
-    const [day, month, year] = str.split("-");
-    const date = new Date(year, month - 1, day);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    const city = previousConcert.venue.city?.name;
-    const state = previousConcert.venue.city?.state;
-    const country = previousConcert.venue.city?.country.code;
-    return `${date.toLocaleDateString(
-      "en-US",
-      options
-    )} (${city}, ${state}, ${country})`;
-  });
 
   const tour = concert.tour?.name || "No tour name";
 
@@ -90,31 +41,16 @@ export default function ArtistPage(props) {
 
   const country = concert.venue.city?.country.code;
 
-  const concertDate = () => {
-    const [day, month, year] = concert.eventDate.split("-");
-    const mainConcertDate = new Date(year, month - 1, day);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    return mainConcertDate.toLocaleDateString("en-US", options);
-  };
-
   const songs = concert.sets.set[0]?.song || [];
 
-  const list = songs?.map(song => {
+  const songsList = songs?.map(song => {
     return song.name;
   });
 
-  // console.log(props.ticketmaster.attractions[0].externalLinks)
-
-  // Spotify Player
+  // // Spotify Player
   const spotify = props.ticketmaster.attractions
     ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
     : null;
-
-  console.log("spotify------", spotify);
 
   const size = {
     width: "100%",
@@ -134,7 +70,6 @@ export default function ArtistPage(props) {
       },
     });
     setSpotifyArtist(response.data.artists.items[0].uri);
-    console.log("spotifyArtist------", spotifyArtist);
     return spotifyArtist;
   };
 
@@ -144,85 +79,33 @@ export default function ArtistPage(props) {
     <div>
       <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
-          <ol>
-            <h2 className="artist-page-button-aligner">
-              <button
-                className="artist-page-increase-decrease"
-                onClick={increase}
-              >
-                &lt;
-              </button>
-              &ensp;Concert Date: {concertDate()}&ensp;
-              <button
-                className="artist-page-increase-decrease"
-                onClick={decrease}
-              >
-                &gt;
-              </button>
-            </h2>
-            <h2>
-              Artist: {artist}
-              <a
-                href={
-                  props.ticketmaster.attractions[0].externalLinks.youtube[0].url
-                }
-                target="_blank"
-              >
-                <FaYoutube
-                  style={{ color: "red", paddingLeft: 5, paddingRight: 5 }}
-                />
-              </a>
-              <a
-                href={
-                  props.ticketmaster.attractions[0].externalLinks.instagram[0]
-                    .url
-                }
-                target="_blank"
-              >
-                <FaInstagram style={{ color: "hotpink", paddingRight: 5 }} />
-              </a>
-              <a
-                href={
-                  props.ticketmaster.attractions[0].externalLinks.twitter[0].url
-                }
-                target="_blank"
-              >
-                <FaTwitter style={{ color: "#1DA1F2" }} />
-              </a>
-            </h2>
-            <h2 className="tour">Tour: {tour}</h2>
-            <h2>Venue: {venue}</h2>
-            <h2>
-              Location: {city}, {state}, {country}
-            </h2>
-          </ol>
+          <ConcertInfo
+            index={index}
+            setIndex={setIndex}
+            artist={artist}
+            artistInfo={artistInfo}
+            concert={concert}
+            tour={tour}
+            venue={venue}
+            city={city}
+            state={state}
+            country={country}
+            ticketmaster={props.ticketmaster}
+
+          />
         </div>
         <div className="artist-page-map">
-          {props.ticketmaster ? (
-            <Map latitude={coordinates.lat} longitude={coordinates.long} />
-          ) : null}
+          {props.ticketmaster ? (<Map latitude={coordinates.lat} longitude={coordinates.long} />) : null}
         </div>
       </div>
       <div className="artist-page-bottom-container">
         <div className="artist-page-bottom-left-container">
           <div className="artist-page-setlist">
-            <h2>Setlist:</h2>
-            <ul>
-              <p>
-                {list.length === 0
-                  ? "There are no songs in this setlist.\n Please come back later"
-                  : list.map((song, songIndex) => (
-                      <li key={songIndex}>{song}</li>
-                    ))}
-              </p>
-            </ul>
-            <p>
-              <h1>Listen to the Setlist songs here</h1>
-            </p>
+            <Setlist songsList={songsList} />
           </div>
           <div className="artist-page-spotify">
             <SpotifyPlayer
-              uri={spotifyArtist}
+              uri={spotify}
               size={size}
               view={view}
               theme={theme}
@@ -240,15 +123,7 @@ export default function ArtistPage(props) {
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                {previousConcerts
-                  .map((previousConcert, index) => (
-                    <li key={previousConcert}>
-                      <a className="prevConc" onClick={() => setIndex(index)}>
-                        {previousConcert}
-                      </a>
-                    </li>
-                  ))
-                  .slice(0, 10)}
+                <PreviousConcerts setIndex={setIndex} artistInfo={artistInfo} />
               </div>
             </p>
           </div>
