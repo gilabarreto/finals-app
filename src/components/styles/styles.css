@@ -368,3 +368,16 @@ a.prevConc:active {
   justify-content: center;
   flex-direction: column;
 }
+
+.favourite-icon {
+  color: #75ABBC;
+  cursor: pointer;
+}
+
+.favourite-icon:hover {
+  color: red
+}
+
+.favourite-icon.active {
+  color: red
+}

@@ -12,6 +12,9 @@ import Favourites from "./components/Favourites";
 import Main from "./components/Main";
 
 import SpotifyAuth from "./components/SpotifyAuth";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const [results, setResults] = useState([]);
@@ -19,6 +22,7 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
+  library.add(fab, faHeart)
 
   // console.log("App.js token ------ ", token);
 
