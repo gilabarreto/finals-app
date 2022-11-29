@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import axios from "axios";
+// import axios from "axios";
 // import SpotifyPlayer from "react-spotify-player";
 
 // import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
 import PreviousConcerts from "./ArtistPage/PreviousConcerts";
 import ConcertInfo from "./ArtistPage/ConcertInfo";
 import Setlist from "./ArtistPage/Setlist";
-import Player from "./Player";
+import Player from "./ArtistPage/Player";
 
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
@@ -24,9 +24,9 @@ export default function ArtistPage(props) {
 
   // const artistInfo = props.results;
 
-  const concert = props.results[index];
+  // const concert = props.results[index];
 
-  const coordinates = concert.venue.city.coords;
+  // const coordinates = concert.venue.city.coords;
 
   // const artist = concert.artist.name;
 
@@ -101,13 +101,13 @@ export default function ArtistPage(props) {
             <Setlist results={props.results} index={index} />
           </div>
           <div className="artist-page-spotify">
-            {/* <Player
+            <Player
               index={index}
               results={props.results}
               ticketmaster={props.ticketmaster}
               spotifyArtist={spotifyArtist}
               setSpotifyArtist={setSpotifyArtist}
-            /> */}
+            />
           </div>
         </div>
         <div className="artist-page-bottom-right-container">
