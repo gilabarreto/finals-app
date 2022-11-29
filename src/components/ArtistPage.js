@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import axios from "axios";
-import SpotifyPlayer from "react-spotify-player";
+// import SpotifyPlayer from "react-spotify-player";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import "./styles/styles.css";
 
@@ -12,6 +12,7 @@ import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
 import PreviousConcerts from "./ArtistPage/PreviousConcerts";
 import ConcertInfo from "./ArtistPage/ConcertInfo";
 import Setlist from "./ArtistPage/Setlist";
+import Player from "./Player";
 
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
@@ -21,59 +22,63 @@ export default function ArtistPage(props) {
     return null;
   }
 
-  const artistInfo = props.results;
+  // const artistInfo = props.results;
 
   const concert = props.results[index];
 
   const coordinates = concert.venue.city.coords;
 
-  const artist = concert.artist.name;
+  // const artist = concert.artist.name;
 
-  const tour = concert.tour?.name || "No tour name";
+  // const tour = concert.tour?.name || "No tour name";
 
-  const venue = concert.venue?.name;
+  // const venue = concert.venue?.name;
 
-  const city = concert.venue.city?.name;
+  // const city = concert.venue.city?.name;
 
-  const state = concert.venue.city?.state;
+  // const state = concert.venue.city?.state;
 
-  const stateCode = concert.venue.city?.stateCode;
+  // const stateCode = concert.venue.city?.stateCode;
 
-  const country = concert.venue.city?.country.code;
+  // const country = concert.venue.city?.country.code;
 
-  const songs = concert.sets.set[0]?.song || [];
+  // const songs = concert.sets.set[0]?.song || [];
 
-  const songsList = songs?.map(song => {
-    return song.name;
-  });
+  // const songsList = songs?.map(song => {
+  //   return song.name;
+  // });
 
-  // // Spotify Player
-  const spotify = props.ticketmaster.attractions
-    ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
-    : null;
+  // console.log(concert)
+  // console.log(songsList)
+  // console.log(songs)
 
-  const size = {
-    width: "100%",
-    height: 500,
-  };
-  const view = "list"; // or 'coverart'
-  const theme = "black"; // or 'white'
+  // // // Spotify Player
+  // const spotify = props.ticketmaster.attractions
+  //   ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
+  //   : null;
 
-  const searchArtists = async () => {
-    const response = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${props.token}`,
-      },
-      params: {
-        q: artist,
-        type: "artist",
-      },
-    });
-    setSpotifyArtist(response.data.artists.items[0].uri);
-    return spotifyArtist;
-  };
+  // const size = {
+  //   width: "100%",
+  //   height: 500,
+  // };
+  // const view = "list"; // or 'coverart'
+  // const theme = "black"; // or 'white'
 
-  searchArtists();
+  // const searchArtists = async () => {
+  //   const response = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${props.token}`,
+  //     },
+  //     params: {
+  //       q: artist,
+  //       type: "artist",
+  //     },
+  //   });
+  //   setSpotifyArtist(response.data.artists.items[0].uri);
+  //   return spotifyArtist;
+  // };
+
+  // searchArtists();
 
   return (
     <div>
@@ -82,34 +87,27 @@ export default function ArtistPage(props) {
           <ConcertInfo
             index={index}
             setIndex={setIndex}
-            artist={artist}
-            artistInfo={artistInfo}
-            concert={concert}
-            tour={tour}
-            venue={venue}
-            city={city}
-            state={state}
-            country={country}
+            results={props.results}
             ticketmaster={props.ticketmaster}
-
           />
         </div>
         <div className="artist-page-map">
-          {props.ticketmaster ? (<Map latitude={coordinates.lat} longitude={coordinates.long} />) : null}
+          {props.ticketmaster ? (<Map index={index} results={props.results} /* latitude={coordinates.lat} longitude={coordinates.long} */ />) : null}
         </div>
       </div>
       <div className="artist-page-bottom-container">
         <div className="artist-page-bottom-left-container">
           <div className="artist-page-setlist">
-            <Setlist songsList={songsList} />
+            <Setlist results={props.results} index={index} />
           </div>
           <div className="artist-page-spotify">
-            <SpotifyPlayer
-              uri={spotify}
-              size={size}
-              view={view}
-              theme={theme}
-            />
+            {/* <Player
+              index={index}
+              results={props.results}
+              ticketmaster={props.ticketmaster}
+              spotifyArtist={spotifyArtist}
+              setSpotifyArtist={setSpotifyArtist}
+            /> */}
           </div>
         </div>
         <div className="artist-page-bottom-right-container">
@@ -123,7 +121,7 @@ export default function ArtistPage(props) {
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                <PreviousConcerts setIndex={setIndex} artistInfo={artistInfo} />
+                <PreviousConcerts setIndex={setIndex} results={props.results} />
               </div>
             </p>
           </div>

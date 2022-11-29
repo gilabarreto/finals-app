@@ -4,14 +4,29 @@ import ConcertDate from "./ConcertDate"
 
 export default function ConcertInfo(props) {
 
+  const artistInfo = props.results;
+
+  const concert = props.results[props.index];
+
+  const artist = concert.artist.name;
+
+  const tour = concert.tour?.name || "No tour name";
+
+  const venue = concert.venue?.name;
+
+  const city = concert.venue.city?.name;
+
+  const state = concert.venue.city?.state;
+
+  const country = concert.venue.city?.country.code;
 
   return (
 
     <>
       <ol>
-        <ConcertDate index={props.index} setIndex={props.setIndex} artistInfo={props.artistInfo} concert={props.concert} />
+        <ConcertDate index={props.index} setIndex={props.setIndex} artistInfo={artistInfo} concert={concert} />
         <h2>
-          Artist: {props.artist}
+          Artist: {artist}
           {props.ticketmaster.attractions ?
             <a href={props.ticketmaster.attractions[0].externalLinks.youtube[0].url} target="_blank">
               <FaYoutube style={{ color: "red", paddingLeft: 5, paddingRight: 5 }} />
@@ -26,10 +41,10 @@ export default function ConcertInfo(props) {
             </a> : null}
 
         </h2>
-        <h2 className="tour">Tour: {props.tour}</h2>
-        <h2>Venue: {props.venue}</h2>
+        <h2 className="tour">Tour: {tour}</h2>
+        <h2>Venue: {venue}</h2>
         <h2>
-          Location: {props.city}, {props.state}, {props.country}
+          Location: {city}, {state}, {country}
         </h2>
       </ol>
     </>
