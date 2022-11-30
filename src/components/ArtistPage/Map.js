@@ -1,6 +1,6 @@
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api"
 
-import "./styles/styles.css";
+import "../styles/styles.css";
 
 export default function Map(props) {
 

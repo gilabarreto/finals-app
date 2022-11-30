@@ -1,99 +1,92 @@
 import { useState } from "react";
 
-// import axios from "axios";
-// import SpotifyPlayer from "react-spotify-player";
-
-// import { Link } from "react-router-dom";
-
 import "./styles/styles.css";
 
-import Map from "./Map";
-import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
-import PreviousConcerts from "./ArtistPage/PreviousConcerts";
 import ConcertInfo from "./ArtistPage/ConcertInfo";
+import Map from "./ArtistPage/Map";
 import Setlist from "./ArtistPage/Setlist";
 import Player from "./ArtistPage/Player";
+import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
+import PreviousConcerts from "./ArtistPage/PreviousConcerts";
+
+/* import axios from "axios";
+import SpotifyPlayer from "react-spotify-player";
+import { Link } from "react-router-dom"; */
 
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
   const [spotifyArtist, setSpotifyArtist] = useState([]); // or track
-  
 
   if (props.results.length === 0 || props.ticketmaster === undefined) {
     return null;
   }
 
-  // const artistInfo = props.results;
-
-  // const concert = props.results[index];
-
-  // const coordinates = concert.venue.city.coords;
-
-  // const artist = concert.artist.name;
-
-  // const tour = concert.tour?.name || "No tour name";
-
-  // const venue = concert.venue?.name;
-
-  // const city = concert.venue.city?.name;
-
-  // const state = concert.venue.city?.state;
-
-  // const stateCode = concert.venue.city?.stateCode;
-
-  // const country = concert.venue.city?.country.code;
-
-  // const songs = concert.sets.set[0]?.song || [];
-
-  // const songsList = songs?.map(song => {
-  //   return song.name;
-  // });
-
-  // console.log(concert)
-  // console.log(songsList)
-  // console.log(songs)
-
-  // // // Spotify Player
-  // const spotify = props.ticketmaster.attractions
-  //   ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
-  //   : null;
-
-  // const size = {
-  //   width: "100%",
-  //   height: 500,
-  // };
-  // const view = "list"; // or 'coverart'
-  // const theme = "black"; // or 'white'
-
-  // const searchArtists = async () => {
-  //   const response = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${props.token}`,
-  //     },
-  //     params: {
-  //       q: artist,
-  //       type: "artist",
-  //     },
-  //   });
-  //   setSpotifyArtist(response.data.artists.items[0].uri);
-  //   return spotifyArtist;
-  // };
-
-  // searchArtists();
+  /*   const artistInfo = props.results;
+  
+    const concert = props.results[index];
+  
+    const coordinates = concert.venue.city.coords;
+  
+    const artist = concert.artist.name;
+  
+    const tour = concert.tour?.name || "No tour name";
+  
+    const venue = concert.venue?.name;
+  
+    const city = concert.venue.city?.name;
+  
+    const state = concert.venue.city?.state;
+  
+    const stateCode = concert.venue.city?.stateCode;
+  
+    const country = concert.venue.city?.country.code;
+  
+    const songs = concert.sets.set[0]?.song || [];
+  
+    const songsList = songs?.map(song => {
+      return song.name;
+    });
+  
+    console.log(concert)
+    console.log(songsList)
+    console.log(songs)
+  
+    // // Spotify Player
+    const spotify = props.ticketmaster.attractions
+      ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
+      : null;
+  
+    const size = {
+      width: "100%",
+      height: 500,
+    };
+    const view = "list"; // or 'coverart'
+    const theme = "black"; // or 'white'
+  
+    const searchArtists = async () => {
+      const response = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+          Authorization: `Bearer ${props.token}`,
+        },
+        params: {
+          q: artist,
+          type: "artist",
+        },
+      });
+      setSpotifyArtist(response.data.artists.items[0].uri);
+      return spotifyArtist;
+    };
+  
+    searchArtists(); */
 
   return (
     <div>
       <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
-          <ConcertInfo
-            index={index}
-            setIndex={setIndex}
-            results={props.results}
-            ticketmaster={props.ticketmaster}
-          />
+          <ConcertInfo index={index} setIndex={setIndex} results={props.results} ticketmaster={props.ticketmaster} />
         </div>
         <div className="artist-page-map">
-          {props.ticketmaster ? (<Map index={index} results={props.results} /* latitude={coordinates.lat} longitude={coordinates.long} */ />) : null}
+          <Map index={index} results={props.results} />
         </div>
       </div>
       <div className="artist-page-bottom-container">

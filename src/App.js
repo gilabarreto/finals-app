@@ -8,9 +8,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
-import Map from "./components/Map";
 import Favourites from "./components/Favourites";
-import Main from "./components/Main";
 
 import SpotifyAuth from "./components/SpotifyAuth";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -65,11 +63,6 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/map" element={<Map />}></Route>
-          {/* <Route
-            path="/main"
-            element={<Main results={results} ticketmaster={ticketmaster} />}
-          ></Route> */}
         </Routes>
       </div>
     </Router>
