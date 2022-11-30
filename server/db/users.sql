@@ -11,4 +11,4 @@ CREATE TABLE users(
 );
 
 -- Run this command in psql once you are inside the server folder
--- \i ./database.sql
+-- \i ./db/users.sql

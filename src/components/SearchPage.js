@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { useNavigate, Link } from "react-router-dom";
 
 import SpotifyAuth from "./SpotifyAuth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchPage(props) {
   const [index, setIndex] = useState(0);
+  const [toggleHeart, setToggleHeart] = useState(false);
 
   const navigate = useNavigate();
+
+  const changeColor = () => {
+    setToggleHeart(toggleHeart => !toggleHeart);
+  };
+
+  let toggleClassCheck = toggleHeart ? ' active': '';
 
   if (props.results.length === 0) {
     return (
@@ -24,7 +32,7 @@ export default function SearchPage(props) {
   let nextConcert = "";
 
   try {
-    nextConcert = props.ticketmaster?.events?.map(upcomingConcert => {
+    nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
       const str = upcomingConcert.dates.start.localDate;
       const [year, month, day] = str.split("-");
       const date = new Date(year, month - 1, day);
@@ -74,10 +82,9 @@ export default function SearchPage(props) {
 
   const tour = concert?.tour?.name;
 
-  const spotify =
-  props.ticketmaster.attractions
-  ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
-  : null;
+  const spotify = props.ticketmaster.attractions
+    ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
+    : null;
 
   const lastConcert = concert.eventDate;
 
@@ -114,9 +121,15 @@ export default function SearchPage(props) {
           navigate("/artist");
         }}
       >
-        <h1 className="search-artist">{artist} </h1>
+        <h1 className="search-artist">{artist}</h1>
         {tour && <h3 className="search-tour">Tour: {tour}</h3>}
       </div>
+      <FontAwesomeIcon
+        icon="heart"
+        size="2x"
+        className={`favourite-icon${toggleClassCheck}`}
+        onClick={changeColor}
+      />
       <div className="search-page-box">
         <button className="search-page-button">Next concert</button>
         <h3>{nextConcert[0]}</h3>

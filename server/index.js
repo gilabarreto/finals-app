@@ -12,6 +12,10 @@ app.use(cors());
 
 app.use("/auth", require("./routes/jwtAuth"));
 
+//Favourite route
+
+app.use("/favourite", require("./routes/favourite"))
+
 //Dashbaord route
 
 app.use("/dashboard", require("./routes/dashboard"));
