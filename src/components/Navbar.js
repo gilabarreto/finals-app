@@ -1,4 +1,5 @@
 import logo from "../icons/logo.png";
+import jwtdecode from "jwt-decode";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
@@ -14,16 +15,23 @@ function Navbar(props) {
     setDropdownLogin(opened => !opened);
   }, [dropdownLogin]);
 
-  const [isUserLogged, setisUserLogged] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isUserLogged, setisUserLogged] = useState(JSON.parse(localStorage.getItem("user")) ||false);
+  const [isRegistered, setIsRegistered] = useState(JSON.parse(localStorage.getItem("user")) || false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const clear = () => {
+    setName("")
+    setPassword("");
+    setEmail("");
+    setErrorMsg("");
+  }
 
   const register = e => {
     e.preventDefault();
-    console.log("logged in");
     axios
       .post("http://localhost:4000/auth/register", {
         name: name,
@@ -32,17 +40,27 @@ function Navbar(props) {
       })
       .then(res => {
         setisUserLogged(true);
+        const { token } = res.data;
+        const decode = jwtdecode(token);
+        console.log(decode);
+        localStorage.setItem("user", JSON.stringify(decode));
+        clear();
+        setDropdownLogin(false);
         console.log("login res", res);
       })
-      .catch(err => {
-        console.log(err.message);
+      .catch((err) => {
+        console.log(err);
+        const {error} = err.response.data;
+        console.log(error);
+        if (error) {
+          return setErrorMsg(error);
+        }
       });
-    setDropdownLogin(false);
+      setErrorMsg("");
   };
 
   const login = e => {
     e.preventDefault();
-    console.log("logged in");
     axios
       .post("http://localhost:4000/auth/login", {
         email: email,
@@ -50,17 +68,32 @@ function Navbar(props) {
       })
       .then(res => {
         setisUserLogged(true);
+        const {token} = res.data
+        const decode = jwtdecode(token);
+        console.log(decode);
+        localStorage.setItem("user", JSON.stringify(decode))
+        setName("")
+        setPassword("");
+        setEmail("");
+        setErrorMsg("");
+        setDropdownLogin(false);
         console.log("login res", res);
       })
-      .catch(err => {
-        console.log(err.message);
+      .catch((err) => {
+        console.log(err);
+        const {error} = err.response.data;
+        console.log(error);
+        if (error) {
+          return setErrorMsg(error);
+        }
       });
-    setDropdownLogin(false);
+      setErrorMsg("");
   };
 
   const logout = useCallback(() => {
     setisUserLogged(false);
     setDropdownLogin(false);
+    localStorage.removeItem("user");
   });
 
   return (
@@ -93,6 +126,7 @@ function Navbar(props) {
                   {isRegistered === false && (
                     <span id="login-form">
                       <form onSubmit={login}>
+                        {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
                         <div className="input-container">
                           <input
                             className="input-text"
@@ -124,6 +158,7 @@ function Navbar(props) {
                   {isRegistered === true && (
                     <span id="register-form">
                       <form onSubmit={register}>
+                      {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
                         <div className="input-container">
                           <input
                             className="input-text"
@@ -167,7 +202,10 @@ function Navbar(props) {
                       <span>Not a member? </span>
                       <span
                         className="toggle-register-login"
-                        onClick={() => setIsRegistered(prev => !prev)}
+                        onClick={() => {
+                          setIsRegistered(prev => !prev)
+                          clear();
+                        }}
                       >
                         Register
                       </span>
@@ -178,7 +216,10 @@ function Navbar(props) {
                       <span>Have an account? </span>
                       <span
                         className="toggle-register-login"
-                        onClick={() => setIsRegistered(prev => !prev)}
+                        onClick={() => {
+                          setIsRegistered(prev => !prev)
+                          clear();
+                        }}
                       >
                         Login
                       </span>

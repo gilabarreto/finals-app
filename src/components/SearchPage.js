@@ -15,7 +15,7 @@ export default function SearchPage(props) {
     setToggleHeart(toggleHeart => !toggleHeart);
   };
 
-  let toggleClassCheck = toggleHeart ? ' active': '';
+  let toggleClassCheck = toggleHeart ? ' active' : '';
 
   if (props.results.length === 0) {
     return (
@@ -57,9 +57,7 @@ export default function SearchPage(props) {
     artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
   } catch (error) {
     return (
-      <div>
-        <h1>Error</h1>
-      </div>
+      <img src={logo} className="logo"></img>
     );
   }
 
@@ -74,7 +72,7 @@ export default function SearchPage(props) {
   //       day: "numeric",
   //     };
   //     return date.toLocaleDateString("en-US", options);
-  //   }) : [];
+  //   }) :  [];
 
   const concert = props.results[index];
 

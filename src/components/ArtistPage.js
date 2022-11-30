@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-// import axios from "axios";
-// import SpotifyPlayer from "react-spotify-player";
-
-// import { Link } from "react-router-dom";
-
 import "./styles/styles.css";
 
-import Map from "./Map";
-import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
-import PreviousConcerts from "./ArtistPage/PreviousConcerts";
 import ConcertInfo from "./ArtistPage/ConcertInfo";
+import Map from "./ArtistPage/Map";
 import Setlist from "./ArtistPage/Setlist";
 import Player from "./ArtistPage/Player";
+import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
+import PreviousConcerts from "./ArtistPage/PreviousConcerts";
+
+/* import axios from "axios";
+import SpotifyPlayer from "react-spotify-player";
+import { Link } from "react-router-dom"; */
 
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
