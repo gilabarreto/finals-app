@@ -13,13 +13,9 @@ import Favourites from "./components/Favourites";
 import Main from "./components/Main";
 
 import SpotifyAuth from "./components/SpotifyAuth";
-<<<<<<< HEAD
-// import { useCookies } from "react-cookie";
-=======
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
->>>>>>> 3a68e8146aa45d02009e40bfb6b08cae07ad063b
 
 function App() {
   const [results, setResults] = useState([]);
@@ -27,14 +23,6 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
-<<<<<<< HEAD
-  // const [cookies, setCookie] = useCookies(["user"]);
-
-
-  // console.log("App.js token ------ ", token);
-=======
-  library.add(fab, faHeart)
->>>>>>> 3a68e8146aa45d02009e40bfb6b08cae07ad063b
 
   return (
     <Router>
