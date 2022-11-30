@@ -42,16 +42,12 @@ function Navbar(props) {
         setisUserLogged(true);
         const { token } = res.data;
         const decode = jwtdecode(token);
-        console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode));
         clear();
         setDropdownLogin(false);
-        console.log("login res", res);
       })
       .catch((err) => {
-        console.log(err);
         const {error} = err.response.data;
-        console.log(error);
         if (error) {
           return setErrorMsg(error);
         }
@@ -70,19 +66,15 @@ function Navbar(props) {
         setisUserLogged(true);
         const {token} = res.data
         const decode = jwtdecode(token);
-        console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode))
         setName("")
         setPassword("");
         setEmail("");
         setErrorMsg("");
         setDropdownLogin(false);
-        console.log("login res", res);
       })
       .catch((err) => {
-        console.log(err);
         const {error} = err.response.data;
-        console.log(error);
         if (error) {
           return setErrorMsg(error);
         }
