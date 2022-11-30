@@ -17,7 +17,7 @@ export default function SearchPage(props) {
 
   let toggleClassCheck = toggleHeart ? ' active' : '';
 
-  if (props.results.length === 0) {
+  if (props.setlist.length === 0) {
     return (
       <div className="main-page-card">
         <h1>
@@ -29,39 +29,39 @@ export default function SearchPage(props) {
     );
   }
 
-/*   let nextConcert = "";
-
-  try {
-    nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
-      const str = upcomingConcert.dates.start.localDate;
-      const [year, month, day] = str.split("-");
-      const date = new Date(year, month - 1, day);
-      const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      };
-      return date.toLocaleDateString("en-US", options);
-    });
-  } catch (error) {
-    return (
-      <div>
-        <h1>Error</h1>
-      </div>
-    );
-  }
-
-  let artistImage = "";
-
-  try {
-    artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
-  } catch (error) {
-    return (
-      <div>
-        <h1>Error</h1>
-      </div>
-    );
-  } */
+  /*   let nextConcert = "";
+  
+    try {
+      nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
+        const str = upcomingConcert.dates.start.localDate;
+        const [year, month, day] = str.split("-");
+        const date = new Date(year, month - 1, day);
+        const options = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        return date.toLocaleDateString("en-US", options);
+      });
+    } catch (error) {
+      return (
+        <div>
+          <h1>Error</h1>
+        </div>
+      );
+    }
+  
+    let artistImage = "";
+  
+    try {
+      artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
+    } catch (error) {
+      return (
+        <div>
+          <h1>Error</h1>
+        </div>
+      );
+    } */
 
   const artistImage = props.ticketmaster.events ?
     props.ticketmaster.events[0].images[0].url : null;
@@ -79,7 +79,7 @@ export default function SearchPage(props) {
       return date.toLocaleDateString("en-US", options);
     }) : [];
 
-  const concert = props.results[index];
+  const concert = props.setlist[index];
 
   const concertId = concert.id
 

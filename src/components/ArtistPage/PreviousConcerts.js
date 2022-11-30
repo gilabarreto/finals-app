@@ -4,7 +4,7 @@ export default function PreviousConcerts(props) {
 
   return (
     <>
-      {props.results
+      {props.setlist
         .map((concert, index) => {
           const str = concert.eventDate;
           const [day, month, year] = str.split("-");

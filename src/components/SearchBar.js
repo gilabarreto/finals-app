@@ -29,10 +29,10 @@ export default function SearchBar(props) {
           },
         })
         .then(res => {
-          props.setResults(res.data.setlist);
+          props.setSetlist(res.data.setlist);
         })
         .catch(err => {
-          props.setResults([]);
+          props.setSetlist([]);
           console.log("Setlist Get Resquest Error:", err);
         });
 

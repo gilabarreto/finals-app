@@ -9,7 +9,7 @@ export default function Favourites(props) {
 
   const navigate = useNavigate();
 
-  if (props.results.length === 0) {
+  if (props.setlist.length === 0) {
     return (
       <div className="main-page-card">
         <h1>
@@ -68,7 +68,7 @@ export default function Favourites(props) {
   //     return date.toLocaleDateString("en-US", options);
   //   }) : [];
 
-  const concert = props.results[index];
+  const concert = props.setlist[index];
 
   const artist = concert.artist.name;
 

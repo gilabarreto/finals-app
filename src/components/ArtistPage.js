@@ -19,19 +19,19 @@ export default function ArtistPage(props) {
   const [spotifyArtist, setSpotifyArtist] = useState([]); // or track
   let { concertId } = useParams();
 
-  if (props.results.length === 0 || props.ticketmaster === undefined) {
+  if (props.setlist.length === 0 || props.ticketmaster === undefined) {
     return null;
   }
 
-  // const concert = props.results.find(result => { return result.id === concertId });
+  const concert = props.setlist.find(result => { return result.id === concertId });
 
-  let previousConcertId;
+/*   let previousConcertId;
   let nextConcertId;
 
-  const concert = props.results.find((result, index) => {
+  const concert = props.setlist.find((result, index) => {
     if (result.id === concertId) {
-      previousConcertId = props.results[index + 1]?.id;
-      let nextConcert = props.results[index - 1];
+      previousConcertId = props.setlist[index + 1]?.id;
+      let nextConcert = props.setlist[index - 1];
       if (nextConcert) {
         const [day, month, year] = nextConcert.eventDate.split("-");
         const nextConcertDate = new Date(year, month - 1, day);
@@ -41,7 +41,7 @@ export default function ArtistPage(props) {
       }
       return true;
     }
-  });
+  }); */
 
   return (
     <div>
@@ -49,10 +49,10 @@ export default function ArtistPage(props) {
         <div className="artist-page-concert-info">
           <ConcertInfo
             concert={concert}
-            results={props.results}
+            setlist={props.setlist}
             ticketmaster={props.ticketmaster}
-            previousConcertId={previousConcertId} // Victor
-            nextConcertId={nextConcertId} // Victor
+            // previousConcertId={previousConcertId} // Victor
+            // nextConcertId={nextConcertId} // Victor
           />
         </div>
         <div className="artist-page-map">
@@ -84,7 +84,7 @@ export default function ArtistPage(props) {
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                <PreviousConcerts concert={concert} results={props.results} />
+                <PreviousConcerts concert={concert} setlist={props.setlist} />
               </div>
             </p>
           </div>

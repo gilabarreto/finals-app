@@ -4,9 +4,9 @@ import ConcertDate from "./ConcertDate";
 
 export default function ConcertInfo(props) {
   
-  const { previousConcertId, nextConcertId } = props; // Victor
+  // const { previousConcertId, nextConcertId } = props; // Victor
   
-  const artistInfo = props.results;
+  const artistInfo = props.setlist;
 
   const concert = props.concert;
 
@@ -26,10 +26,10 @@ export default function ConcertInfo(props) {
     <>
       <ol>
         <ConcertDate 
-        previousConcertId={previousConcertId} // Victor
-        nextConcertId={nextConcertId} // Victor
-        concert={concert} // Victor
-        results={props.results} 
+        // previousConcertId={previousConcertId} // Victor
+        // nextConcertId={nextConcertId} // Victor
+        // concert={concert} // Victor
+        setlist={props.setlist} 
         artistInfo={artistInfo} />
         <h2>
           Artist: {artist}
