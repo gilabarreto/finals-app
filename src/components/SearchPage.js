@@ -78,6 +78,8 @@ export default function SearchPage(props) {
 
   const concert = props.results[index];
 
+  const concertId = concert.id
+
   const artist = concert.artist.name;
 
   const tour = concert?.tour?.name;
@@ -111,14 +113,14 @@ export default function SearchPage(props) {
           src={artistImage}
           className="search-page-image"
           onClick={() => {
-            navigate("/artist");
+            navigate(`/concert/${concertId}`);
           }}
         />
       </div>
       <div
         className="search-page-info-box"
         onClick={() => {
-          navigate("/artist");
+          navigate(`/concert/${concertId}`);
         }}
       >
         <h1 className="search-artist">{artist}</h1>
@@ -136,7 +138,7 @@ export default function SearchPage(props) {
       </div>
       <div className="search-page-box">
         <button className="search-page-button">
-          <Link to="/artist">Last Concert</Link>
+          <Link to={`/concert/${concertId}`}>Last Concert</Link>
         </button>
         <h3>{lastConcertDate()}</h3>
       </div>

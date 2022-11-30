@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 // import axios from "axios";
 // import SpotifyPlayer from "react-spotify-player";
@@ -17,11 +18,29 @@ import Player from "./ArtistPage/Player";
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
   const [spotifyArtist, setSpotifyArtist] = useState([]); // or track
-  
+  let { concertId } = useParams();
 
   if (props.results.length === 0 || props.ticketmaster === undefined) {
     return null;
   }
+
+  let previousConcertId;
+  let nextConcertId;
+
+  const concert = props.results.find((result, index) => {
+    if (result.id === concertId) {
+      previousConcertId = props.results[index + 1]?.id;
+      let nextConcert = props.results[index - 1];
+      if (nextConcert) {
+        const [day, month, year] = nextConcert.eventDate.split("-");
+        const nextConcertDate = new Date(year, month - 1, day);
+        if (nextConcertDate < new Date()) {
+          nextConcertId = nextConcert.id;
+        }
+      }
+      return true;
+    }
+  });
 
   // const artistInfo = props.results;
 
@@ -86,25 +105,24 @@ export default function ArtistPage(props) {
       <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
           <ConcertInfo
-            index={index}
-            setIndex={setIndex}
-            results={props.results}
+            concert={concert}
             ticketmaster={props.ticketmaster}
+            previousConcertId={previousConcertId}
+            nextConcertId={nextConcertId}
           />
         </div>
         <div className="artist-page-map">
-          {props.ticketmaster ? (<Map index={index} results={props.results} /* latitude={coordinates.lat} longitude={coordinates.long} */ />) : null}
+          {props.ticketmaster ? <Map concert={concert} /> : null}
         </div>
       </div>
       <div className="artist-page-bottom-container">
         <div className="artist-page-bottom-left-container">
           <div className="artist-page-setlist">
-            <Setlist results={props.results} index={index} />
+            <Setlist concert={concert} />
           </div>
           <div className="artist-page-spotify">
             <Player
-              index={index}
-              results={props.results}
+              concert={concert}
               ticketmaster={props.ticketmaster}
               spotifyArtist={spotifyArtist}
               setSpotifyArtist={setSpotifyArtist}
@@ -122,7 +140,7 @@ export default function ArtistPage(props) {
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                <PreviousConcerts setIndex={setIndex} index={index} results={props.results} />
+                <PreviousConcerts concert={concert} results={props.results} />
               </div>
             </p>
           </div>

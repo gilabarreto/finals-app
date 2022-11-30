@@ -4,7 +4,7 @@ import "./styles/styles.css";
 
 export default function Map(props) {
 
-  const coordinates = props.results[props.index].venue.city.coords;
+  const coordinates = props.concert.venue.city.coords;
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyD8AVh8DuRPrQrNM1Dp0TCX0SA02dI9ADU'

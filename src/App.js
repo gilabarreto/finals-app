@@ -38,11 +38,11 @@ function App() {
             path="/"
             element={
               <>
-                <Favourites
+                {/* <Favourites
                   results={results}
                   ticketmaster={ticketmaster}
                   setGlobalSpotifyToken={setToken}
-                />
+                /> */}
                 <SearchPage
                   results={results}
                   ticketmaster={ticketmaster}
@@ -54,7 +54,7 @@ function App() {
 
           <Route path="/#" element={<SpotifyAuth />}></Route>
           <Route
-            path="/artist"
+            path="/concert/:concertId"
             element={
               <ArtistPage
                 results={results}

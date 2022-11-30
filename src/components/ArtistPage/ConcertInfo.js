@@ -1,12 +1,14 @@
 import { FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 
-import ConcertDate from "./ConcertDate"
+import ConcertDate from "./ConcertDate";
 
 export default function ConcertInfo(props) {
-
   const artistInfo = props.results;
 
-  const concert = props.results[props.index];
+  // const concert = props.results[props.index];
+  const concert = props.concert;
+
+  const { previousConcertId, nextConcertId } = props;
 
   const artist = concert.artist.name;
 
@@ -21,25 +23,43 @@ export default function ConcertInfo(props) {
   const country = concert.venue.city?.country.code;
 
   return (
-
     <>
       <ol>
-        <ConcertDate index={props.index} setIndex={props.setIndex} artistInfo={artistInfo} concert={concert} />
+        <ConcertDate previousConcertId={previousConcertId} nextConcertId={nextConcertId} artistInfo={artistInfo} concert={concert} />
         <h2>
           Artist: {artist}
-          {props.ticketmaster.attractions ?
-            <a href={props.ticketmaster.attractions[0].externalLinks.youtube[0].url} target="_blank">
-              <FaYoutube style={{ color: "red", paddingLeft: 5, paddingRight: 5 }} />
-            </a> : null}
-          {props.ticketmaster.attractions ?
-            <a href={props.ticketmaster.attractions[0].externalLinks.instagram[0].url} target="_blank">
+          {props.ticketmaster.attractions ? (
+            <a
+              href={
+                props.ticketmaster.attractions[0].externalLinks.youtube[0].url
+              }
+              target="_blank"
+            >
+              <FaYoutube
+                style={{ color: "red", paddingLeft: 5, paddingRight: 5 }}
+              />
+            </a>
+          ) : null}
+          {props.ticketmaster.attractions ? (
+            <a
+              href={
+                props.ticketmaster.attractions[0].externalLinks.instagram[0].url
+              }
+              target="_blank"
+            >
               <FaInstagram style={{ color: "hotpink", paddingRight: 5 }} />
-            </a> : null}
-          {props.ticketmaster.attractions ?
-            <a href={props.ticketmaster.attractions[0].externalLinks.twitter[0].url} target="_blank">
+            </a>
+          ) : null}
+          {props.ticketmaster.attractions ? (
+            <a
+              href={
+                props.ticketmaster.attractions[0].externalLinks.twitter[0].url
+              }
+              target="_blank"
+            >
               <FaTwitter style={{ color: "#1DA1F2" }} />
-            </a> : null}
-
+            </a>
+          ) : null}
         </h2>
         <h2 className="tour">Tour: {tour}</h2>
         <h2>Venue: {venue}</h2>
@@ -48,6 +68,5 @@ export default function ConcertInfo(props) {
         </h2>
       </ol>
     </>
-
-  )
+  );
 }

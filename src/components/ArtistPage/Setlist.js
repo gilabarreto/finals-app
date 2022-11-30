@@ -1,6 +1,6 @@
 export default function Setlist(props) {
 
-  const songs = props.results[props.index].sets.set[0]?.song || [];
+  const songs = props.concert.sets.set[0]?.song || [];
 
   const songsList = songs?.map(song => {
     return song.name;
