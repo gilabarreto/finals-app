@@ -1,4 +1,5 @@
 import logo from "../icons/logo.png";
+import jwtdecode from "jwt-decode";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
@@ -14,12 +15,13 @@ function Navbar(props) {
     setDropdownLogin((opened) => !opened);
   }, [dropdownLogin]);
 
-  const [isUserLogged, setisUserLogged] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isUserLogged, setisUserLogged] = useState(JSON.parse(localStorage.getItem("user")) ||false);
+  const [isRegistered, setIsRegistered] = useState(JSON.parse(localStorage.getItem("user")) || false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const register = (e) => {
     e.preventDefault();
@@ -32,12 +34,26 @@ function Navbar(props) {
       })
       .then((res) => {
         setisUserLogged(true);
+        const { token } = res.data;
+        const decode = jwtdecode(token);
+        console.log(decode);
+        localStorage.setItem("user", JSON.stringify(decode));
+        setName("")
+        setPassword("")
+        setEmail("")
+        setErrorMsg("");
+        setDropdownLogin(false);
         console.log("login res", res);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
+        const {error} = err.response.data;
+        console.log(error);
+        if (error) {
+          return setErrorMsg(error);
+        }
+
       });
-    setDropdownLogin(false);
   };
 
   const login = (e) => {
@@ -50,17 +66,31 @@ function Navbar(props) {
       })
       .then((res) => {
         setisUserLogged(true);
+        const {token} = res.data
+        const decode = jwtdecode(token);
+        console.log(decode);
+        localStorage.setItem("user", JSON.stringify(decode))
+        setName("")
+        setPassword("");
+        setEmail("");
+        setErrorMsg("");
+        setDropdownLogin(false);
         console.log("login res", res);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
+        const {error} = err.response.data;
+        console.log(error);
+        if (error) {
+          return setErrorMsg(error);
+        }
       });
-    setDropdownLogin(false);
   };
 
   const logout = useCallback(() => {
     setisUserLogged(false);
     setDropdownLogin(false);
+    localStorage.removeItem("user");
   });
 
   return (
@@ -93,6 +123,7 @@ function Navbar(props) {
                   {isRegistered === false && (
                     <span id="login-form">
                       <form onSubmit={login}>
+                        {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
                         <div className="input-container">
                           <input
                             className="input-text"
@@ -126,6 +157,7 @@ function Navbar(props) {
                   {isRegistered === true && (
                     <span id="register-form">
                       <form onSubmit={register}>
+                      {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
                         <div className="input-container">
                           <input
                             className="input-text"

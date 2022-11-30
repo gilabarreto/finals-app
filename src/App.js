@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useCookies } from "react-cookie";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -12,6 +13,7 @@ import Favourites from "./components/Favourites";
 import Main from "./components/Main";
 
 import SpotifyAuth from "./components/SpotifyAuth";
+// import { useCookies } from "react-cookie";
 
 function App() {
   const [results, setResults] = useState([]);
@@ -19,6 +21,8 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
+  // const [cookies, setCookie] = useCookies(["user"]);
+
 
   // console.log("App.js token ------ ", token);
 
