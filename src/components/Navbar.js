@@ -23,9 +23,15 @@ function Navbar(props) {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
+  const clear = () => {
+    setName("")
+    setPassword("");
+    setEmail("");
+    setErrorMsg("");
+  }
+
   const register = e => {
     e.preventDefault();
-    console.log("logged in");
     axios
       .post("http://localhost:4000/auth/register", {
         name: name,
@@ -38,10 +44,7 @@ function Navbar(props) {
         const decode = jwtdecode(token);
         console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode));
-        setName("")
-        setPassword("")
-        setEmail("")
-        setErrorMsg("");
+        clear();
         setDropdownLogin(false);
         console.log("login res", res);
       })
@@ -52,13 +55,12 @@ function Navbar(props) {
         if (error) {
           return setErrorMsg(error);
         }
-
       });
+      setErrorMsg("");
   };
 
   const login = e => {
     e.preventDefault();
-    console.log("logged in");
     axios
       .post("http://localhost:4000/auth/login", {
         email: email,
@@ -85,6 +87,7 @@ function Navbar(props) {
           return setErrorMsg(error);
         }
       });
+      setErrorMsg("");
   };
 
   const logout = useCallback(() => {
@@ -199,7 +202,10 @@ function Navbar(props) {
                       <span>Not a member? </span>
                       <span
                         className="toggle-register-login"
-                        onClick={() => setIsRegistered(prev => !prev)}
+                        onClick={() => {
+                          setIsRegistered(prev => !prev)
+                          clear();
+                        }}
                       >
                         Register
                       </span>
@@ -210,7 +216,10 @@ function Navbar(props) {
                       <span>Have an account? </span>
                       <span
                         className="toggle-register-login"
-                        onClick={() => setIsRegistered(prev => !prev)}
+                        onClick={() => {
+                          setIsRegistered(prev => !prev)
+                          clear();
+                        }}
                       >
                         Login
                       </span>
