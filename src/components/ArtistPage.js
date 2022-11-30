@@ -17,6 +17,7 @@ import Player from "./ArtistPage/Player";
 export default function ArtistPage(props) {
   const [index, setIndex] = useState(0);
   const [spotifyArtist, setSpotifyArtist] = useState([]); // or track
+  
 
   if (props.results.length === 0 || props.ticketmaster === undefined) {
     return null;
@@ -121,7 +122,7 @@ export default function ArtistPage(props) {
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                <PreviousConcerts setIndex={setIndex} results={props.results} />
+                <PreviousConcerts setIndex={setIndex} index={index} results={props.results} />
               </div>
             </p>
           </div>

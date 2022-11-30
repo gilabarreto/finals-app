@@ -1,6 +1,5 @@
 export default function PreviousConcerts(props) {
-
-  const previousConcerts = props.results.map(previousConcert => {
+  const previousConcerts = props.results.map((previousConcert) => {
     const str = previousConcert.eventDate;
     const [day, month, year] = str.split("-");
     const date = new Date(year, month - 1, day);
@@ -18,9 +17,13 @@ export default function PreviousConcerts(props) {
     )} (${city}, ${state}, ${country})`;
   });
 
+  const filteredConcerts = previousConcerts.filter((previousConcert) => {
+    return new Date(previousConcert) < new Date();
+  });
+
   return (
     <>
-      {previousConcerts
+      {filteredConcerts
         .map((previousConcert, index) => (
           <li key={previousConcert}>
             <a className="prevConc" onClick={() => props.setIndex(index)}>
@@ -30,6 +33,5 @@ export default function PreviousConcerts(props) {
         ))
         .slice(0, 10)}
     </>
-  )
-
+  );
 }
