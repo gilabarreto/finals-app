@@ -1,19 +1,27 @@
 import { useNavigate } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 export default function ConcertDate(props) {
-  // const increase = () => {
-  //   if (props.index === props.artistInfo.length - 1) {
-  //     return;
-  //   }
-  //   return props.setIndex(props.index + 1);
-  // };
+  
+/*   let previousConcertId;
+  let nextConcertId;
+  let { concertId } = useParams();
 
-  // const decrease = () => {
-  //   if (props.index === 0) {
-  //     return;
-  //   }
-  //   return props.setIndex(props.index - 1);
-  // };
+  const concert = props.results.find((result, index) => {
+    if (result.id === concertId) {
+      previousConcertId = props.results[index + 1]?.id;
+      let nextConcert = props.results[index - 1];
+      if (nextConcert) {
+        const [day, month, year] = nextConcert.eventDate.split("-");
+        const nextConcertDate = new Date(year, month - 1, day);
+        if (nextConcertDate < new Date()) {
+          nextConcertId = nextConcert.id;
+        }
+      }
+      return true;
+    }
+  }); */
+
   const navigate = useNavigate();
 
   const concertDate = () => {
@@ -26,10 +34,6 @@ export default function ConcertDate(props) {
     };
     return mainConcertDate.toLocaleDateString("en-US", options);
   };
-
-  if (new Date(concertDate) > new Date()) {
-    return props.setIndex(props.index + 1);
-  }
 
   return (
     <>

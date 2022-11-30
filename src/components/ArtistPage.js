@@ -23,6 +23,8 @@ export default function ArtistPage(props) {
     return null;
   }
 
+  // const concert = props.results.find(result => { return result.id === concertId });
+
   let previousConcertId;
   let nextConcertId;
 
@@ -41,73 +43,16 @@ export default function ArtistPage(props) {
     }
   });
 
-  // const artistInfo = props.results;
-
-  // const concert = props.results[index];
-
-  // const coordinates = concert.venue.city.coords;
-
-  // const artist = concert.artist.name;
-
-  // const tour = concert.tour?.name || "No tour name";
-
-  // const venue = concert.venue?.name;
-
-  // const city = concert.venue.city?.name;
-
-  // const state = concert.venue.city?.state;
-
-  // const stateCode = concert.venue.city?.stateCode;
-
-  // const country = concert.venue.city?.country.code;
-
-  // const songs = concert.sets.set[0]?.song || [];
-
-  // const songsList = songs?.map(song => {
-  //   return song.name;
-  // });
-
-  // console.log(concert)
-  // console.log(songsList)
-  // console.log(songs)
-
-  // // // Spotify Player
-  // const spotify = props.ticketmaster.attractions
-  //   ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
-  //   : null;
-
-  // const size = {
-  //   width: "100%",
-  //   height: 500,
-  // };
-  // const view = "list"; // or 'coverart'
-  // const theme = "black"; // or 'white'
-
-  // const searchArtists = async () => {
-  //   const response = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${props.token}`,
-  //     },
-  //     params: {
-  //       q: artist,
-  //       type: "artist",
-  //     },
-  //   });
-  //   setSpotifyArtist(response.data.artists.items[0].uri);
-  //   return spotifyArtist;
-  // };
-
-  // searchArtists();
-
   return (
     <div>
       <div className="artist-page-top-container">
         <div className="artist-page-concert-info">
           <ConcertInfo
             concert={concert}
+            results={props.results}
             ticketmaster={props.ticketmaster}
-            previousConcertId={previousConcertId}
-            nextConcertId={nextConcertId}
+            previousConcertId={previousConcertId} // Victor
+            nextConcertId={nextConcertId} // Victor
           />
         </div>
         <div className="artist-page-map">

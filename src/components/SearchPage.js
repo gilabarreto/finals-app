@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 
 import { useNavigate, Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ export default function SearchPage(props) {
     );
   }
 
-  let nextConcert = "";
+/*   let nextConcert = "";
 
   try {
     nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
@@ -57,22 +57,27 @@ export default function SearchPage(props) {
     artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
   } catch (error) {
     return (
-      <img src={logo} className="logo"></img>
+      <div>
+        <h1>Error</h1>
+      </div>
     );
-  }
+  } */
 
-  // const nextConcert = props.ticketmaster.events ?
-  //   props.ticketmaster.events.map((upcomingConcert) => {
-  //     const str = upcomingConcert.dates.start.localDate;
-  //     const [year, month, day] = str.split('-');
-  //     const date = new Date(year, month - 1, day);
-  //     const options = {
-  //       year: "numeric",
-  //       month: "long",
-  //       day: "numeric",
-  //     };
-  //     return date.toLocaleDateString("en-US", options);
-  //   }) :  [];
+  const artistImage = props.ticketmaster.events ?
+    props.ticketmaster.events[0].images[0].url : null;
+
+  const nextConcert = props.ticketmaster.events ?
+    props.ticketmaster.events.map((upcomingConcert) => {
+      const str = upcomingConcert.dates.start.localDate;
+      const [year, month, day] = str.split('-');
+      const date = new Date(year, month - 1, day);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      return date.toLocaleDateString("en-US", options);
+    }) : [];
 
   const concert = props.results[index];
 
@@ -82,9 +87,9 @@ export default function SearchPage(props) {
 
   const tour = concert?.tour?.name;
 
-  const spotify = props.ticketmaster.attractions
-    ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url
-    : null;
+  // const spotify = props.ticketmaster.attractions[0].externalLinks.spotify[0].url ?
+  //   props.ticketmaster.attractions[0].externalLinks.spotify[0].url
+  //   : null;
 
   const lastConcert = concert.eventDate;
 
