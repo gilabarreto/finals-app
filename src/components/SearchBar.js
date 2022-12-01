@@ -4,11 +4,15 @@ import useDebounce from "../hooks/useDebounce";
 
 import searchIcon from "../icons/search.png";
 
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 export default function SearchBar(props) {
   const [value, setValue] = useState("");
-  const handleChange = event => setValue(event.target.value);
+  const handleChange = (event) => setValue(event.target.value);
+
+  const navigate = useNavigate();
 
   const term = useDebounce(value, 700);
 
@@ -28,10 +32,13 @@ export default function SearchBar(props) {
             "x-api-key": "eY_2IYBgy3ovn4sRZSqa9cTZy1nldhaUCvif",
           },
         })
-        .then(res => {
+        .then((res) => {
           props.setResults(res.data.setlist);
+          console.log("res", res.data)
+          // const concert = res.data.setlist.find(result => { return result.id === concertId });
+          // navigate(`/concert/${res.data.setlist.id}`);
         })
-        .catch(err => {
+        .catch((err) => {
           props.setResults([]);
           console.log("Setlist Get Resquest Error:", err);
         });
@@ -50,10 +57,10 @@ export default function SearchBar(props) {
             },
           }
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Setlist Get Resquest Error:", err);
         });
       // GET Request Ticketmaster
@@ -67,10 +74,10 @@ export default function SearchBar(props) {
             apikey: "kMv2pjo5bzSz5iyaz0h5aLqGnQcWyOSL",
           },
         })
-        .then(res => {
+        .then((res) => {
           props.setTicketmaster(res.data._embedded);
         })
-        .catch(err => {
+        .catch((err) => {
           props.setTicketmaster([]);
           console.log("Ticketmaster Get Request Error", err);
         });
@@ -81,7 +88,7 @@ export default function SearchBar(props) {
     <div className="search">
       <form
         className="input-container-search"
-        onSubmit={event => event.preventDefault()}
+        onSubmit={(event) => event.preventDefault()}
       >
         <img className="searchIcon" src={searchIcon}></img>
         <input
