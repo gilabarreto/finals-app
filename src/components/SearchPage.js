@@ -17,7 +17,7 @@ export default function SearchPage(props) {
 
   let toggleClassCheck = toggleHeart ? ' active' : '';
 
-  if (props.results.length === 0) {
+  if (props.setlist.length === 0) {
     return (
       <div className="main-page-card">
         <h1>
@@ -76,7 +76,7 @@ export default function SearchPage(props) {
   //     return date.toLocaleDateString("en-US", options);
   //   }) :  [];
 
-  const concert = props.results[index];
+  const concert = props.setlist[index];
 
   const artist = concert.artist.name;
 
@@ -136,7 +136,7 @@ export default function SearchPage(props) {
       </div>
       <div className="search-page-box">
         <button className="search-page-button">
-          <Link to="/artist">Last Concert</Link>
+          Last Concert
         </button>
         <h3>{lastConcertDate()}</h3>
       </div>

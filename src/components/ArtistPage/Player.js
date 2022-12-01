@@ -3,7 +3,7 @@ import SpotifyPlayer from "react-spotify-player";
 
 export default function Player(props) {
 
-  const artist = props.results[props.index].artist.name;
+  const artist = props.setlist[props.index].artist.name;
 
   const spotify = props.ticketmaster.attractions
     ? props.ticketmaster.attractions[0].externalLinks.spotify[0].url

@@ -107,7 +107,7 @@ function Navbar(props) {
         </div>
         <div>Home · About · Contact</div>
         <SearchBar
-          setResults={props.setResults}
+          setSetlist={props.setSetlist}
           setTicketmaster={props.setTicketmaster}
           setLat={props.setLat}
           setLong={props.setLong}

@@ -1,5 +1,5 @@
 export default function PreviousConcerts(props) {
-  const previousConcerts = props.results.map((previousConcert) => {
+  const previousConcerts = props.setlist.map((previousConcert) => {
     const str = previousConcert.eventDate;
     const [day, month, year] = str.split("-");
     const date = new Date(year, month - 1, day);

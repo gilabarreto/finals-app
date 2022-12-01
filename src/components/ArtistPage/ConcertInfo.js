@@ -4,9 +4,9 @@ import ConcertDate from "./ConcertDate"
 
 export default function ConcertInfo(props) {
 
-  const artistInfo = props.results;
+  const artistInfo = props.setlist;
 
-  const concert = props.results[props.index];
+  const concert = props.setlist[props.index];
 
   const artist = concert.artist.name;
 
