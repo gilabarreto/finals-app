@@ -57,7 +57,9 @@ export default function SearchPage(props) {
     artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
   } catch (error) {
     return (
-      <img src={logo} className="logo"></img>
+      <div>
+        <h1>Error</h1>
+      </div>
     );
   }
 
