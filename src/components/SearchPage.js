@@ -15,7 +15,7 @@ export default function SearchPage(props) {
     setToggleHeart(toggleHeart => !toggleHeart);
   };
 
-  let toggleClassCheck = toggleHeart ? ' active': '';
+  let toggleClassCheck = toggleHeart ? ' active' : '';
 
   if (props.results.length === 0) {
     return (
@@ -57,9 +57,7 @@ export default function SearchPage(props) {
     artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
   } catch (error) {
     return (
-      <div>
-        <h1>Error</h1>
-      </div>
+      <img src={logo} className="logo"></img>
     );
   }
 
@@ -74,9 +72,11 @@ export default function SearchPage(props) {
   //       day: "numeric",
   //     };
   //     return date.toLocaleDateString("en-US", options);
-  //   }) : [];
+  //   }) :  [];
 
   const concert = props.results[index];
+
+  const concertId = concert.id
 
   const artist = concert.artist.name;
 
@@ -111,14 +111,14 @@ export default function SearchPage(props) {
           src={artistImage}
           className="search-page-image"
           onClick={() => {
-            navigate("/artist");
+            navigate(`/concert/${concertId}`);
           }}
         />
       </div>
       <div
         className="search-page-info-box"
         onClick={() => {
-          navigate("/artist");
+          navigate(`/concert/${concertId}`);
         }}
       >
         <h1 className="search-artist">{artist}</h1>
@@ -136,7 +136,7 @@ export default function SearchPage(props) {
       </div>
       <div className="search-page-box">
         <button className="search-page-button">
-          <Link to="/artist">Last Concert</Link>
+          <Link to={`/concert/${concertId}`}>Last Concert</Link>
         </button>
         <h3>{lastConcertDate()}</h3>
       </div>

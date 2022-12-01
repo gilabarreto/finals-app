@@ -1,18 +1,20 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ConcertDate(props) {
+  // const increase = () => {
+  //   if (props.index === props.artistInfo.length - 1) {
+  //     return;
+  //   }
+  //   return props.setIndex(props.index + 1);
+  // };
 
-  const increase = () => {
-    if (props.index === props.artistInfo.length - 1) {
-      return;
-    }
-    return props.setIndex(props.index + 1);
-  };
-
-  const decrease = () => {
-    if (props.index === 0) {
-      return;
-    }
-    return props.setIndex(props.index - 1);
-  };
+  // const decrease = () => {
+  //   if (props.index === 0) {
+  //     return;
+  //   }
+  //   return props.setIndex(props.index - 1);
+  // };
+  const navigate = useNavigate();
 
   const lastConcert = props.artistInfo[props.index].eventDate;
 
@@ -27,25 +29,35 @@ export default function ConcertDate(props) {
     return mainConcertDate.toLocaleDateString("en-US", options);
   };
 
-  if (new Date(lastConcert.split("-").reverse().join()) > new Date()) {
+  if (new Date(concertDate) > new Date()) {
     return props.setIndex(props.index + 1);
   }
 
   return (
     <>
       <h2 className="artist-page-button-aligner">
-        <button
-          className="artist-page-increase-decrease"
-          onClick={increase}
-        >
-          &lt;
-        </button>
+        {props.previousConcertId && (
+          <button
+            className="artist-page-increase-decrease"
+            onClick={() => {
+              navigate(`/concert/${props.previousConcertId}`);
+            }}
+          >
+            &lt;
+          </button>
+        )}
         &ensp;Concert Date: {concertDate()}&ensp;
-        <button className="artist-page-increase-decrease" onClick={decrease}>
-          &gt;
-        </button>
+        {props.nextConcertId && (
+          <button
+            className="artist-page-increase-decrease"
+            onClick={() => {
+              navigate(`/concert/${props.nextConcertId}`);
+            }}
+          >
+            &gt;
+          </button>
+        )}
       </h2>
     </>
-  )
-
+  );
 }
