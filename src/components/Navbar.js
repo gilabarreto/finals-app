@@ -30,6 +30,10 @@ function Navbar(props) {
     setErrorMsg("");
   }
 
+  const handleClick = () => {
+    props.setValue("")
+  }
+
   const register = e => {
     e.preventDefault();
     axios
@@ -102,7 +106,7 @@ function Navbar(props) {
       <nav>
         <div>
           <Link to="/">
-            <img src={logo} className="logo"></img>
+            <img src={logo} className="logo" onClick={handleClick}/>
           </Link>
         </div>
         <div>Home · About · Contact</div>
@@ -111,6 +115,8 @@ function Navbar(props) {
           setTicketmaster={props.setTicketmaster}
           setLat={props.setLat}
           setLong={props.setLong}
+          value={props.value}
+          setValue={props.setValue}
         />
         <div>Follow: Twitter · Instagram · Spotify</div>
         <div>

@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
 import Favourites from "./components/Favourites";
+import Main from "./components/Main";
 
 import SpotifyAuth from "./components/SpotifyAuth";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -21,6 +22,7 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
+  const [value, setValue] = useState("");
 
   library.add(fab, faHeart);
 
@@ -32,9 +34,10 @@ function App() {
           setTicketmaster={setTicketmaster}
           setLat={setLat}
           setLong={setLong}
+          value={value}
+          setValue={setValue}
         />
         <Routes>
-          
           <Route
             path="/favourite"
             element={
@@ -48,6 +51,15 @@ function App() {
 
           <Route
             path="/"
+            element={
+              <>
+                <Main setGlobalSpotifyToken={setToken} />
+              </>
+            }
+          ></Route>
+
+          <Route
+            path="/search"
             element={
               <>
                 <SearchPage
