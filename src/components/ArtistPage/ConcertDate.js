@@ -1,23 +1,34 @@
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function ConcertDate(props) {
-  // const increase = () => {
-  //   if (props.index === props.artistInfo.length - 1) {
-  //     return;
-  //   }
-  //   return props.setIndex(props.index + 1);
-  // };
+  let previousConcertId;
+  let nextConcertId;
+  let { artistId, concertId } = useParams();
+  const { concert } = props;
 
-  // const decrease = () => {
-  //   if (props.index === 0) {
-  //     return;
-  //   }
-  //   return props.setIndex(props.index - 1);
-  // };
+  const filteredConcerts = props.setlist.filter(
+    (item) => item.artist.mbid === artistId
+  );
+  filteredConcerts.find((result, index, arr) => {
+    if (result.id === concertId) {
+      previousConcertId = arr[index + 1]?.id;
+      let nextConcert = arr[index - 1];
+      if (nextConcert) {
+        const [day, month, year] = nextConcert.eventDate.split("-");
+        const nextConcertDate = new Date(year, month - 1, day);
+        if (nextConcertDate < new Date()) {
+          nextConcertId = nextConcert.id;
+        }
+      }
+      return true;
+    }
+  });
+
   const navigate = useNavigate();
 
   const concertDate = () => {
-    const [day, month, year] = props.concert.eventDate.split("-");
+    const [day, month, year] = concert.eventDate.split("-");
     const mainConcertDate = new Date(year, month - 1, day);
     const options = {
       year: "numeric",
@@ -27,29 +38,25 @@ export default function ConcertDate(props) {
     return mainConcertDate.toLocaleDateString("en-US", options);
   };
 
-  if (new Date(concertDate) > new Date()) {
-    return props.setIndex(props.index + 1);
-  }
-
   return (
     <>
       <h2 className="artist-page-button-aligner">
-        {props.previousConcertId && (
+        {previousConcertId && (
           <button
             className="artist-page-increase-decrease"
             onClick={() => {
-              navigate(`/concert/${props.previousConcertId}`);
+              navigate(`/artists/${artistId}/concerts/${previousConcertId}`);
             }}
           >
             &lt;
           </button>
         )}
         &ensp;Concert Date: {concertDate()}&ensp;
-        {props.nextConcertId && (
+        {nextConcertId && (
           <button
             className="artist-page-increase-decrease"
             onClick={() => {
-              navigate(`/concert/${props.nextConcertId}`);
+              navigate(`/artists/${artistId}/concerts/${nextConcertId}`);
             }}
           >
             &gt;

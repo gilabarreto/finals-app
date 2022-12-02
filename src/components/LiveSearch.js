@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function LiveSearch() {
   const [term, setTerm] = useState("");
-  const [results, setResults] = useState([]);
+  const [setlist, setsetlist] = useState([]);
 
   useEffect(() => {});
 }

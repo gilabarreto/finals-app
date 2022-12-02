@@ -32,14 +32,11 @@ export default function SearchBar(props) {
             "x-api-key": "eY_2IYBgy3ovn4sRZSqa9cTZy1nldhaUCvif",
           },
         })
-        .then((res) => {
-          props.setResults(res.data.setlist);
-          console.log("res", res.data)
-          // const concert = res.data.setlist.find(result => { return result.id === concertId });
-          // navigate(`/concert/${res.data.setlist.id}`);
+        .then(res => {
+          props.setSetlist(res.data.setlist);
         })
-        .catch((err) => {
-          props.setResults([]);
+        .catch(err => {
+          props.setSetlist([]);
           console.log("Setlist Get Resquest Error:", err);
         });
 

@@ -3,12 +3,12 @@ import { FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 import ConcertDate from "./ConcertDate";
 
 export default function ConcertInfo(props) {
-  const artistInfo = props.results;
+  
+  // const { previousConcertId, nextConcertId } = props; // Victor
+  
+  const artistInfo = props.setlist;
 
-  // const concert = props.results[props.index];
   const concert = props.concert;
-
-  const { previousConcertId, nextConcertId } = props;
 
   const artist = concert.artist.name;
 
@@ -25,10 +25,15 @@ export default function ConcertInfo(props) {
   return (
     <>
       <ol>
-        <ConcertDate previousConcertId={previousConcertId} nextConcertId={nextConcertId} artistInfo={artistInfo} concert={concert} />
+        <ConcertDate 
+        // previousConcertId={previousConcertId} // Victor
+        // nextConcertId={nextConcertId} // Victor
+        concert={concert} // Victor
+        setlist={props.setlist} 
+        artistInfo={artistInfo} />
         <h2>
           Artist: {artist}
-          {props.ticketmaster.attractions ? (
+          {props.ticketmaster.attractions[0].externalLinks.youtube[0].url ? (
             <a
               href={
                 props.ticketmaster.attractions[0].externalLinks.youtube[0].url

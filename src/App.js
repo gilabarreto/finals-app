@@ -16,7 +16,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
-  const [results, setResults] = useState([]);
+  const [setlist, setSetlist] = useState([]);
   const [ticketmaster, setTicketmaster] = useState([]);
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
@@ -26,7 +26,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar
-          setResults={setResults}
+          setSetlist={setSetlist}
           setTicketmaster={setTicketmaster}
           setLat={setLat}
           setLong={setLong}
@@ -37,12 +37,12 @@ function App() {
             element={
               <>
                 {/* <Favourites
-                  results={results}
+                  setlist={setlist}
                   ticketmaster={ticketmaster}
                   setGlobalSpotifyToken={setToken}
                 /> */}
                 <SearchPage
-                  results={results}
+                  setlist={setlist}
                   ticketmaster={ticketmaster}
                   setGlobalSpotifyToken={setToken}
                 />
@@ -52,10 +52,10 @@ function App() {
 
           <Route path="/#" element={<SpotifyAuth />}></Route>
           <Route
-            path="/concert/:concertId"
+            path="/artists/:artistId/concerts/:concertId"
             element={
               <ArtistPage
-                results={results}
+                setlist={setlist}
                 ticketmaster={ticketmaster}
                 lat={lat}
                 long={long}
