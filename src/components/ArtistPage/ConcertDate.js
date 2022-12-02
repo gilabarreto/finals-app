@@ -7,9 +7,12 @@ export default function ConcertDate(props) {
   let { artistId, concertId } = useParams();
   const { concert } = props;
 
+  //Filter setlsit by artist id
   const filteredConcerts = props.setlist.filter(
     (item) => item.artist.mbid === artistId
   );
+
+  //Find in data the matching concert id
   filteredConcerts.find((result, index, arr) => {
     if (result.id === concertId) {
       previousConcertId = arr[index + 1]?.id;

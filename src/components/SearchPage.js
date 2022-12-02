@@ -81,7 +81,7 @@ export default function SearchPage(props) {
       })
     : [];
 
-  const concert = props.setlist[index];
+  // const concert = props.setlist[index];
 
   // const concertId = concert.id
 
@@ -93,7 +93,7 @@ export default function SearchPage(props) {
   //   props.ticketmaster.attractions[0].externalLinks.spotify[0].url
   //   : null;
 
-  const lastConcert = concert.eventDate;
+  // const lastConcert = concert.eventDate;
 
   // const previousConcertDate = () => {
   //   const str = concert.eventDate;
@@ -129,6 +129,7 @@ export default function SearchPage(props) {
     return lastConcert;
   };
 
+  //Filters setlist data by concert date, only show concerts that already happened
   const noUpcomingConcert = props.setlist.filter((item) => {
     const [day, month, year] = item.eventDate.split("-");
     const date = new Date(year, month - 1, day);
@@ -139,9 +140,9 @@ export default function SearchPage(props) {
     return true;
   });
 
-  console.log("setlist", props.setlist);
   const uniqueIds = [];
 
+  //Filters the data for unique artists
   const uniqueSetlist = noUpcomingConcert.filter((item) => {
     const isDuplicate = uniqueIds.includes(item.artist.mbid);
 
