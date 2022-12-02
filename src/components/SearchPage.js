@@ -7,15 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchPage(props) {
   const [index, setIndex] = useState(0);
-  const [toggleHeart, setToggleHeart] = useState(false);
+  const [favourites, setFavourites] = useState([]);
 
   const navigate = useNavigate();
 
-  const changeColor = () => {
-    setToggleHeart((toggleHeart) => !toggleHeart);
+  const handleFavourite = (artistId) => {
+    if (favourites.includes(artistId)) {
+      setFavourites(favourites.filter((artist) => artist !== artistId));
+    } else {
+      setFavourites([...favourites, artistId]);
+    }
   };
-
-  let toggleClassCheck = toggleHeart ? " active" : "";
 
   if (props.setlist.length === 0) {
     return (
@@ -193,8 +195,10 @@ export default function SearchPage(props) {
               <FontAwesomeIcon
                 icon="heart"
                 size="2x"
-                className={`favourite-icon${toggleClassCheck}`}
-                onClick={changeColor}
+                className={`favourite-icon${
+                  favourites.includes(artistId) ? " active" : ""
+                }`}
+                onClick={() => handleFavourite(artistId)}
               />
               <div className="search-page-box">
                 <button className="search-page-button">Next concert</button>

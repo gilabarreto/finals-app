@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -11,9 +11,9 @@ import SearchPage from "./components/SearchPage";
 import Favourites from "./components/Favourites";
 
 import SpotifyAuth from "./components/SpotifyAuth";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [setlist, setSetlist] = useState([]);
@@ -21,6 +21,8 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
+
+  library.add(fab, faHeart);
 
   return (
     <Router>
@@ -32,15 +34,22 @@ function App() {
           setLong={setLong}
         />
         <Routes>
+          
+          <Route
+            path="/favourite"
+            element={
+              <Favourites
+                setlist={setlist}
+                ticketmaster={ticketmaster}
+                setGlobalSpotifyToken={setToken}
+              />
+            }
+          ></Route>
+
           <Route
             path="/"
             element={
               <>
-                {/* <Favourites
-                  setlist={setlist}
-                  ticketmaster={ticketmaster}
-                  setGlobalSpotifyToken={setToken}
-                /> */}
                 <SearchPage
                   setlist={setlist}
                   ticketmaster={ticketmaster}
@@ -51,6 +60,7 @@ function App() {
           ></Route>
 
           <Route path="/#" element={<SpotifyAuth />}></Route>
+
           <Route
             path="/artists/:artistId/concerts/:concertId"
             element={
