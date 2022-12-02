@@ -4,15 +4,22 @@ import useDebounce from "../hooks/useDebounce";
 
 import searchIcon from "../icons/search.png";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 
 export default function SearchBar(props) {
   const [value, setValue] = useState("");
-  const handleChange = (event) => setValue(event.target.value);
+  let artistId = useParams();
 
   const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    if (artistId) {
+      navigate("/");
+    }
+    setValue(event.target.value);
+  };
 
   const term = useDebounce(value, 700);
 
@@ -32,10 +39,10 @@ export default function SearchBar(props) {
             "x-api-key": "eY_2IYBgy3ovn4sRZSqa9cTZy1nldhaUCvif",
           },
         })
-        .then(res => {
+        .then((res) => {
           props.setSetlist(res.data.setlist);
         })
-        .catch(err => {
+        .catch((err) => {
           props.setSetlist([]);
           console.log("Setlist Get Resquest Error:", err);
         });
