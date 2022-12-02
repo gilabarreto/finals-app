@@ -88,6 +88,24 @@ export default function SearchBar(props) {
     }
   }, [term]);
 
+  // useEffect(() => {
+  //   const ticketmasterCall = async () => {
+  //     const response = await axios
+  //       .get("https://app.ticketmaster.com/discovery/v2/suggest", {
+  //         params: {
+  //           keyword: `"${value}"`,
+  //           segmentId: "KZFzniwnSyZfZ7v7nJ",
+  //           sort: "name,asc",
+  //           apikey: "kMv2pjo5bzSz5iyaz0h5aLqGnQcWyOSL",
+  //         },
+  //       })
+  //     ticketmasterCall()
+  //     console.log(response)
+  //     props.setTicketmaster(response.data._embedded);
+  //   }
+  // }, [term]);
+
+
   return (
     <div className="search">
       <form

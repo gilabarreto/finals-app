@@ -33,7 +33,7 @@ export default function ConcertInfo(props) {
         artistInfo={artistInfo} />
         <h2>
           Artist: {artist}
-          {props.ticketmaster.attractions[0].externalLinks.youtube[0].url ? (
+          {props.ticketmaster.attractions ? (
             <a
               href={
                 props.ticketmaster.attractions[0].externalLinks.youtube[0].url
