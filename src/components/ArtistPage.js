@@ -21,6 +21,22 @@ export default function ArtistPage(props) {
     return null;
   }
 
+  const uniqueIds = [];
+
+  const uniqueSetlist = props.setlist.filter((item) => {
+    const isDuplicate = uniqueIds.includes(item.artist.mbid);
+
+    if (!isDuplicate) {
+      uniqueIds.push(item.artist.mbid);
+
+      return true;
+    }
+    return false;
+  });
+
+  console.log(uniqueSetlist)
+  console.log(uniqueIds)
+
   return (
     <div>
       <div className="artist-page-top-container">

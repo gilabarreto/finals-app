@@ -29,52 +29,13 @@ export default function SearchPage(props) {
     );
   }
 
-  let nextConcert = "";
-
-  try {
-    nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
-      const str = upcomingConcert.dates.start.localDate;
-      const [year, month, day] = str.split("-");
-      const date = new Date(year, month - 1, day);
-      const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      };
-      return date.toLocaleDateString("en-US", options);
-    });
-  } catch (error) {
-    return (
-      <div>
-        <h1>Error</h1>
-      </div>
-    );
-  }
-
   let artistImage = "";
 
   try {
     artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
   } catch (error) {
-    return (
-      <div>
-        <h1>Error</h1>
-      </div>
-    );
+    console.log({ error })
   }
-
-  // const nextConcert = props.ticketmaster.events ?
-  //   props.ticketmaster.events.map((upcomingConcert) => {
-  //     const str = upcomingConcert.dates.start.localDate;
-  //     const [year, month, day] = str.split('-');
-  //     const date = new Date(year, month - 1, day);
-  //     const options = {
-  //       year: "numeric",
-  //       month: "long",
-  //       day: "numeric",
-  //     };
-  //     return date.toLocaleDateString("en-US", options);
-  //   }) :  [];
 
   const concert = props.setlist[index];
 
@@ -88,65 +49,109 @@ export default function SearchPage(props) {
 
   const lastConcert = concert.eventDate;
 
-  const lastConcertDate = () => {
-    const str = concert.eventDate;
-    const [day, month, year] = str.split("-");
+  const nextConcertDate = (localDate) => {
+    if (!localDate) {
+      return null
+    }
+    const [year, month, day] = localDate.split('-');
     const date = new Date(year, month - 1, day);
     const options = {
       year: "numeric",
       month: "long",
       day: "numeric",
     };
-    return date.toLocaleDateString("en-US", options);
-  };
 
-  if (new Date(lastConcert.split("-").reverse().join()) > new Date()) {
-    return setIndex(index + 1);
+    const nextConcert = date.toLocaleDateString("en-US", options);
+
+    return nextConcert;
   }
 
+  const lastConcertDate = (eventDate) => {
+    const [day, month, year] = eventDate.split("-");
+    const date = new Date(year, month - 1, day);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    const lastConcert = date.toLocaleDateString("en-US", options);
+
+    if (new Date(lastConcert.split("-").reverse().join()) > new Date()) {
+      return null
+    }
+    return lastConcert;
+
+  };
+
+  const uniqueIds = [];
+
+  const uniqueSetlist = props.setlist.filter((item) => {
+    const isDuplicate = uniqueIds.includes(item.artist.mbid);
+
+    if (!isDuplicate) {
+      uniqueIds.push(item.artist.mbid);
+
+      return true;
+    }
+    return false;
+  });
+
   return (
-    <div className="search-page-card">
-      <div className="search-page-image-box">
-        <img
-          src={artistImage}
-          className="search-page-image"
-          onClick={() => {
-            navigate("/artist");
-          }}
-        />
-      </div>
-      <div
-        className="search-page-info-box"
-        onClick={() => {
-          navigate("/artist");
-        }}
-      >
-        <h1 className="search-artist">{artist}</h1>
-        {tour && <h3 className="search-tour">Tour: {tour}</h3>}
-      </div>
-      <FontAwesomeIcon
-        icon="heart"
-        size="2x"
-        className={`favourite-icon${toggleClassCheck}`}
-        onClick={changeColor}
-      />
-      <div className="search-page-box">
-        <button className="search-page-button">Next concert</button>
-        <h3>{nextConcert[0]}</h3>
-      </div>
-      <div className="search-page-box">
-        <button className="search-page-button">
-          Last Concert
-        </button>
-        <h3>{lastConcertDate()}</h3>
-      </div>
-      <div className="search-page-box">
-        <button className="search-page-button">
-          {/* <a href={spotify} target="_blank" rel="noopener noreferrer">
+    <>
+      {uniqueSetlist.map((setlistArtist, index) => {
+
+        return (
+          <>
+            {lastConcertDate(setlistArtist.eventDate) &&
+              <div className="search-page-card">
+                <div className="search-page-image-box">
+                  <img
+                    src={props.ticketmaster?.events[index]?.images[0]?.url}
+                    className="search-page-image"
+                    onClick={() => {
+                      navigate("/artist");
+                    }}
+                  />
+                </div>
+                <div
+                  className="search-page-info-box"
+                  onClick={() => {
+                    navigate("/artist");
+                  }}
+                >
+                  <h1 className="search-artist">{setlistArtist.artist.name}</h1>
+                  {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+                </div>
+                <FontAwesomeIcon
+                  icon="heart"
+                  size="2x"
+                  className={`favourite-icon${toggleClassCheck}`}
+                  onClick={changeColor}
+                />
+                <div className="search-page-box">
+                  <button className="search-page-button">Next concert</button>
+                  <h3>{props.ticketmaster ? nextConcertDate(props.ticketmaster?.events[index]?.dates?.start?.localDate) : null}</h3>
+                </div>
+                <div className="search-page-box">
+                  <button className="search-page-button">
+                    Last Concert
+                  </button>
+                  <h3>{lastConcertDate(setlistArtist.eventDate)}</h3>
+                </div>
+                <div className="search-page-box">
+                  <button className="search-page-button">
+                    {/* <a href={spotify} target="_blank" rel="noopener noreferrer">
             Play now!
           </a> */}
-        </button>
-      </div>
-    </div>
-  );
+                  </button>
+                </div>
+              </div>
+
+            }
+          </>
+        )
+      })}
+    </>
+  )
 }

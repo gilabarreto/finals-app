@@ -14,16 +14,21 @@ export default function ConcertDate(props) {
     return props.setIndex(props.index - 1);
   };
 
-  const concertDate = () => {
-    const [day, month, year] = props.concert.eventDate.split("-");
-    const mainConcertDate = new Date(year, month - 1, day);
+  const previousConcerts = props.artistInfo.map((previousConcert) => {
+    const str = previousConcert.eventDate;
+    const [day, month, year] = str.split("-");
+    const date = new Date(year, month - 1, day);
     const options = {
       year: "numeric",
       month: "long",
       day: "numeric",
     };
-    return mainConcertDate.toLocaleDateString("en-US", options);
-  };
+    return `${date.toLocaleDateString("en-US", options)}`;
+  });
+
+  const filteredConcerts = previousConcerts.filter((previousConcert) => {
+    return new Date(previousConcert) < new Date();
+  });
 
   return (
     <>
@@ -34,10 +39,12 @@ export default function ConcertDate(props) {
         >
           &lt;
         </button>
-        &ensp;Concert Date: {concertDate()}&ensp;
-        <button className="artist-page-increase-decrease" onClick={decrease}>
-          &gt;
-        </button>
+        &ensp;Concert Date: {filteredConcerts[props.index]}&ensp;
+        {filteredConcerts < new Date() ?
+          <button className="artist-page-increase-decrease" onClick={decrease}>
+            &gt;
+          </button> :
+          null}
       </h2>
     </>
   )
