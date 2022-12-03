@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, TextInput } from "react";
 
 import useDebounce from "../hooks/useDebounce";
 
@@ -8,15 +8,18 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 
+import "./SearchBar.css";
+
 export default function SearchBar(props) {
   // const [value, setValue] = useState("");
+
   let artistId = useParams();
 
   const { value, setValue } = props;
 
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     if (artistId) {
       navigate("/search");
     }
@@ -72,14 +75,13 @@ export default function SearchBar(props) {
         },
       }
     );
-    
 
     Promise.all([setlistPromise, ticketmasterPromise])
       .then(([setlistResponse, ticketmasterResponse]) => {
-        props.setSetlist(setlistResponse.data.setlist)
-        props.setTicketmaster(ticketmasterResponse.data._embedded)
+        props.setSetlist(setlistResponse.data.setlist);
+        props.setTicketmaster(ticketmasterResponse.data._embedded);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
@@ -112,7 +114,7 @@ export default function SearchBar(props) {
     <div className="search">
       <form
         className="input-container-search"
-        onSubmit={(event) => event.preventDefault()}
+        onSubmit={event => event.preventDefault()}
       >
         <img className="searchIcon" src={searchIcon}></img>
         <input

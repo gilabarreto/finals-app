@@ -124,12 +124,13 @@ function Navbar(props) {
           value={props.value}
           setValue={props.setValue}
         /> */}
-        <div className="social-media-icons">
-          <SocialIcon network="instagram" style={{ height: 35, width: 35 }} />
-          <SocialIcon network="twitter" style={{ height: 35, width: 35 }} />
-          <SocialIcon network="spotify" style={{ height: 35, width: 35 }} />
-        </div>
-        <div>
+
+        <div className="nav-icons">
+          <div className="social-media-icons">
+            <SocialIcon network="instagram" style={{ height: 35, width: 35 }} />
+            <SocialIcon network="twitter" style={{ height: 35, width: 35 }} />
+            <SocialIcon network="spotify" style={{ height: 35, width: 35 }} />
+          </div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
             <div className="dropdown">

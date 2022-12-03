@@ -32,6 +32,14 @@ function App() {
       <BackgroundImage />
       <div className="App">
         <Navbar />
+        <Main
+          setSetlist={setSetlist}
+          setTicketmaster={setTicketmaster}
+          setLat={setLat}
+          setLong={setLong}
+          value={value}
+          setValue={setValue}
+        />
         <Routes>
           <Route
             path="/favourite"
@@ -39,8 +47,7 @@ function App() {
               <Favourites setlist={setlist} ticketmaster={ticketmaster} />
             }
           ></Route>
-
-          <Route
+          {/* <Route
             path="/"
             element={
               <>
@@ -51,10 +58,12 @@ function App() {
                   setLong={setLong}
                   value={value}
                   setValue={setValue}
+                  setlist={setlist}
+                  ticketmaster={ticketmaster}
                 />
               </>
             }
-          ></Route>
+          ></Route> */}
 
           <Route
             path="/search"
@@ -66,7 +75,7 @@ function App() {
           ></Route>
 
           <Route
-            path="/artists/:artistId/concerts/:concertId"
+            path="artists/:artistId/concerts/:concertId"
             element={
               <ArtistPage
                 setlist={setlist}
