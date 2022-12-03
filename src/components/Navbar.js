@@ -14,7 +14,7 @@ import axios from "axios";
 function Navbar(props) {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
-    setDropdownLogin(opened => !opened);
+    setDropdownLogin((opened) => !opened);
   }, [dropdownLogin]);
 
   const [isUserLogged, setisUserLogged] = useState(
@@ -40,7 +40,7 @@ function Navbar(props) {
     props.setValue("");
   };
 
-  const register = e => {
+  const register = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:4000/auth/register", {
@@ -48,7 +48,7 @@ function Navbar(props) {
         email: email,
         password: password,
       })
-      .then(res => {
+      .then((res) => {
         setisUserLogged(true);
         const { token } = res.data;
         const decode = jwtdecode(token);
@@ -58,7 +58,7 @@ function Navbar(props) {
         setDropdownLogin(false);
         console.log("login res", res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         const { error } = err.response.data;
         console.log(error);
@@ -69,14 +69,14 @@ function Navbar(props) {
     setErrorMsg("");
   };
 
-  const login = e => {
+  const login = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:4000/auth/login", {
         email: email,
         password: password,
       })
-      .then(res => {
+      .then((res) => {
         setisUserLogged(true);
         const { token } = res.data;
         const decode = jwtdecode(token);
@@ -89,7 +89,7 @@ function Navbar(props) {
         setDropdownLogin(false);
         console.log("login res", res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         const { error } = err.response.data;
         console.log(error);
@@ -155,7 +155,7 @@ function Navbar(props) {
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
+                            onChange={(event) => setEmail(event.target.value)}
                           />
                         </div>
                         <div className="input-container-login">
@@ -165,7 +165,9 @@ function Navbar(props) {
                             type="password"
                             placeholder="Password"
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={(event) =>
+                              setPassword(event.target.value)
+                            }
                           />
                         </div>
                         <div>
@@ -184,34 +186,36 @@ function Navbar(props) {
                             {errorMsg}
                           </span>
                         )}
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="name"
                             type="text"
                             placeholder="Name"
                             value={name}
-                            onChange={event => setName(event.target.value)}
+                            onChange={(event) => setName(event.target.value)}
                           />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="email"
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
+                            onChange={(event) => setEmail(event.target.value)}
                           />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="password"
                             type="password"
                             placeholder="Password"
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={(event) =>
+                              setPassword(event.target.value)
+                            }
                           />
                         </div>
                         <div>
@@ -224,11 +228,13 @@ function Navbar(props) {
                   )}
                   {isRegistered === false && (
                     <>
-                      <span>Not a member? </span>
+                      <span className="register-login-text">
+                        Not a member?{" "}
+                      </span>
                       <span
                         className="toggle-register-login"
                         onClick={() => {
-                          setIsRegistered(prev => !prev);
+                          setIsRegistered((prev) => !prev);
                           clear();
                         }}
                       >
@@ -238,11 +244,13 @@ function Navbar(props) {
                   )}
                   {isRegistered === true && (
                     <>
-                      <span>Have an account? </span>
+                      <span className="register-login-text">
+                        Have an account?{" "}
+                      </span>
                       <span
                         className="toggle-register-login"
                         onClick={() => {
-                          setIsRegistered(prev => !prev);
+                          setIsRegistered((prev) => !prev);
                           clear();
                         }}
                       >
