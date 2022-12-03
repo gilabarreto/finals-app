@@ -157,9 +157,6 @@ export default function SearchPage(props) {
     return false;
   });
 
-  console.log("uniquesetlist", uniqueSetlist);
-  console.log("ticketmaster", props.ticketmaster)
-
   return (
     <>
       {uniqueSetlist
@@ -176,11 +173,13 @@ export default function SearchPage(props) {
 
           const lastConcert = concert.eventDate;
 
+          //Find spotify link and image for specific artist
           const ticketmasterMap = props.ticketmaster.attractions.find(
             (item) => item.name === artist
           );
 
           let spotify = null;
+          let artistImage = null;
           if (
             ticketmasterMap &&
             ticketmasterMap.externalLinks &&
@@ -188,18 +187,49 @@ export default function SearchPage(props) {
           ) {
             spotify = ticketmasterMap.externalLinks.spotify[0].url;
           }
-          console.log("ticketMap", ticketmasterMap);
+
+          if (ticketmasterMap && ticketmasterMap.images) {
+            artistImage = ticketmasterMap.images[0].url;
+          }
+
+          //Filter for only attractions from events
+          // const ticketmasterEvents = props.ticketmaster.events
+          //   .map((item) => {
+          //     return item._embedded.attractions;
+          //   })
+          //   .filter((item) => {
+          //     return item !== undefined;
+          //   });
+
+          // //Flatten the array of objects
+          // const ticketmasterEventsFlat = ticketmasterEvents.flat();
+
+          // // Find upcoming concert for specific artist
+          // const ticketmasterEventsMap = ticketmasterEventsFlat.find(
+          //   (item) => item.name === artist
+          // );
+
+          const ticketmasterEvents = props.ticketmaster.events.find((item) => {
+            return item.name.includes(`${artist}:`) || item.name === artist;
+          });
+
+          let localDate = null;
+
+          if (
+            ticketmasterEvents &&
+            ticketmasterEvents.dates &&
+            ticketmasterEvents.dates.start &&
+            ticketmasterEvents.dates.start.localDate
+          ) {
+            localDate = ticketmasterEvents.dates.start.localDate;
+          }
 
           return (
             <>
               <div className="search-page-card">
                 <div className="search-page-image-box">
                   <img
-                    src={
-                      props.ticketmaster.events
-                        ? props.ticketmaster?.events[index]?.images[0]?.url
-                        : null
-                    }
+                    src={artistImage}
                     className="search-page-image"
                     onClick={() => {
                       navigate(`/artists/${artistId}/concerts/${concertId}`);
@@ -225,14 +255,7 @@ export default function SearchPage(props) {
                 />
                 <div className="search-page-box">
                   <button className="search-page-button">Next concert</button>
-                  <h3>
-                    {props.ticketmaster
-                      ? nextConcertDate(
-                          props.ticketmaster?.events[index]?.dates?.start
-                            ?.localDate
-                        )
-                      : null}
-                  </h3>
+                  <h3>{nextConcertDate(localDate)}</h3>
                 </div>
                 <div className="search-page-box">
                   <button className="search-page-button">Last Concert</button>
