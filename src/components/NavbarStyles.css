@@ -38,7 +38,7 @@ nav {
   border: 1px;
   border-radius: 10px;
   padding: 20px 20px;
-  top: 103px;
+  top: 72px;
 }
 
 .login {
@@ -78,4 +78,16 @@ nav {
 .nav-icons {
   display: flex;
   gap: 30px;
+}
+
+.input-container-login {
+  margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.input-text-login {
+  border-radius: 25px;
+  height: 25px;
+  width: 125px;
+  padding-left: 10px;
 }

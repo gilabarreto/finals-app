@@ -148,9 +148,9 @@ function Navbar(props) {
                             {errorMsg}
                           </span>
                         )}
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="email"
                             type="email"
                             placeholder="Email"
@@ -158,9 +158,9 @@ function Navbar(props) {
                             onChange={event => setEmail(event.target.value)}
                           />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="password"
                             type="password"
                             placeholder="Password"
