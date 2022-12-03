@@ -10,6 +10,7 @@ import ArtistPage from "./components/ArtistPage";
 import SearchPage from "./components/SearchPage";
 import Favourites from "./components/Favourites";
 import Main from "./components/Main";
+import BackgroundImage from "./components/BackgroundImage";
 
 import SpotifyAuth from "./components/SpotifyAuth";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -28,15 +29,9 @@ function App() {
 
   return (
     <Router>
+      <BackgroundImage />
       <div className="App">
-        <Navbar
-          setSetlist={setSetlist}
-          setTicketmaster={setTicketmaster}
-          setLat={setLat}
-          setLong={setLong}
-          value={value}
-          setValue={setValue}
-        />
+        <Navbar />
         <Routes>
           <Route
             path="/favourite"
@@ -49,7 +44,14 @@ function App() {
             path="/"
             element={
               <>
-                <Main />
+                <Main
+                  setSetlist={setSetlist}
+                  setTicketmaster={setTicketmaster}
+                  setLat={setLat}
+                  setLong={setLong}
+                  value={value}
+                  setValue={setValue}
+                />
               </>
             }
           ></Route>

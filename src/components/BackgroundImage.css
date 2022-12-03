@@ -1,0 +1,11 @@
+.background-img{
+  position: absolute;
+  z-index: -1;
+  object-fit: contain;
+  opacity : 1;
+  transition: opacity 0.9s linear;
+}
+
+.hidden {
+  opacity: 0;
+}

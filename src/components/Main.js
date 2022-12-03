@@ -1,6 +1,18 @@
 import SpotifyAuth from "./SpotifyAuth";
 import "./Main.css";
+import SearchBar from "./SearchBar";
 
 export default function Main(props) {
-  return <div className="main-page-card"></div>;
+  return (
+    <div>
+      <SearchBar
+        setSetlist={props.setSetlist}
+        setTicketmaster={props.setTicketmaster}
+        setLat={props.setLat}
+        setLong={props.setLong}
+        value={props.value}
+        setValue={props.setValue}
+      />
+    </div>
+  );
 }

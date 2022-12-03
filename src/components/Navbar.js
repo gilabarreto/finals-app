@@ -116,14 +116,14 @@ function Navbar(props) {
           </Link>
         </div>
         <div>Home · About · Contact</div>
-        <SearchBar
+        {/* <SearchBar
           setSetlist={props.setSetlist}
           setTicketmaster={props.setTicketmaster}
           setLat={props.setLat}
           setLong={props.setLong}
           value={props.value}
           setValue={props.setValue}
-        />
+        /> */}
         <div className="social-media-icons">
           <SocialIcon network="instagram" style={{ height: 35, width: 35 }} />
           <SocialIcon network="twitter" style={{ height: 35, width: 35 }} />
