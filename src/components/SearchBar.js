@@ -113,10 +113,9 @@ export default function SearchBar(props) {
   return (
     <div className="search">
       <form
-        className="input-container-search"
+        className="input-container"
         onSubmit={event => event.preventDefault()}
       >
-        <img className="searchIcon" src={searchIcon}></img>
         <input
           className="input-text-search"
           type="search"

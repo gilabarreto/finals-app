@@ -3,7 +3,6 @@ import logo from "../icons/logo.png";
 
 import { useNavigate, Link } from "react-router-dom";
 
-import SpotifyAuth from "./SpotifyAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchPage(props) {
@@ -23,11 +22,11 @@ export default function SearchPage(props) {
   if (props.setlist.length === 0 || props.ticketmaster === undefined) {
     return (
       <div className="main-page-card">
-        <h1>
+        {/* <h1>
           Keep track of your favorite artist by login in to your Spotify
           Account.
         </h1>
-        <SpotifyAuth setGlobalSpotifyToken={props.setGlobalSpotifyToken} />
+        <SpotifyAuth setGlobalSpotifyToken={props.setGlobalSpotifyToken} /> */}
       </div>
     );
   }
