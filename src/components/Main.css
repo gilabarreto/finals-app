@@ -51,13 +51,8 @@
 .main-page-card {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 0.5em;
-  margin: 1em;
   padding-top: 3em;
-  min-height: 50vh;
-  background: #fff;
-  background-image: url(../imgs/concert-banner.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100vh;
   font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.5em;

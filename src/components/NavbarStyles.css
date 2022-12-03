@@ -4,13 +4,15 @@ nav{
   margin-left: 21px;
   margin-right: 21px;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: AlternateGothicProCyrillic, sans-serif;
+  color:white;
+  font-weight: 600;
+  padding: 17px;
 }
-.annoucement{
+/* .annoucement{
   height: 44px;
   margin-bottom: 12px;
-  background-color: #75ABBC;
-}
+} */
 .logo{
   display: flex;
   align-items: flex-end;
@@ -26,7 +28,7 @@ nav{
   right: 0;
   background-color: white;
   z-index: 2;
-  box-shadow: 0px 1px 2px 2px rgb(230, 229, 229);
+  box-shadow: 0px 1px 2px 2px white;
   border: 1px;
   border-radius: 10px;
   padding: 20px 20px;
@@ -57,8 +59,6 @@ nav{
 
 .submit-button{
   border-radius: 25px;
-  background-color: #23B5D3;
-  border-color: #23B5D3;
   box-shadow: unset;
   border-style: unset;
   height: 30px;
@@ -67,8 +67,8 @@ nav{
   cursor: pointer;
 }
 .separator{
-  box-shadow: 0px 1px 2px 2px rgb(230, 229, 229);
-  border-color: rgb(230, 229, 229);
+  box-shadow: 0px 0px 0.5px 0.5px white;
+  border-color: white;
   border-width: 0;
 }
 .searchIcon{
@@ -89,5 +89,10 @@ nav{
   text-decoration: underline;
   cursor: pointer;
   font-weight: bold;
+}
+
+.social-media-icons {
+  display: flex;
+  gap: 5px;
 }
 

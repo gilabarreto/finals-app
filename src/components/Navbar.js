@@ -1,8 +1,10 @@
-import logo from "../icons/logo.png";
+import logo from "../icons/logo-white-ish.png";
 import jwtdecode from "jwt-decode";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
+import ReactDOM from "react-dom";
+import { SocialIcon } from "react-social-icons";
 
 import { Link } from "react-router-dom";
 
@@ -15,8 +17,12 @@ function Navbar(props) {
     setDropdownLogin(opened => !opened);
   }, [dropdownLogin]);
 
-  const [isUserLogged, setisUserLogged] = useState(JSON.parse(localStorage.getItem("user")) ||false);
-  const [isRegistered, setIsRegistered] = useState(JSON.parse(localStorage.getItem("user")) || false);
+  const [isUserLogged, setisUserLogged] = useState(
+    JSON.parse(localStorage.getItem("user")) || false
+  );
+  const [isRegistered, setIsRegistered] = useState(
+    JSON.parse(localStorage.getItem("user")) || false
+  );
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,15 +30,15 @@ function Navbar(props) {
   const [errorMsg, setErrorMsg] = useState("");
 
   const clear = () => {
-    setName("")
+    setName("");
     setPassword("");
     setEmail("");
     setErrorMsg("");
-  }
+  };
 
   const handleClick = () => {
-    props.setValue("")
-  }
+    props.setValue("");
+  };
 
   const register = e => {
     e.preventDefault();
@@ -52,15 +58,15 @@ function Navbar(props) {
         setDropdownLogin(false);
         console.log("login res", res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-        const {error} = err.response.data;
+        const { error } = err.response.data;
         console.log(error);
         if (error) {
           return setErrorMsg(error);
         }
       });
-      setErrorMsg("");
+    setErrorMsg("");
   };
 
   const login = e => {
@@ -72,26 +78,26 @@ function Navbar(props) {
       })
       .then(res => {
         setisUserLogged(true);
-        const {token} = res.data
+        const { token } = res.data;
         const decode = jwtdecode(token);
         console.log(decode);
-        localStorage.setItem("user", JSON.stringify(decode))
-        setName("")
+        localStorage.setItem("user", JSON.stringify(decode));
+        setName("");
         setPassword("");
         setEmail("");
         setErrorMsg("");
         setDropdownLogin(false);
         console.log("login res", res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-        const {error} = err.response.data;
+        const { error } = err.response.data;
         console.log(error);
         if (error) {
           return setErrorMsg(error);
         }
       });
-      setErrorMsg("");
+    setErrorMsg("");
   };
 
   const logout = useCallback(() => {
@@ -102,11 +108,11 @@ function Navbar(props) {
 
   return (
     <div>
-      <div className="annoucement"></div>
+      {/* <div className="annoucement"></div> */}
       <nav>
         <div>
           <Link to="/">
-            <img src={logo} className="logo" onClick={handleClick}/>
+            <img src={logo} className="logo" onClick={handleClick} />
           </Link>
         </div>
         <div>Home · About · Contact</div>
@@ -118,7 +124,11 @@ function Navbar(props) {
           value={props.value}
           setValue={props.setValue}
         />
-        <div>Follow: Twitter · Instagram · Spotify</div>
+        <div className="social-media-icons">
+          <SocialIcon network="instagram" style={{ height: 35, width: 35 }} />
+          <SocialIcon network="twitter" style={{ height: 35, width: 35 }} />
+          <SocialIcon network="spotify" style={{ height: 35, width: 35 }} />
+        </div>
         <div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
@@ -132,7 +142,11 @@ function Navbar(props) {
                   {isRegistered === false && (
                     <span id="login-form">
                       <form onSubmit={login}>
-                        {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
+                        {errorMsg && (
+                          <span style={{ fontWeight: "bold", color: "red" }}>
+                            {errorMsg}
+                          </span>
+                        )}
                         <div className="input-container">
                           <input
                             className="input-text"
@@ -164,7 +178,11 @@ function Navbar(props) {
                   {isRegistered === true && (
                     <span id="register-form">
                       <form onSubmit={register}>
-                      {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
+                        {errorMsg && (
+                          <span style={{ fontWeight: "bold", color: "red" }}>
+                            {errorMsg}
+                          </span>
+                        )}
                         <div className="input-container">
                           <input
                             className="input-text"
@@ -209,7 +227,7 @@ function Navbar(props) {
                       <span
                         className="toggle-register-login"
                         onClick={() => {
-                          setIsRegistered(prev => !prev)
+                          setIsRegistered(prev => !prev);
                           clear();
                         }}
                       >
@@ -223,7 +241,7 @@ function Navbar(props) {
                       <span
                         className="toggle-register-login"
                         onClick={() => {
-                          setIsRegistered(prev => !prev)
+                          setIsRegistered(prev => !prev);
                           clear();
                         }}
                       >

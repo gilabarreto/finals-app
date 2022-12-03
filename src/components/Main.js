@@ -1,12 +1,6 @@
 import SpotifyAuth from "./SpotifyAuth";
+import "./Main.css";
 
 export default function Main(props) {
-  return (
-    <div className="main-page-card">
-      <h1>
-        Keep track of your favorite artist by login in to your Spotify Account.
-      </h1>
-      <SpotifyAuth setGlobalSpotifyToken={props.setGlobalSpotifyToken} />
-    </div>
-  );
+  return <div className="main-page-card"></div>;
 }

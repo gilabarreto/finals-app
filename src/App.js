@@ -41,11 +41,7 @@ function App() {
           <Route
             path="/favourite"
             element={
-              <Favourites
-                setlist={setlist}
-                ticketmaster={ticketmaster}
-                setGlobalSpotifyToken={setToken}
-              />
+              <Favourites setlist={setlist} ticketmaster={ticketmaster} />
             }
           ></Route>
 
@@ -53,7 +49,7 @@ function App() {
             path="/"
             element={
               <>
-                <Main setGlobalSpotifyToken={setToken} />
+                <Main />
               </>
             }
           ></Route>
@@ -62,16 +58,10 @@ function App() {
             path="/search"
             element={
               <>
-                <SearchPage
-                  setlist={setlist}
-                  ticketmaster={ticketmaster}
-                  setGlobalSpotifyToken={setToken}
-                />
+                <SearchPage setlist={setlist} ticketmaster={ticketmaster} />
               </>
             }
           ></Route>
-
-          <Route path="/#" element={<SpotifyAuth />}></Route>
 
           <Route
             path="/artists/:artistId/concerts/:concertId"
