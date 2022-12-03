@@ -31,7 +31,7 @@ function App() {
     <Router>
       <BackgroundImage />
       <div className="App">
-        <Navbar />
+        <Navbar setValue={setValue} />
         <Main
           setSetlist={setSetlist}
           setTicketmaster={setTicketmaster}
