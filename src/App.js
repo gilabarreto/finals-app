@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -14,6 +14,7 @@ import SpotifyAuth from "./components/SpotifyAuth";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 function App() {
   const [setlist, setSetlist] = useState([]);
@@ -21,6 +22,21 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
+  const [favourites, setFavourites] = useState([])
+
+  useEffect(() => {
+    const token =  localStorage.getItem("token");
+    axios
+      .get("http://localhost:4000/favourite", {
+        headers: {
+          token: token,
+        },
+      })
+      .then((res) => {
+        // console.log("res.data:", res.data);
+        setFavourites(res.data);
+      });
+  }, []);
 
   library.add(fab, faHeart);
 
@@ -39,6 +55,7 @@ function App() {
             path="/favourite"
             element={
               <Favourites
+                favourites={favourites}
                 setlist={setlist}
                 ticketmaster={ticketmaster}
                 setGlobalSpotifyToken={setToken}

@@ -16,6 +16,18 @@ export default function SearchPage(props) {
   };
 
   let toggleClassCheck = toggleHeart ? " active" : "";
+  const favorites = props.favourites.map((favourite) => {
+    return(
+    <div>
+      {favourite.artistname}
+      <img src= {favourite.artistimage}/>
+    </div>
+    )
+  })
+  if (props.favourites.length === 0) {
+    return <span>Loading..</span>
+  }
+  return <div>{favorites}</div>
 
   if (props.setlist.length === 0) {
     return (
@@ -28,40 +40,6 @@ export default function SearchPage(props) {
       </div>
     );
   }
-
-  /*   let nextConcert = "";
-  
-    try {
-      nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
-        const str = upcomingConcert.dates.start.localDate;
-        const [year, month, day] = str.split("-");
-        const date = new Date(year, month - 1, day);
-        const options = {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        return date.toLocaleDateString("en-US", options);
-      });
-    } catch (error) {
-      return (
-        <div>
-          <h1>Error</h1>
-        </div>
-      );
-    }
-  
-    let artistImage = "";
-  
-    try {
-      artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
-    } catch (error) {
-      return (
-        <div>
-          <h1>Error</h1>
-        </div>
-      );
-    } */
 
   const artistImage = props.ticketmaster.events
     ? props.ticketmaster.events[0].images[0].url

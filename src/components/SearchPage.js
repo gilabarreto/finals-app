@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../icons/logo.png";
-
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
 import SpotifyAuth from "./SpotifyAuth";
@@ -10,14 +10,33 @@ export default function SearchPage(props) {
   const [index, setIndex] = useState(0);
   const [favourites, setFavourites] = useState([]);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const handleFavourite = (artistId) => {
-    if (favourites.includes(artistId)) {
-      setFavourites(favourites.filter((artist) => artist !== artistId));
-    } else {
-      setFavourites([...favourites, artistId]);
-    }
+  const handleFavourite = (artistId, artist, image) => {
+    const token =  localStorage.getItem("token");
+    console.log("token:",token);
+    axios
+      .post("http://localhost:4000/favourite/add", {
+        artistId: artistId,
+        artistName: artist,
+        image: image 
+      }, {
+        headers:{
+          token:token
+        }
+      })
+      .then((res) => {
+        console.log("res.data:", res.data);
+        if (favourites.includes(artistId)) {
+          setFavourites(favourites.filter((artist) => artist !== artistId));
+        } else {
+          setFavourites([...favourites, artistId]);
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+        alert(error);
+      });
   };
 
   if (props.setlist.length === 0 || props.ticketmaster === undefined) {
@@ -31,6 +50,7 @@ export default function SearchPage(props) {
       </div>
     );
   }
+
 
   /*   let nextConcert = "";
   
@@ -170,14 +190,16 @@ export default function SearchPage(props) {
 
         const lastConcert = concert.eventDate;
 
+        const image = props.ticketmaster.events ?
+        props.ticketmaster?.events[index]?.images[0]?.url :
+        null;
+
         return (
           <>
             <div className="search-page-card">
               <div className="search-page-image-box">
-                <img
-                  src={props.ticketmaster.events ?
-                    props.ticketmaster?.events[index]?.images[0]?.url :
-                    null}
+                <img 
+                  src={image}
                   className="search-page-image"
                   onClick={() => {
                     navigate(`/artists/${artistId}/concerts/${concertId}`);
@@ -198,7 +220,7 @@ export default function SearchPage(props) {
                 size="2x"
                 className={`favourite-icon${favourites.includes(artistId) ? " active" : ""
                   }`}
-                onClick={() => handleFavourite(artistId)}
+                onClick={() => handleFavourite(artistId, artist, image)}
               />
               <div className="search-page-box">
                 <button className="search-page-button">Next concert</button>

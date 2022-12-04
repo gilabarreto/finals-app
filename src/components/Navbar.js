@@ -72,6 +72,7 @@ function Navbar(props) {
         const decode = jwtdecode(token);
         console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode))
+        localStorage.setItem("token", token);
         setName("")
         setPassword("");
         setEmail("");
