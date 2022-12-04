@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../icons/logo.png";
+import logo from "../icons/logo-small.png";
 
 import { useNavigate, Link } from "react-router-dom";
 
@@ -156,6 +156,9 @@ export default function SearchPage(props) {
     return false;
   });
 
+  console.log("ticketmaster", props.ticketmaster);
+  console.log("setlist", props.setlist);
+
   return (
     <>
       {uniqueSetlist
@@ -178,7 +181,7 @@ export default function SearchPage(props) {
           );
 
           let spotify = null;
-          let artistImage = null;
+          let artistImage = logo;
           if (
             ticketmasterMap &&
             ticketmasterMap.externalLinks &&
@@ -191,16 +194,31 @@ export default function SearchPage(props) {
             artistImage = ticketmasterMap.images[0].url;
           }
 
-          //Filter for only attractions from events
-          // const ticketmasterEvents = props.ticketmaster.events
-          //   .map((item) => {
-          //     return item._embedded.attractions;
-          //   })
-          //   .filter((item) => {
-          //     return item !== undefined;
-          //   });
+          // Filter for only attractions from events
+          const ticketmasterEvents = props.ticketmaster.events
+            .map((item) => {
+              return item;
+            })
+            .filter((item) => {
+              if (item._embedded.attractions !== undefined) {
+                for (const attraction of item._embedded.attractions) {
+                  if (attraction.name === artist) {
+                    return item;
+                  }
+                }
+              }
+            })
+            .sort((a, b) => a.dates.start.localDate - b.dates.start.localDate);
 
-          // //Flatten the array of objects
+            console.log("ticketmasterEvents", ticketmasterEvents)
+
+          let localDate = null;
+
+          if (ticketmasterEvents[0] && ticketmasterEvents[0].dates) {
+            localDate = ticketmasterEvents[0].dates.start.localDate;
+          }
+
+          //Flatten the array of objects
           // const ticketmasterEventsFlat = ticketmasterEvents.flat();
 
           // // Find upcoming concert for specific artist
@@ -208,20 +226,20 @@ export default function SearchPage(props) {
           //   (item) => item.name === artist
           // );
 
-          const ticketmasterEvents = props.ticketmaster.events.find((item) => {
-            return item.name.includes(`${artist}:`) || item.name === artist;
-          });
+          // const ticketmasterEvents = props.ticketmaster.events.find((item) => {
+          //   return item.name.includes(`${artist}:`) || item.name === artist;
+          // });
 
-          let localDate = null;
+          // let localDate = null;
 
-          if (
-            ticketmasterEvents &&
-            ticketmasterEvents.dates &&
-            ticketmasterEvents.dates.start &&
-            ticketmasterEvents.dates.start.localDate
-          ) {
-            localDate = ticketmasterEvents.dates.start.localDate;
-          }
+          // if (
+          //   ticketmasterEvents &&
+          //   ticketmasterEvents.dates &&
+          //   ticketmasterEvents.dates.start &&
+          //   ticketmasterEvents.dates.start.localDate
+          // ) {
+          //   localDate = ticketmasterEvents.dates.start.localDate;
+          // }
 
           return (
             <>
