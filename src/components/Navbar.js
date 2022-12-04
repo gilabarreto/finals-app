@@ -1,8 +1,10 @@
-import logo from "../icons/logo.png";
+import logo from "../icons/logo-white-ish.png";
 import jwtdecode from "jwt-decode";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
+import ReactDOM from "react-dom";
+import { SocialIcon } from "react-social-icons";
 
 import { Link } from "react-router-dom";
 
@@ -12,11 +14,15 @@ import axios from "axios";
 function Navbar(props) {
   const [dropdownLogin, setDropdownLogin] = useState(false);
   const toggleLogin = useCallback(() => {
-    setDropdownLogin(opened => !opened);
+    setDropdownLogin((opened) => !opened);
   }, [dropdownLogin]);
 
-  const [isUserLogged, setisUserLogged] = useState(JSON.parse(localStorage.getItem("user")) ||false);
-  const [isRegistered, setIsRegistered] = useState(JSON.parse(localStorage.getItem("user")) || false);
+  const [isUserLogged, setisUserLogged] = useState(
+    JSON.parse(localStorage.getItem("user")) || false
+  );
+  const [isRegistered, setIsRegistered] = useState(
+    JSON.parse(localStorage.getItem("user")) || false
+  );
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,13 +30,17 @@ function Navbar(props) {
   const [errorMsg, setErrorMsg] = useState("");
 
   const clear = () => {
-    setName("")
+    setName("");
     setPassword("");
     setEmail("");
     setErrorMsg("");
-  }
+  };
 
-  const register = e => {
+  const handleClick = () => {
+    props.setValue("");
+  };
+
+  const register = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:4000/auth/register", {
@@ -38,7 +48,7 @@ function Navbar(props) {
         email: email,
         password: password,
       })
-      .then(res => {
+      .then((res) => {
         setisUserLogged(true);
         const { token } = res.data;
         const decode = jwtdecode(token);
@@ -50,25 +60,25 @@ function Navbar(props) {
       })
       .catch((err) => {
         console.log(err);
-        const {error} = err.response.data;
+        const { error } = err.response.data;
         console.log(error);
         if (error) {
           return setErrorMsg(error);
         }
       });
-      setErrorMsg("");
+    setErrorMsg("");
   };
 
-  const login = e => {
+  const login = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:4000/auth/login", {
         email: email,
         password: password,
       })
-      .then(res => {
+      .then((res) => {
         setisUserLogged(true);
-        const {token} = res.data
+        const { token } = res.data;
         const decode = jwtdecode(token);
         console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode))
@@ -82,13 +92,13 @@ function Navbar(props) {
       })
       .catch((err) => {
         console.log(err);
-        const {error} = err.response.data;
+        const { error } = err.response.data;
         console.log(error);
         if (error) {
           return setErrorMsg(error);
         }
       });
-      setErrorMsg("");
+    setErrorMsg("");
   };
 
   const logout = useCallback(() => {
@@ -99,22 +109,29 @@ function Navbar(props) {
 
   return (
     <div>
-      <div className="annoucement"></div>
+      {/* <div className="annoucement"></div> */}
       <nav>
         <div>
           <Link to="/">
-            <img src={logo} className="logo"></img>
+            <img src={logo} className="logo" onClick={handleClick} />
           </Link>
         </div>
         <div>Home · About · Contact</div>
-        <SearchBar
+        {/* <SearchBar
           setSetlist={props.setSetlist}
           setTicketmaster={props.setTicketmaster}
           setLat={props.setLat}
           setLong={props.setLong}
-        />
-        <div>Follow: Twitter · Instagram · Spotify</div>
-        <div>
+          value={props.value}
+          setValue={props.setValue}
+        /> */}
+
+        <div className="nav-icons">
+          <div className="social-media-icons">
+            <SocialIcon network="instagram" style={{ height: 35, width: 35 }} />
+            <SocialIcon network="twitter" style={{ height: 35, width: 35 }} />
+            <SocialIcon network="spotify" style={{ height: 35, width: 35 }} />
+          </div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
             <div className="dropdown">
@@ -127,25 +144,31 @@ function Navbar(props) {
                   {isRegistered === false && (
                     <span id="login-form">
                       <form onSubmit={login}>
-                        {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
-                        <div className="input-container">
+                        {errorMsg && (
+                          <span style={{ fontWeight: "bold", color: "red" }}>
+                            {errorMsg}
+                          </span>
+                        )}
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="email"
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
+                            onChange={(event) => setEmail(event.target.value)}
                           />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="password"
                             type="password"
                             placeholder="Password"
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={(event) =>
+                              setPassword(event.target.value)
+                            }
                           />
                         </div>
                         <div>
@@ -159,35 +182,41 @@ function Navbar(props) {
                   {isRegistered === true && (
                     <span id="register-form">
                       <form onSubmit={register}>
-                      {errorMsg && <span style={{fontWeight: "bold", color: "red"}}>{errorMsg}</span>}
-                        <div className="input-container">
+                        {errorMsg && (
+                          <span style={{ fontWeight: "bold", color: "red" }}>
+                            {errorMsg}
+                          </span>
+                        )}
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="name"
                             type="text"
                             placeholder="Name"
                             value={name}
-                            onChange={event => setName(event.target.value)}
+                            onChange={(event) => setName(event.target.value)}
                           />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="email"
                             type="email"
                             placeholder="Email"
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
+                            onChange={(event) => setEmail(event.target.value)}
                           />
                         </div>
-                        <div className="input-container">
+                        <div className="input-container-login">
                           <input
-                            className="input-text"
+                            className="input-text-login"
                             name="password"
                             type="password"
                             placeholder="Password"
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={(event) =>
+                              setPassword(event.target.value)
+                            }
                           />
                         </div>
                         <div>
@@ -200,11 +229,13 @@ function Navbar(props) {
                   )}
                   {isRegistered === false && (
                     <>
-                      <span>Not a member? </span>
+                      <span className="register-login-text">
+                        Not a member?{" "}
+                      </span>
                       <span
                         className="toggle-register-login"
                         onClick={() => {
-                          setIsRegistered(prev => !prev)
+                          setIsRegistered((prev) => !prev);
                           clear();
                         }}
                       >
@@ -214,11 +245,13 @@ function Navbar(props) {
                   )}
                   {isRegistered === true && (
                     <>
-                      <span>Have an account? </span>
+                      <span className="register-login-text">
+                        Have an account?{" "}
+                      </span>
                       <span
                         className="toggle-register-login"
                         onClick={() => {
-                          setIsRegistered(prev => !prev)
+                          setIsRegistered((prev) => !prev);
                           clear();
                         }}
                       >
