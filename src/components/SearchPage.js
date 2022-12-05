@@ -1,22 +1,50 @@
 import React, { useState } from "react";
-import logo from "../icons/logo.png";
-
+import logo from "../icons/logo-small.png";
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchPage(props) {
   const [index, setIndex] = useState(0);
-  const [favourites, setFavourites] = useState([]);
+  // const [favourites, setFavourites] = useState([]);
 
   const navigate = useNavigate();
 
-  const handleFavourite = (artistId) => {
-    if (favourites.includes(artistId)) {
-      setFavourites(favourites.filter((artist) => artist !== artistId));
-    } else {
-      setFavourites([...favourites, artistId]);
-    }
+  const handleFavourite = (artistId, artist, artistImage) => {
+    const token = localStorage.getItem("token");
+    console.log("token:", token);
+    axios
+      .post(
+        "http://localhost:4000/favourite/add",
+        {
+          artistId: artistId,
+          artistName: artist,
+          image: artistImage,
+        },
+        {
+          headers: {
+            token: token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("res.data:", res.data);
+        props.setFavourites((prev) => {
+          if (prev.find((item) => item.artist_id === artistId)) {
+            return prev.filter(
+              (item) => item.artist_id !== artistId
+            );
+          } else {
+            return [...prev, { artistimage: artistImage, artist_id: artistId, artistname: artist }];
+          }
+        });
+      })
+
+      .catch((error) => {
+        console.log("Error:", error);
+        alert(error);
+      });
   };
 
   if (props.setlist.length === 0 || props.ticketmaster === undefined) {
@@ -156,6 +184,9 @@ export default function SearchPage(props) {
     return false;
   });
 
+  console.log("ticketmaster", props.ticketmaster);
+  console.log("setlist", props.setlist);
+
   return (
     <>
       {uniqueSetlist
@@ -178,7 +209,7 @@ export default function SearchPage(props) {
           );
 
           let spotify = null;
-          let artistImage = null;
+          let artistImage = logo;
           if (
             ticketmasterMap &&
             ticketmasterMap.externalLinks &&
@@ -191,16 +222,31 @@ export default function SearchPage(props) {
             artistImage = ticketmasterMap.images[0].url;
           }
 
-          //Filter for only attractions from events
-          // const ticketmasterEvents = props.ticketmaster.events
-          //   .map((item) => {
-          //     return item._embedded.attractions;
-          //   })
-          //   .filter((item) => {
-          //     return item !== undefined;
-          //   });
+          // Filter for only attractions from events
+          const ticketmasterEvents = props.ticketmaster.events
+            .map((item) => {
+              return item;
+            })
+            .filter((item) => {
+              if (item._embedded.attractions !== undefined) {
+                for (const attraction of item._embedded.attractions) {
+                  if (attraction.name === artist) {
+                    return item;
+                  }
+                }
+              }
+            })
+            .sort((a, b) => a.dates.start.localDate - b.dates.start.localDate);
 
-          // //Flatten the array of objects
+          console.log("ticketmasterEvents", ticketmasterEvents);
+
+          let localDate = null;
+
+          if (ticketmasterEvents[0] && ticketmasterEvents[0].dates) {
+            localDate = ticketmasterEvents[0].dates.start.localDate;
+          }
+
+          //Flatten the array of objects
           // const ticketmasterEventsFlat = ticketmasterEvents.flat();
 
           // // Find upcoming concert for specific artist
@@ -208,20 +254,20 @@ export default function SearchPage(props) {
           //   (item) => item.name === artist
           // );
 
-          const ticketmasterEvents = props.ticketmaster.events.find((item) => {
-            return item.name.includes(`${artist}:`) || item.name === artist;
-          });
+          // const ticketmasterEvents = props.ticketmaster.events.find((item) => {
+          //   return item.name.includes(`${artist}:`) || item.name === artist;
+          // });
 
-          let localDate = null;
+          // let localDate = null;
 
-          if (
-            ticketmasterEvents &&
-            ticketmasterEvents.dates &&
-            ticketmasterEvents.dates.start &&
-            ticketmasterEvents.dates.start.localDate
-          ) {
-            localDate = ticketmasterEvents.dates.start.localDate;
-          }
+          // if (
+          //   ticketmasterEvents &&
+          //   ticketmasterEvents.dates &&
+          //   ticketmasterEvents.dates.start &&
+          //   ticketmasterEvents.dates.start.localDate
+          // ) {
+          //   localDate = ticketmasterEvents.dates.start.localDate;
+          // }
 
           return (
             <>
@@ -248,13 +294,15 @@ export default function SearchPage(props) {
                   icon="heart"
                   size="2x"
                   className={`favourite-icon${
-                    favourites.includes(artistId) ? " active" : ""
+                    props.favourites.find((item) => item.artist_id === artistId)
+                      ? " active"
+                      : ""
                   }`}
-                  onClick={() => handleFavourite(artistId)}
+                  onClick={() => handleFavourite(artistId, artist, artistImage)}
                 />
                 <div className="search-page-box">
                   <button className="search-page-button">Next concert</button>
-                  <h3>{nextConcertDate(localDate)}</h3>
+                  <h3>{localDate ? nextConcertDate(localDate) : "Unavailable"}</h3>
                 </div>
                 <div className="search-page-box">
                   <button className="search-page-button">Last Concert</button>
