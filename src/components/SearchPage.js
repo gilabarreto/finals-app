@@ -302,7 +302,7 @@ export default function SearchPage(props) {
                 />
                 <div className="search-page-box">
                   <button className="search-page-button">Next concert</button>
-                  <h3>{nextConcertDate(localDate)}</h3>
+                  <h3>{localDate ? nextConcertDate(localDate) : "Unavailable"}</h3>
                 </div>
                 <div className="search-page-box">
                   <button className="search-page-button">Last Concert</button>
