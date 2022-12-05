@@ -41,7 +41,7 @@ router.post("/delete", authorization, async (req, res) => {
   console.log("req", req.user);
   pool
     .query(`DELETE FROM favourites WHERE artist_id = $1 AND user_id = $2`, [
-      req.body.artistId,
+      req.body.artist_id,
       req.user.id,
     ])
     .then(() => {
