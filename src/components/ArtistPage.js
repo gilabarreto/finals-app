@@ -23,9 +23,9 @@ export default function ArtistPage(props) {
     return null;
   }
 
-  const concert = props.setlist.find(result => result.id === concertId);
+  const concert = props.setlist.find((result) => result.id === concertId);
 
-/*   let previousConcertId;
+  /*   let previousConcertId;
   let nextConcertId;
 
   const concert = props.setlist.find((result, index) => {
@@ -77,14 +77,22 @@ export default function ArtistPage(props) {
           <div className="artist-page-upcoming-concerts">
             <span style={{ fontWeight: "bold" }}>Upcoming Concerts:</span>
             <p>
-              <UpcomingConcertList ticketmaster={props.ticketmaster} />
+              <UpcomingConcertList
+                ticketmaster={props.ticketmaster}
+                setlist={props.setlist}
+                concert={concert}
+              />
             </p>
           </div>
           <div className="artist-page-previous-concerts">
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
               <div>
-                <PreviousConcerts concert={concert} setlist={props.setlist} artistId={artistId}/>
+                <PreviousConcerts
+                  concert={concert}
+                  setlist={props.setlist}
+                  artistId={artistId}
+                />
               </div>
             </p>
           </div>
