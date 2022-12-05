@@ -54,7 +54,7 @@ export default function ConcertDate(props) {
             &lt;
           </button>
         )}
-        &ensp;Concert Date: {concertDate()}&ensp;
+        Concert Date: {concertDate()}&ensp;
         {nextConcertId && (
           <button
             className="artist-page-increase-decrease"

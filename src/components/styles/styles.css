@@ -333,7 +333,7 @@ a.prevConc:active {
   /* border-color: red; */
   /* border-style: solid; */
   padding: 1em;
-  display: flex;
+  /* display: flex; */
   width: 40%;
   align-content: center;
   justify-content: space-between;
