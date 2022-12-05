@@ -7,31 +7,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchPage(props) {
   const [index, setIndex] = useState(0);
-  const [favourites, setFavourites] = useState([]);
+  // const [favourites, setFavourites] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleFavourite = (artistId, artist, artistImage) => {
-    const token =  localStorage.getItem("token");
-    console.log("token:",token);
+    const token = localStorage.getItem("token");
+    console.log("token:", token);
     axios
-      .post("http://localhost:4000/favourite/add", {
-        artistId: artistId,
-        artistName: artist,
-        image: artistImage 
-      }, {
-        headers:{
-          token:token
+      .post(
+        "http://localhost:4000/favourite/add",
+        {
+          artistId: artistId,
+          artistName: artist,
+          image: artistImage,
+        },
+        {
+          headers: {
+            token: token,
+          },
         }
-      })
+      )
       .then((res) => {
         console.log("res.data:", res.data);
-        if (favourites.includes(artistId)) {
-          setFavourites(favourites.filter((artist) => artist !== artistId));
-        } else {
-          setFavourites([...favourites, artistId]);
-        }
+        props.setFavourites((prev) => {
+          if (prev.find((item) => item.artist_id === artistId)) {
+            return prev.filter(
+              (item) => item.artist_id !== artistId
+            );
+          } else {
+            return [...prev, { artistimage: artistImage, artist_id: artistId, artistname: artist }];
+          }
+        });
       })
+
       .catch((error) => {
         console.log("Error:", error);
         alert(error);
@@ -49,7 +58,6 @@ export default function SearchPage(props) {
       </div>
     );
   }
-
 
   /*   let nextConcert = "";
   
@@ -230,7 +238,7 @@ export default function SearchPage(props) {
             })
             .sort((a, b) => a.dates.start.localDate - b.dates.start.localDate);
 
-            console.log("ticketmasterEvents", ticketmasterEvents)
+          console.log("ticketmasterEvents", ticketmasterEvents);
 
           let localDate = null;
 
@@ -286,7 +294,9 @@ export default function SearchPage(props) {
                   icon="heart"
                   size="2x"
                   className={`favourite-icon${
-                    favourites.includes(artistId) ? " active" : ""
+                    props.favourites.find((item) => item.artist_id === artistId)
+                      ? " active"
+                      : ""
                   }`}
                   onClick={() => handleFavourite(artistId, artist, artistImage)}
                 />

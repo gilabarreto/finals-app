@@ -25,10 +25,12 @@ function App() {
   const [long, setLong] = useState([]);
   const [token, setToken] = useState("");
   const [value, setValue] = useState("");
-  const [favourites, setFavourites] = useState([])
+  const [favourites, setFavourites] = useState([]);
+  const [loadingfavourites, setLoadingfavourites] = useState(false);
 
   useEffect(() => {
-    const token =  localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    setLoadingfavourites(true);
     axios
       .get("http://localhost:4000/favourite", {
         headers: {
@@ -37,7 +39,11 @@ function App() {
       })
       .then((res) => {
         // console.log("res.data:", res.data);
+        setLoadingfavourites(false);
         setFavourites(res.data);
+      })
+      .catch(() => {
+        setLoadingfavourites(false);
       });
   }, []);
 
@@ -61,6 +67,8 @@ function App() {
             path="/favourite"
             element={
               <Favourites
+                loadingfavourites={loadingfavourites}
+                setFavourites={setFavourites}
                 favourites={favourites}
                 setlist={setlist}
                 ticketmaster={ticketmaster}
@@ -90,7 +98,12 @@ function App() {
             path="/search"
             element={
               <>
-                <SearchPage setlist={setlist} ticketmaster={ticketmaster} />
+                <SearchPage
+                  favourites={favourites}
+                  setFavourites={setFavourites}
+                  setlist={setlist}
+                  ticketmaster={ticketmaster}
+                />
               </>
             }
           ></Route>
