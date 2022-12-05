@@ -46,7 +46,7 @@ function App() {
         setLoadingfavourites(false);
       });
   }, []);
-
+  
   library.add(fab, faHeart);
 
   return (

@@ -19,7 +19,7 @@ export default function Favourites(props) {
   if (!props.loadingfavourites && props.favourites.length === 0) {
     return <span>Please favourite a artist!</span>
   }
-
+  
   const handleDelete = (artistId) => {
     const token = localStorage.getItem("token");
 
@@ -27,7 +27,7 @@ export default function Favourites(props) {
       .post(
         "http://localhost:4000/favourite/delete",
         {
-          artistId: artistId,
+          artist_id: artistId,
         },
         {
           headers: {
@@ -174,6 +174,8 @@ export default function Favourites(props) {
         const artistImage = favourite.artistimage;
 
         const artistId = favourite.artist_id;
+
+        console.log("favourite", favourite)
 
         const artistDbId = favourite.artistid;
 

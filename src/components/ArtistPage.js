@@ -10,12 +10,7 @@ import Player from "./ArtistPage/Player";
 import UpcomingConcertList from "./ArtistPage/UpcomingConcertList";
 import PreviousConcerts from "./ArtistPage/PreviousConcerts";
 
-/* import axios from "axios";
-import SpotifyPlayer from "react-spotify-player";
-import { Link } from "react-router-dom"; */
-
 export default function ArtistPage(props) {
-  const [index, setIndex] = useState(0);
   const [spotifyArtist, setSpotifyArtist] = useState([]); // or track
   let { concertId, artistId } = useParams();
 
@@ -25,24 +20,6 @@ export default function ArtistPage(props) {
 
   const concert = props.setlist.find((result) => result.id === concertId);
 
-  /*   let previousConcertId;
-  let nextConcertId;
-
-  const concert = props.setlist.find((result, index) => {
-    if (result.id === concertId) {
-      previousConcertId = props.setlist[index + 1]?.id;
-      let nextConcert = props.setlist[index - 1];
-      if (nextConcert) {
-        const [day, month, year] = nextConcert.eventDate.split("-");
-        const nextConcertDate = new Date(year, month - 1, day);
-        if (nextConcertDate < new Date()) {
-          nextConcertId = nextConcert.id;
-        }
-      }
-      return true;
-    }
-  }); */
-
   return (
     <div>
       <div className="artist-page-top-container">
@@ -51,8 +28,6 @@ export default function ArtistPage(props) {
             concert={concert}
             setlist={props.setlist}
             ticketmaster={props.ticketmaster}
-            // previousConcertId={previousConcertId} // Victor
-            // nextConcertId={nextConcertId} // Victor
           />
         </div>
         <div className="artist-page-map">
