@@ -6,5 +6,8 @@ CREATE TABLE favourites(
   artist_id INTEGER REFERENCES artists(id) on DELETE CASCADE
 );
 
+GRANT ALL PRIVILEGES ON TABLE favourites TO labber;
+GRANT USAGE, SELECT ON SEQUENCE favourites_id_seq TO labber;
+
 -- Run this command in psql once you are inside the server folder
 -- \i ./db/favourites.sql

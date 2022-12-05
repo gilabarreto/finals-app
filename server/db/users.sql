@@ -11,5 +11,8 @@ CREATE TABLE users(
   user_password VARCHAR(255) NOT NULL
 );
 
+GRANT ALL PRIVILEGES ON TABLE users TO labber;
+GRANT USAGE, SELECT ON SEQUENCE users_id_seq TO labber;
+
 -- Run this command in psql once you are inside the server folder
 -- \i ./db/users.sql

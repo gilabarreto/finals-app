@@ -6,7 +6,7 @@ import loginIcon from "../icons/login.png";
 import ReactDOM from "react-dom";
 import { SocialIcon } from "react-social-icons";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import SearchBar from "./SearchBar";
 import axios from "axios";
@@ -28,6 +28,8 @@ function Navbar(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const navigate = useNavigate();
 
   const clear = () => {
     setName("");
@@ -81,9 +83,9 @@ function Navbar(props) {
         const { token } = res.data;
         const decode = jwtdecode(token);
         console.log(decode);
-        localStorage.setItem("user", JSON.stringify(decode))
+        localStorage.setItem("user", JSON.stringify(decode));
         localStorage.setItem("token", token);
-        setName("")
+        setName("");
         setPassword("");
         setEmail("");
         setErrorMsg("");
@@ -105,6 +107,8 @@ function Navbar(props) {
     setisUserLogged(false);
     setDropdownLogin(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/");
   });
 
   return (
@@ -136,9 +140,19 @@ function Navbar(props) {
           {dropdownLogin && (
             <div className="dropdown">
               {isUserLogged ? (
-                <button className="submit-button" onClick={logout}>
-                  Logout
-                </button>
+                <>
+                  <button
+                    className="submit-button"
+                    onClick={() => {
+                      navigate("/favourite");
+                    }}
+                  >
+                    Favourites
+                  </button>
+                  <button className="submit-button" onClick={logout}>
+                    Logout
+                  </button>
+                </>
               ) : (
                 <>
                   {isRegistered === false && (
