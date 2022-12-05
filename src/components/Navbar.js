@@ -224,7 +224,7 @@ function Navbar(props) {
                   )}
                   {isRegistered === false && (
                     <>
-                      <span>Not a member? </span>
+                      <span className="register-not-member">Not a member? </span>
                       <span
                         className="toggle-register-login"
                         onClick={() => {

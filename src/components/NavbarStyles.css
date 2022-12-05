@@ -66,6 +66,9 @@ nav {
   text-decoration: underline;
   cursor: pointer;
   font-weight: bold;
+  color: black;
+  font: "Roboto Condensed", sans-serif;
+
 }
 
 .social-media-icons {
