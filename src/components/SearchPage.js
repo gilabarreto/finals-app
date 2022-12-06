@@ -271,6 +271,11 @@ export default function SearchPage(props) {
 
           return (
             <>
+            {/* <div className="column-labels">
+              <div className="next-concert">Next concert</div>
+              <div className="last-concert">Last concert</div>
+              <div className="play-now">Play now</div>
+            </div> */}
               <div className="search-page-card">
                 <div className="search-page-image-box">
                   <img
@@ -301,19 +306,19 @@ export default function SearchPage(props) {
                   onClick={() => handleFavourite(artistId, artist, artistImage)}
                 />
                 <div className="search-page-box">
-                  <button className="search-page-button">Next concert</button>
+                  {/* <button className="search-page-button">Next concert</button> */}
                   <h3>{localDate ? nextConcertDate(localDate) : "Unavailable"}</h3>
                 </div>
                 <div className="search-page-box">
-                  <button className="search-page-button">Last Concert</button>
+                  {/* <button className="search-page-button">Last Concert</button> */}
                   <h3>{lastConcertDate(setlist.eventDate)}</h3>
                 </div>
                 <div className="search-page-box">
-                  <button className="search-page-button">
+                  {spotify ?
                     <a href={spotify} target="_blank" rel="noopener noreferrer">
-                      Play now!
+                    <FontAwesomeIcon icon="fa-brands fa-spotify" color="LimeGreen" size="3x" className="spotify-true"/> 
                     </a>
-                  </button>
+                    : <FontAwesomeIcon icon="fa-brands fa-spotify" size="3x"/>}
                 </div>
               </div>
             </>

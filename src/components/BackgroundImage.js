@@ -22,7 +22,7 @@ export default function BackgroundImage(props) {
     const timerId = setTimeout(() => {
       let newActiveIndex = activeImageIndex === 4 ? 0 : activeImageIndex + 1;
       setActiveImageIndex(newActiveIndex);
-    }, 4000);
+    }, 6000);
   }, [activeImageIndex]);
 
   return (

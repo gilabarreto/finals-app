@@ -97,7 +97,12 @@ function App() {
           <Route
             path="/search"
             element={
-              <>
+              <> 
+              <div className="column-labels">
+              <div className="next-concert">Next concert</div>
+              <div className="last-concert">Last concert</div>
+              <div className="play-now">Play now</div>
+              </div>
                 <SearchPage
                   favourites={favourites}
                   setFavourites={setFavourites}
