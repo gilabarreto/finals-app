@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import logo from "../icons/logo-small.png";
 import axios from "axios";
+import logo from "../icons/logo-small.png";
 import { useNavigate, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,61 @@ export default function SearchPage(props) {
   const navigate = useNavigate();
 
   const handleFavourite = (artistId, artist, artistImage) => {
+    console.log("handle fav", artistId, artist, artistImage);
+    if (!artistImage.startsWith("http")) {
+      return axios
+        .get("https://app.ticketmaster.com/discovery/v2/suggest", {
+          params: {
+            keyword: artist,
+            segmentId: "KZFzniwnSyZfZ7v7nJ",
+            sort: "name,asc",
+            apikey: "kMv2pjo5bzSz5iyaz0h5aLqGnQcWyOSL",
+          },
+        })
+        .then((res) => {
+          console.log("res", res.data._embedded.attractions[0].url)
+          return res.data._embedded.attractions[0].images[0].url;
+        })
+        .then((artistURL) => {
+          const token = localStorage.getItem("token");
+          // console.log("token:", token);
+          axios
+            .post(
+              "http://localhost:4000/favourite/add",
+              {
+                artistId: artistId,
+                artistName: artist,
+                image: artistURL,
+              },
+              {
+                headers: {
+                  token: token,
+                },
+              }
+            )
+            .then((res) => {
+              console.log("res.data:", res.data);
+
+              const artist_id = res.data.favourite.artist_id;
+              props.setFavourites((prev) => {
+                console.log("prev", prev);
+                // if (prev.find((item) => item.artistid === artistId)) {
+                //   return prev.filter((item) => item.artistid !== artistId);
+                // } else {
+                return [
+                  ...prev,
+                  {
+                    artist_id,
+                    artistimage: artistURL,
+                    artistid: artistId,
+                    artistname: artist,
+                  },
+                ];
+                // }
+              });
+            });
+        });
+    }
     const token = localStorage.getItem("token");
     // console.log("token:", token);
     axios
@@ -297,6 +352,7 @@ export default function SearchPage(props) {
                 <h1 className="search-artist">{artist}</h1>
                 {tour && <h3 className="search-tour">Tour: {tour}</h3>}
               </div>
+
               <FontAwesomeIcon
                 icon="heart"
                 size="2x"
@@ -307,6 +363,7 @@ export default function SearchPage(props) {
                 }`}
                 onClick={() => handleFavourite(artistId, artist, artistImage)}
               />
+
               <div className="search-page-box">
                 <button className="search-page-button">Next concert</button>
                 <h3>

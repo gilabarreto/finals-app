@@ -10,4 +10,4 @@ GRANT ALL PRIVILEGES ON TABLE favourites TO labber;
 GRANT USAGE, SELECT ON SEQUENCE favourites_id_seq TO labber;
 
 -- Run this command in psql once you are inside the server folder
--- \i ./db/favourites.sql
+-- \i ./db/03_favourites.sql

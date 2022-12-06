@@ -8,7 +8,6 @@ router.post("/add", authorization, async (req, res) => {
   checkForArtist(req.body.artistId, req.body.artistName, req.body.image).then(
     (result) => {
       const artistID = result;
-      console.log("SearchPage result:", result);
       pool
         .query(
           `SELECT * FROM favourites WHERE artist_id = $1 AND user_id = $2`,
@@ -22,7 +21,6 @@ router.post("/add", authorization, async (req, res) => {
                 [req.user.id, artistID]
               )
               .then((data) => {
-                console.log("data", data)
                 res.json({ favourite: data.rows[0] });
               });
           } else {
@@ -31,15 +29,9 @@ router.post("/add", authorization, async (req, res) => {
         });
     }
   );
-  console.log("we're hitting the end route");
-  console.log("user:", req.user);
-  console.log("req.body:", req.body);
-  res.sendStatus(204);
 });
 
 router.post("/delete", authorization, async (req, res) => {
-  console.log("req", req.body);
-  console.log("req", req.user);
   pool
     .query(`DELETE FROM favourites WHERE artist_id = $1 AND user_id = $2`, [
       req.body.artist_id,
@@ -69,7 +61,6 @@ router.get("/", authorization, async (req, res) => {
       [req.user.user_email]
     )
     .then((sqlresults) => {
-      console.log("sqlresults:", sqlresults.rows);
       res.json(sqlresults.rows);
     });
 
