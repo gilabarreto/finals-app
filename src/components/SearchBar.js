@@ -1,4 +1,4 @@
-import React, { useEffect, useState, TextInput } from "react";
+import React, { useEffect } from "react";
 
 import useDebounce from "../hooks/useDebounce";
 
@@ -26,6 +26,7 @@ export default function SearchBar(props) {
     setValue(event.target.value);
   };
 
+  
   const term = useDebounce(value, 700);
 
   const fetchData = () => {
@@ -120,7 +121,7 @@ export default function SearchBar(props) {
           className="input-text-search"
           type="search"
           value={value}
-          placeholder="Search your favorite artist"
+          placeholder="Search your favorite artist here and find your next adventure"
           onChange={handleChange}
         ></input>
       </form>

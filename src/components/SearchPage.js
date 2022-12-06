@@ -24,7 +24,7 @@ export default function SearchPage(props) {
           },
         })
         .then((res) => {
-          console.log("res", res.data._embedded.attractions[0].url)
+          console.log("res", res.data._embedded.attractions[0].url);
           return res.data._embedded.attractions[0].images[0].url;
         })
         .then((artistURL) => {
@@ -252,139 +252,155 @@ export default function SearchPage(props) {
 
   return (
     <>
-      {uniqueSetlist
-        .map((setlist, index) => {
-          const concert = setlist;
+      <div className="column-labels">
+        <div className="next-concert">Next concert</div>
+        <div className="last-concert">Last concert</div>
+        <div className="play-now">Play now</div>
+      </div>
+      <div class="search-card-container">
+        {uniqueSetlist
+          .map((setlist, index) => {
+            const concert = setlist;
 
-          const artistId = concert.artist.mbid;
+            const artistId = concert.artist.mbid;
 
-          const concertId = concert.id;
+            const concertId = concert.id;
 
-          const artist = concert.artist.name;
+            const artist = concert.artist.name;
 
-          const tour = concert?.tour?.name;
+            const tour = concert?.tour?.name;
 
-          const lastConcert = concert.eventDate;
+            const lastConcert = concert.eventDate;
 
-          //Find spotify link and image for specific artist
-          const ticketmasterMap = props.ticketmaster.attractions.find(
-            (item) => item.name === artist
-          );
+            //Find spotify link and image for specific artist
+            const ticketmasterMap = props.ticketmaster.attractions.find(
+              (item) => item.name === artist
+            );
 
-          let spotify = null;
-          let artistImage = logo;
-          if (
-            ticketmasterMap &&
-            ticketmasterMap.externalLinks &&
-            ticketmasterMap.externalLinks.spotify
-          ) {
-            spotify = ticketmasterMap.externalLinks.spotify[0].url;
-          }
+            let spotify = null;
+            let artistImage = logo;
+            if (
+              ticketmasterMap &&
+              ticketmasterMap.externalLinks &&
+              ticketmasterMap.externalLinks.spotify
+            ) {
+              spotify = ticketmasterMap.externalLinks.spotify[0].url;
+            }
 
-          if (ticketmasterMap && ticketmasterMap.images) {
-            artistImage = ticketmasterMap.images[0].url;
-          }
+            if (ticketmasterMap && ticketmasterMap.images) {
+              artistImage = ticketmasterMap.images[0].url;
+            }
 
-          // Filter for only attractions from events
-          const ticketmasterEvents = props.ticketmaster.events
-            .map((item) => {
-              return item;
-            })
-            .filter((item) => {
-              if (item._embedded.attractions !== undefined) {
-                for (const attraction of item._embedded.attractions) {
-                  if (attraction.name === artist) {
-                    return item;
+            // Filter for only attractions from events
+            const ticketmasterEvents = props.ticketmaster.events
+              .map((item) => {
+                return item;
+              })
+              .filter((item) => {
+                if (item._embedded.attractions !== undefined) {
+                  for (const attraction of item._embedded.attractions) {
+                    if (attraction.name === artist) {
+                      return item;
+                    }
                   }
                 }
-              }
-            })
-            .sort((a, b) => a.dates.start.localDate - b.dates.start.localDate);
+              })
+              .sort(
+                (a, b) => a.dates.start.localDate - b.dates.start.localDate
+              );
 
-          console.log("ticketmasterEvents", ticketmasterEvents);
+            console.log("ticketmasterEvents", ticketmasterEvents);
 
-          let localDate = null;
+            let localDate = null;
 
-          if (ticketmasterEvents[0] && ticketmasterEvents[0].dates) {
-            localDate = ticketmasterEvents[0].dates.start.localDate;
-          }
+            if (ticketmasterEvents[0] && ticketmasterEvents[0].dates) {
+              localDate = ticketmasterEvents[0].dates.start.localDate;
+            }
 
-          //Flatten the array of objects
-          // const ticketmasterEventsFlat = ticketmasterEvents.flat();
+            //Flatten the array of objects
+            // const ticketmasterEventsFlat = ticketmasterEvents.flat();
 
-          // // Find upcoming concert for specific artist
-          // const ticketmasterEventsMap = ticketmasterEventsFlat.find(
-          //   (item) => item.name === artist
-          // );
+            // // Find upcoming concert for specific artist
+            // const ticketmasterEventsMap = ticketmasterEventsFlat.find(
+            //   (item) => item.name === artist
+            // );
 
-          // const ticketmasterEvents = props.ticketmaster.events.find((item) => {
-          //   return item.name.includes(`${artist}:`) || item.name === artist;
-          // });
+            // const ticketmasterEvents = props.ticketmaster.events.find((item) => {
+            //   return item.name.includes(`${artist}:`) || item.name === artist;
+            // });
 
-          // let localDate = null;
+            // let localDate = null;
 
-          // if (
-          //   ticketmasterEvents &&
-          //   ticketmasterEvents.dates &&
-          //   ticketmasterEvents.dates.start &&
-          //   ticketmasterEvents.dates.start.localDate
-          // ) {
-          //   localDate = ticketmasterEvents.dates.start.localDate;
-          // }
+            // if (
+            //   ticketmasterEvents &&
+            //   ticketmasterEvents.dates &&
+            //   ticketmasterEvents.dates.start &&
+            //   ticketmasterEvents.dates.start.localDate
+            // ) {
+            //   localDate = ticketmasterEvents.dates.start.localDate;
+            // }
 
-          return (
-            <div key={artistId} className="search-page-card">
-              <div className="search-page-image-box">
-                <img
-                  src={artistImage}
-                  className="search-page-image"
+            return (
+              <div key={artistId} className="search-page-card">
+                <div className="search-page-image-box">
+                  <img
+                    src={artistImage}
+                    className="search-page-image"
+                    onClick={() => {
+                      navigate(`/artists/${artistId}/concerts/${concertId}`);
+                    }}
+                  />
+                </div>
+                <div
+                  className="search-page-info-box"
                   onClick={() => {
                     navigate(`/artists/${artistId}/concerts/${concertId}`);
                   }}
+                >
+                  <h1 className="search-artist">{artist}</h1>
+                  {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+                </div>
+
+                <FontAwesomeIcon
+                  icon="heart"
+                  size="2x"
+                  className={`favourite-icon${
+                    props.favourites.find((item) => item.artistid === artistId)
+                      ? " active"
+                      : ""
+                  }`}
+                  onClick={() => handleFavourite(artistId, artist, artistImage)}
                 />
-              </div>
-              <div
-                className="search-page-info-box"
-                onClick={() => {
-                  navigate(`/artists/${artistId}/concerts/${concertId}`);
-                }}
-              >
-                <h1 className="search-artist">{artist}</h1>
-                {tour && <h3 className="search-tour">Tour: {tour}</h3>}
-              </div>
 
-              <FontAwesomeIcon
-                icon="heart"
-                size="2x"
-                className={`favourite-icon${
-                  props.favourites.find((item) => item.artistid === artistId)
-                    ? " active"
-                    : ""
-                }`}
-                onClick={() => handleFavourite(artistId, artist, artistImage)}
-              />
-
-              <div className="search-page-box">
-                <button className="search-page-button">Next concert</button>
-                <h3>
-                  {localDate ? nextConcertDate(localDate) : "Unavailable"}
-                </h3>
+                <div className="search-page-box">
+                  <button className="search-page-button">Next concert</button>
+                  <h3>
+                    {localDate ? nextConcertDate(localDate) : "Unavailable"}
+                  </h3>
+                </div>
+                <div className="search-page-box">
+                  <button className="search-page-button">Last Concert</button>
+                  <h3>{lastConcertDate(setlist.eventDate)}</h3>
+                </div>
+                <div className="search-page-box">
+                  {spotify ? (
+                    <a href={spotify} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon
+                        icon="fa-brands fa-spotify"
+                        color="LimeGreen"
+                        size="3x"
+                        className="spotify-true"
+                      />
+                    </a>
+                  ) : (
+                    <FontAwesomeIcon icon="fa-brands fa-spotify" size="3x" />
+                  )}
+                </div>
               </div>
-              <div className="search-page-box">
-                <button className="search-page-button">Last Concert</button>
-                <h3>{lastConcertDate(setlist.eventDate)}</h3>
-              </div>
-              <div className="search-page-box">
-                <button className="search-page-button">
-                  <a href={spotify} target="_blank" rel="noopener noreferrer">
-                    Play now!
-                  </a>
-                </button>
-              </div>
-            </div>
-          );
-        })
-        .slice(0, 5)}
+            );
+          })
+          .slice(0, 3)}
+      </div>
     </>
   );
 }
