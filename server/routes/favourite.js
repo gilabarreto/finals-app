@@ -30,10 +30,10 @@ router.post("/add", authorization, async (req, res) => {
         });
     }
   );
-  // console.log("we're hitting the end route");
-  // console.log("user:", req.user);
-  // console.log("req.body:", req.body);
-  // res.sendStatus(204);
+  console.log("we're hitting the end route");
+  console.log("user:", req.user);
+  console.log("req.body:", req.body);
+  res.sendStatus(204);
 });
 
 router.post("/delete", authorization, async (req, res) => {

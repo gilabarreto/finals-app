@@ -145,6 +145,7 @@ function Navbar(props) {
                     className="submit-button"
                     onClick={() => {
                       navigate("/favourite");
+                      toggleLogin();
                     }}
                   >
                     Favourites
