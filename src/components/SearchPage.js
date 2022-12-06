@@ -188,7 +188,7 @@ export default function SearchPage(props) {
   console.log("setlist", props.setlist);
 
   return (
-    <>
+    <div class="search-card-container"> 
       {uniqueSetlist
         .map((setlist, index) => {
           const concert = setlist;
@@ -320,6 +320,6 @@ export default function SearchPage(props) {
           );
         })
         .slice(0, 5)}
-    </>
+    </div>
   );
 }

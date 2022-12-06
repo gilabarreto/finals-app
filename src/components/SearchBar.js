@@ -1,4 +1,4 @@
-import React, { useEffect, useState, TextInput } from "react";
+import React, { useEffect } from "react";
 
 import useDebounce from "../hooks/useDebounce";
 
@@ -26,6 +26,7 @@ export default function SearchBar(props) {
     setValue(event.target.value);
   };
 
+  
   const term = useDebounce(value, 700);
 
   const fetchData = () => {

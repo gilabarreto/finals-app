@@ -21,7 +21,7 @@ a.prevConc:active {
 }
 
 .tour {
-  margin-top: 0%; 
+  margin-top: 0%;
 }
 
 .next-concert-button {
@@ -144,27 +144,31 @@ a.prevConc:active {
 }
 
 .search-page-card {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background: rgba(5, 5, 5, 0.3);
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   border-radius: 0.5em;
-  margin: 1em;
-  min-height: 17vh;
-  background: #fff;
-/*   transition: 0.25s;
+  /* margin: 1em; */
+  /* min-height: 17vh; */
+  background-color: none;
+  /*   transition: 0.25s;
   transition-timing-function: ease-out;
   transform: scale(1,1);
   transform-origin:  top; */
-  color: #555;
+  font-family: "Roboto Condensed", sans-serif;
+  /* color: #555; */
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   overflow: hidden;
 }
 
 .search-page-image {
-  max-height: 9em;
+  /* max-height: 9em; */
   background: #fff;
   /* transition: all 2000ms; */
+  width: 215px;
+  height: 142px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,8 +180,7 @@ a.prevConc:active {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px inset;
   border-radius: 0.5em;
   margin: 1em;
-  background: #fff;
-  /* transition: all 600ms; */
+  /* background: #fff; */
   color: #555;
   display: flex;
   align-items: center;
@@ -187,13 +190,8 @@ a.prevConc:active {
 }
 
 .search-artist {
-  display: block;
+  /* display: block; */
   font-size: 2em;
-  margin-block-start: 0.67em;
-  margin-block-end: -0.33em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
   cursor: pointer;
 }
 
@@ -208,28 +206,38 @@ a.prevConc:active {
   text-align: left;
 }
 
+.search-card-container {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 550px;
+  overflow-y: hidden
+}
+
 .search-page-info-box {
-  margin: 1em;
-  background: #fff;
-  /* transition: all 600ms; */
-  color: #555;
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
+  /* margin: 1em; */
+  background: none;
+  color: white;
+  display: flex;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
   flex-direction: column;
-  /* overflow: hidden; */
+  justify-content: space-between;
+  padding-left: 75px;
+  padding-right: 150px;
+}
+
+.search-page-info-box:hover {
+  color: red;
 }
 
 .search-page-box {
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px inset;
   border-radius: 0.5em;
   padding: 1em;
   margin: 1em;
   min-width: 12em;
   min-height: 7em;
-  background: #fff;
   transition: all 600ms;
-  color: #555;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,7 +378,7 @@ a.prevConc:active {
 }
 
 .favourite-icon {
-  color: #75ABBC;
+  color: white;
   cursor: pointer;
 }
 

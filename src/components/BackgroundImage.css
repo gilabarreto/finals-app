@@ -1,9 +1,12 @@
-.background-img{
+.background-img {
   position: absolute;
   z-index: -1;
-  object-fit: contain;
-  opacity : 1;
+  /* object-fit: contain; */
+  opacity: 1;
   transition: opacity 0.9s linear;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .hidden {
