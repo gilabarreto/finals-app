@@ -13,7 +13,7 @@ export default function SearchPage(props) {
 
   const handleFavourite = (artistId, artist, artistImage) => {
     const token = localStorage.getItem("token");
-    console.log("token:", token);
+    // console.log("token:", token);
     axios
       .post(
         "http://localhost:4000/favourite/add",
@@ -49,7 +49,6 @@ export default function SearchPage(props) {
           // }
         });
       })
-
       .catch((error) => {
         console.log("Error:", error);
         alert(error);
