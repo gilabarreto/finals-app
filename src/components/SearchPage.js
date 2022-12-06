@@ -30,14 +30,23 @@ export default function SearchPage(props) {
       )
       .then((res) => {
         console.log("res.data:", res.data);
+
+        const artist_id = res.data.favourite.artist_id;
         props.setFavourites((prev) => {
-          if (prev.find((item) => item.artist_id === artistId)) {
-            return prev.filter(
-              (item) => item.artist_id !== artistId
-            );
-          } else {
-            return [...prev, { artistimage: artistImage, artist_id: artistId, artistname: artist }];
-          }
+          console.log("prev", prev);
+          // if (prev.find((item) => item.artistid === artistId)) {
+          //   return prev.filter((item) => item.artistid !== artistId);
+          // } else {
+          return [
+            ...prev,
+            {
+              artist_id,
+              artistimage: artistImage,
+              artistid: artistId,
+              artistname: artist,
+            },
+          ];
+          // }
         });
       })
 
@@ -270,53 +279,53 @@ export default function SearchPage(props) {
           // }
 
           return (
-            <>
-              <div className="search-page-card">
-                <div className="search-page-image-box">
-                  <img
-                    src={artistImage}
-                    className="search-page-image"
-                    onClick={() => {
-                      navigate(`/artists/${artistId}/concerts/${concertId}`);
-                    }}
-                  />
-                </div>
-                <div
-                  className="search-page-info-box"
+            <div key={artistId} className="search-page-card">
+              <div className="search-page-image-box">
+                <img
+                  src={artistImage}
+                  className="search-page-image"
                   onClick={() => {
                     navigate(`/artists/${artistId}/concerts/${concertId}`);
                   }}
-                >
-                  <h1 className="search-artist">{artist}</h1>
-                  {tour && <h3 className="search-tour">Tour: {tour}</h3>}
-                </div>
-                <FontAwesomeIcon
-                  icon="heart"
-                  size="2x"
-                  className={`favourite-icon${
-                    props.favourites.find((item) => item.artist_id === artistId)
-                      ? " active"
-                      : ""
-                  }`}
-                  onClick={() => handleFavourite(artistId, artist, artistImage)}
                 />
-                <div className="search-page-box">
-                  <button className="search-page-button">Next concert</button>
-                  <h3>{localDate ? nextConcertDate(localDate) : "Unavailable"}</h3>
-                </div>
-                <div className="search-page-box">
-                  <button className="search-page-button">Last Concert</button>
-                  <h3>{lastConcertDate(setlist.eventDate)}</h3>
-                </div>
-                <div className="search-page-box">
-                  <button className="search-page-button">
-                    <a href={spotify} target="_blank" rel="noopener noreferrer">
-                      Play now!
-                    </a>
-                  </button>
-                </div>
               </div>
-            </>
+              <div
+                className="search-page-info-box"
+                onClick={() => {
+                  navigate(`/artists/${artistId}/concerts/${concertId}`);
+                }}
+              >
+                <h1 className="search-artist">{artist}</h1>
+                {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+              </div>
+              <FontAwesomeIcon
+                icon="heart"
+                size="2x"
+                className={`favourite-icon${
+                  props.favourites.find((item) => item.artistid === artistId)
+                    ? " active"
+                    : ""
+                }`}
+                onClick={() => handleFavourite(artistId, artist, artistImage)}
+              />
+              <div className="search-page-box">
+                <button className="search-page-button">Next concert</button>
+                <h3>
+                  {localDate ? nextConcertDate(localDate) : "Unavailable"}
+                </h3>
+              </div>
+              <div className="search-page-box">
+                <button className="search-page-button">Last Concert</button>
+                <h3>{lastConcertDate(setlist.eventDate)}</h3>
+              </div>
+              <div className="search-page-box">
+                <button className="search-page-button">
+                  <a href={spotify} target="_blank" rel="noopener noreferrer">
+                    Play now!
+                  </a>
+                </button>
+              </div>
+            </div>
           );
         })
         .slice(0, 5)}

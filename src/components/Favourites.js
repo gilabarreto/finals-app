@@ -17,9 +17,9 @@ export default function Favourites(props) {
   }
 
   if (!props.loadingfavourites && props.favourites.length === 0) {
-    return <span>Please favourite a artist!</span>
+    return <span>Please favourite a artist!</span>;
   }
-  
+
   const handleDelete = (artistId) => {
     const token = localStorage.getItem("token");
 
@@ -167,7 +167,7 @@ export default function Favourites(props) {
   // });
 
   return (
-    <>
+    <div className="test">
       {props.favourites.map((favourite) => {
         const artist = favourite.artistname;
 
@@ -175,42 +175,27 @@ export default function Favourites(props) {
 
         const artistId = favourite.artist_id;
 
-        console.log("favourite", favourite)
-
-        const artistDbId = favourite.artistid;
+        console.log("favourite", favourite);
 
         return (
-          <>
-            <div className="search-page-card">
-              <div className="search-page-image-box">
-                <img
-                  src={artistImage}
-                  className="search-page-image"
-                  // onClick={() => {
-                  //   navigate(`/artists/${artistId}/concerts/${concertId}`);
-                  // }}
-                />
-              </div>
-              <div
-                className="search-page-info-box"
-                // onClick={() => {
-                //   navigate(`/artists/${artistId}/concerts/${concertId}`);
-                // }}
-              >
-                <h1 className="search-artist">{artist}</h1>
-              </div>
-              <button
-                type="submit"
-                onClick={() => {
-                  handleDelete(artistId);
-                }}
-              >
-                Delete
-              </button>
+          <div key={artistId} className="search-page-card">
+            <div className="search-page-image-box">
+              <img src={artistImage} className="search-page-image" />
             </div>
-          </>
+            <div className="search-page-info-box">
+              <h1 className="search-artist">{artist}</h1>
+            </div>
+            <button
+              type="submit"
+              onClick={() => {
+                handleDelete(artistId);
+              }}
+            >
+              Delete
+            </button>
+          </div>
         );
       })}
-    </>
+    </div>
   );
 }

@@ -15,14 +15,15 @@ router.post("/add", authorization, async (req, res) => {
           [result, req.user.id]
         )
         .then((favresult) => {
-          if (!favresult.rows.length) {
+          if (!favresult.rows[0]) {
             pool
               .query(
-                `INSERT INTO favourites (user_id, artist_id) VALUES ($1, $2)`,
+                `INSERT INTO favourites (user_id, artist_id) VALUES ($1, $2) RETURNING *`,
                 [req.user.id, artistID]
               )
-              .then(() => {
-                res.json({ result: 1 });
+              .then((data) => {
+                console.log("data", data)
+                res.json({ favourite: data.rows[0] });
               });
           } else {
             res.json({ result: 0 });
