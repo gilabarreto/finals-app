@@ -121,7 +121,7 @@ export default function SearchBar(props) {
           className="input-text-search"
           type="search"
           value={value}
-          placeholder="Search your favorite artist"
+          placeholder="Search your favorite artist here and find your next adventure"
           onChange={handleChange}
         ></input>
       </form>

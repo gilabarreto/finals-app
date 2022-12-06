@@ -188,6 +188,12 @@ export default function SearchPage(props) {
   console.log("setlist", props.setlist);
 
   return (
+  <>
+    <div className="column-labels">
+      <div className="next-concert">Next concert</div>
+      <div className="last-concert">Last concert</div>
+      <div className="play-now">Play now</div>
+    </div>
     <div class="search-card-container"> 
       {uniqueSetlist
         .map((setlist, index) => {
@@ -271,11 +277,6 @@ export default function SearchPage(props) {
 
           return (
             <>
-            {/* <div className="column-labels">
-              <div className="next-concert">Next concert</div>
-              <div className="last-concert">Last concert</div>
-              <div className="play-now">Play now</div>
-            </div> */}
               <div className="search-page-card">
                 <div className="search-page-image-box">
                   <img
@@ -292,19 +293,23 @@ export default function SearchPage(props) {
                     navigate(`/artists/${artistId}/concerts/${concertId}`);
                   }}
                 >
-                  <h1 className="search-artist">{artist}</h1>
-                  {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+                  <div>
+                    <h1 className="search-artist">{artist}</h1>
+                    {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+                  </div>
+                  <div>
+                    <FontAwesomeIcon
+                      icon="heart"
+                      size="2x"
+                      className={`favourite-icon${
+                        props.favourites.find((item) => item.artist_id === artistId)
+                          ? " active"
+                          : ""
+                      }`}
+                      onClick={() => handleFavourite(artistId, artist, artistImage)}
+                    />
+                  </div>
                 </div>
-                <FontAwesomeIcon
-                  icon="heart"
-                  size="2x"
-                  className={`favourite-icon${
-                    props.favourites.find((item) => item.artist_id === artistId)
-                      ? " active"
-                      : ""
-                  }`}
-                  onClick={() => handleFavourite(artistId, artist, artistImage)}
-                />
                 <div className="search-page-box">
                   {/* <button className="search-page-button">Next concert</button> */}
                   <h3>{localDate ? nextConcertDate(localDate) : "Unavailable"}</h3>
@@ -324,7 +329,8 @@ export default function SearchPage(props) {
             </>
           );
         })
-        .slice(0, 5)}
+        .slice(0, 3)}
     </div>
+  </>
   );
 }

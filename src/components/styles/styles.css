@@ -243,11 +243,11 @@ a.prevConc:active {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   margin: auto
 }
 
-.search-page-info-box:hover {
+.search-artist:hover {
   color: red;
 }
 
