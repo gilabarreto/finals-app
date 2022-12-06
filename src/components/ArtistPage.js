@@ -19,7 +19,7 @@ export default function ArtistPage(props) {
   }
 
   const concert = props.setlist.find((result) => result.id === concertId);
-
+  
   return (
     <div>
       <div className="artist-page-top-container">
@@ -49,7 +49,7 @@ export default function ArtistPage(props) {
           </div>
         </div>
         <div className="artist-page-bottom-right-container">
-          <div className="artist-page-upcoming-concerts">
+          {props.ticketmaster.length && <div className="artist-page-upcoming-concerts">
             <span style={{ fontWeight: "bold" }}>Upcoming Concerts:</span>
             <p>
               <UpcomingConcertList
@@ -58,7 +58,7 @@ export default function ArtistPage(props) {
                 concert={concert}
               />
             </p>
-          </div>
+          </div>}
           <div className="artist-page-previous-concerts">
             <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
             <p>
