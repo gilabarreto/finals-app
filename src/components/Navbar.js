@@ -3,12 +3,8 @@ import jwtdecode from "jwt-decode";
 import "./NavbarStyles.css";
 import { useCallback, useState } from "react";
 import loginIcon from "../icons/login.png";
-import ReactDOM from "react-dom";
 import { SocialIcon } from "react-social-icons";
-
 import { Link, useNavigate } from "react-router-dom";
-
-import SearchBar from "./SearchBar";
 import axios from "axios";
 
 function Navbar(props) {
@@ -54,11 +50,9 @@ function Navbar(props) {
         setisUserLogged(true);
         const { token } = res.data;
         const decode = jwtdecode(token);
-        console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode));
         clear();
         setDropdownLogin(false);
-        console.log("login res", res);
       })
       .catch((err) => {
         console.log(err);
@@ -82,7 +76,6 @@ function Navbar(props) {
         setisUserLogged(true);
         const { token } = res.data;
         const decode = jwtdecode(token);
-        console.log(decode);
         localStorage.setItem("user", JSON.stringify(decode));
         localStorage.setItem("token", token);
         setName("");
@@ -90,7 +83,6 @@ function Navbar(props) {
         setEmail("");
         setErrorMsg("");
         setDropdownLogin(false);
-        console.log("login res", res);
       })
       .catch((err) => {
         console.log(err);
@@ -113,7 +105,6 @@ function Navbar(props) {
 
   return (
     <div>
-      {/* <div className="annoucement"></div> */}
       <nav>
         <div>
           <Link to="/">
@@ -121,14 +112,6 @@ function Navbar(props) {
           </Link>
         </div>
         <div>Home · About · Contact</div>
-        {/* <SearchBar
-          setSetlist={props.setSetlist}
-          setTicketmaster={props.setTicketmaster}
-          setLat={props.setLat}
-          setLong={props.setLong}
-          value={props.value}
-          setValue={props.setValue}
-        /> */}
 
         <div className="nav-icons">
           <div className="social-media-icons">

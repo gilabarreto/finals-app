@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import logo from "../icons/logo-small.png";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchPage(props) {
-  const [index, setIndex] = useState(0);
-  // const [favourites, setFavourites] = useState([]);
-
   const navigate = useNavigate();
 
   const handleFavourite = (artistId, artist, artistImage) => {
-    console.log("handle fav", artistId, artist, artistImage);
     if (!artistImage.startsWith("http")) {
       return axios
         .get("https://app.ticketmaster.com/discovery/v2/suggest", {
@@ -24,12 +20,10 @@ export default function SearchPage(props) {
           },
         })
         .then((res) => {
-          console.log("res", res.data._embedded.attractions[0].url);
           return res.data._embedded.attractions[0].images[0].url;
         })
         .then((artistURL) => {
           const token = localStorage.getItem("token");
-          // console.log("token:", token);
           axios
             .post(
               "http://localhost:4000/favourite/add",
@@ -45,14 +39,8 @@ export default function SearchPage(props) {
               }
             )
             .then((res) => {
-              console.log("res.data:", res.data);
-
               const artist_id = res.data.favourite.artist_id;
               props.setFavourites((prev) => {
-                console.log("prev", prev);
-                // if (prev.find((item) => item.artistid === artistId)) {
-                //   return prev.filter((item) => item.artistid !== artistId);
-                // } else {
                 return [
                   ...prev,
                   {
@@ -62,13 +50,12 @@ export default function SearchPage(props) {
                     artistname: artist,
                   },
                 ];
-                // }
               });
             });
         });
     }
     const token = localStorage.getItem("token");
-    // console.log("token:", token);
+
     axios
       .post(
         "http://localhost:4000/favourite/add",
@@ -84,14 +71,8 @@ export default function SearchPage(props) {
         }
       )
       .then((res) => {
-        console.log("res.data:", res.data);
-
         const artist_id = res.data.favourite.artist_id;
         props.setFavourites((prev) => {
-          console.log("prev", prev);
-          // if (prev.find((item) => item.artistid === artistId)) {
-          //   return prev.filter((item) => item.artistid !== artistId);
-          // } else {
           return [
             ...prev,
             {
@@ -101,7 +82,6 @@ export default function SearchPage(props) {
               artistname: artist,
             },
           ];
-          // }
         });
       })
       .catch((error) => {
@@ -111,82 +91,8 @@ export default function SearchPage(props) {
   };
 
   if (props.setlist.length === 0 || props.ticketmaster === undefined) {
-    return (
-      <div className="main-page-card">
-        {/* <h1>
-          Keep track of your favorite artist by login in to your Spotify
-          Account.
-        </h1>
-        <SpotifyAuth setGlobalSpotifyToken={props.setGlobalSpotifyToken} /> */}
-      </div>
-    );
+    return null;
   }
-
-  /*   let nextConcert = "";
-  
-    try {
-      nextConcert = props.ticketmaster?.events?.map((upcomingConcert) => {
-        const str = upcomingConcert.dates.start.localDate;
-        const [year, month, day] = str.split("-");
-        const date = new Date(year, month - 1, day);
-        const options = {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        return date.toLocaleDateString("en-US", options);
-      });
-    } catch (error) {
-      return (
-        <div>
-          <h1>Error</h1>
-        </div>
-      );
-    }
-  
-    let artistImage = "";
-  
-    try {
-      artistImage = props.ticketmaster?.events[0]?.images[0]?.url;
-    } catch (error) {
-      return (
-        <div>
-          <h1>Error</h1>
-        </div>
-      );
-    } */
-
-  /*   const lastConcert = concert.eventDate;
-  
-  const previousConcertDate = () => {
-    const str = concert.eventDate;
-    const [day, month, year] = str.split("-");
-    const date = new Date(year, month - 1, day);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    return date.toLocaleDateString("en-US", options);
-  };
-  
-  if (new Date(lastConcert.split("-").reverse().join()) > new Date()) {
-    return setIndex(index + 1);
-  } */
-
-  const concert = props.setlist[index];
-
-  const concertId = concert.id;
-
-  const artist = concert.artist.name;
-
-  const tour = concert?.tour?.name;
-
-  // let spotify = null
-
-  // if (props.ticketmaster && props.ticketmaster.attractions[0])
-
-  // props.ticketmaster?.attractions[0]?.externalLinks?.spotify[0]?.url
 
   const nextConcertDate = (localDate) => {
     if (!localDate) {
@@ -247,9 +153,6 @@ export default function SearchPage(props) {
     return false;
   });
 
-  console.log("ticketmaster", props.ticketmaster);
-  console.log("setlist", props.setlist);
-
   return (
     <>
       <div className="column-labels">
@@ -309,36 +212,11 @@ export default function SearchPage(props) {
                 (a, b) => a.dates.start.localDate - b.dates.start.localDate
               );
 
-            console.log("ticketmasterEvents", ticketmasterEvents);
-
             let localDate = null;
 
             if (ticketmasterEvents[0] && ticketmasterEvents[0].dates) {
               localDate = ticketmasterEvents[0].dates.start.localDate;
             }
-
-            //Flatten the array of objects
-            // const ticketmasterEventsFlat = ticketmasterEvents.flat();
-
-            // // Find upcoming concert for specific artist
-            // const ticketmasterEventsMap = ticketmasterEventsFlat.find(
-            //   (item) => item.name === artist
-            // );
-
-            // const ticketmasterEvents = props.ticketmaster.events.find((item) => {
-            //   return item.name.includes(`${artist}:`) || item.name === artist;
-            // });
-
-            // let localDate = null;
-
-            // if (
-            //   ticketmasterEvents &&
-            //   ticketmasterEvents.dates &&
-            //   ticketmasterEvents.dates.start &&
-            //   ticketmasterEvents.dates.start.localDate
-            // ) {
-            //   localDate = ticketmasterEvents.dates.start.localDate;
-            // }
 
             return (
               <div key={artistId} className="search-page-card">

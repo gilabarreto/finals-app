@@ -2,7 +2,6 @@ import axios from "axios";
 import SpotifyPlayer from "react-spotify-player";
 
 export default function Player(props) {
-
   const artist = props.concert.artist.name;
 
   const spotify = props.ticketmaster.attractions
@@ -16,31 +15,9 @@ export default function Player(props) {
   const view = "list"; // or 'coverart'
   const theme = "black"; // or 'white'
 
-  const searchArtists = async () => {
-    const response = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${props.token}`,
-      },
-      params: {
-        q: artist,
-        type: "artist",
-      },
-    });
-    props.setSpotifyArtist(response.data.artists.items[0].uri);
-    return props.spotifyArtist;
-  };
-
-  searchArtists();
-
   return (
     <>
-      <SpotifyPlayer
-        uri={spotify}
-        size={size}
-        view={view}
-        theme={theme}
-      />
+      <SpotifyPlayer uri={spotify} size={size} view={view} theme={theme} />
     </>
-  )
-
+  );
 }

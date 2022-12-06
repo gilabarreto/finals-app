@@ -415,3 +415,16 @@ a.prevConc:active {
 .favourite-icon.active {
   color: red
 }
+
+.favourite-text {
+  color: white;
+}
+
+.delete-icon {
+  color: white;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: red
+}
