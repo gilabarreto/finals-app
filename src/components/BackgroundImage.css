@@ -4,6 +4,8 @@
   object-fit: contain;
   opacity : 1;
   transition: opacity 0.9s linear;
+  max-width: 100%;
+  height: auto;
 }
 
 .hidden {
