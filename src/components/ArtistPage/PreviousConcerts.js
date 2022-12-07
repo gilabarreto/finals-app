@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function PreviousConcerts(props) {
+
+  const navigate = useNavigate()
+  
   return (
     <>
       {
@@ -25,14 +28,16 @@ export default function PreviousConcerts(props) {
                 options
               )} (${city}, ${state}, ${country})`;
               return (
-                <li key={concertLabel}>
-                  <Link
+                <span className="prevConc-list" key={concertLabel}>
+                  <span
                     className="prevConc"
-                    to={`/artists/${props.artistId}/concerts/${concert.id}`}
+                    onClick={() => {
+                      navigate(`/artists/${props.artistId}/concerts/${concert.id}`);
+                    }}
                   >
                     {concertLabel}
-                  </Link>
-                </li>
+                  </span>
+                </span>
               );
             }
           })
