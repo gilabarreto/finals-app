@@ -471,7 +471,7 @@
   background: none;
   color: white;
   display: flex;
-  align-items: flex-start;
+  align-content: center;
   justify-content: center;
   flex-direction: row;
   margin: auto;

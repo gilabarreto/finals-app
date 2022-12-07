@@ -4,9 +4,8 @@
   /* object-fit: contain; */
   opacity: 10;
   transition: opacity 0.9s linear;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
 }
 
 .hidden {

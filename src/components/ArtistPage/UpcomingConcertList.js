@@ -61,7 +61,6 @@ export default function UpcomingConcertList(props) {
 function UpcomingConcertListItem(props) {
   return (
     <div className="upcoming-concerts-container">
-    <FontAwesomeIcon icon="fa-solid fa-music" />&ensp;
     {props.upcomingConcert.split("-").reverse().join("-")}&ensp;{" "}
     <span className="get-tickets" onClick={()=>window.open(props.ticketsUrl,'_blank')}>Get Tickets!</span>
     </div>

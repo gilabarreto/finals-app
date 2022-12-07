@@ -18,10 +18,10 @@
 
 .input-text,
 .input-text-search {
-  border-radius: 25px;
+  border-radius: 2.5em;
   height: 25px;
   width: 125px;
-  padding-left: 10px;
+  padding-left: 1em;
   background: rgba(33, 32, 32, 0.3);
   font-family: "Roboto Condensed", sans-serif;
   font-size: 2.5em;

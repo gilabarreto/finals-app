@@ -28,7 +28,7 @@ export default function BackgroundImage(props) {
   }, [activeImageIndex]);
 
   return (
-    <>
+    <div>
       {background.map((img, index) =>
         activeImageIndex === index ? (
           <img
@@ -44,6 +44,6 @@ export default function BackgroundImage(props) {
           />
         )
       )}
-    </>
+    </div>
   );
 }
