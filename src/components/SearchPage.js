@@ -230,7 +230,7 @@ export default function SearchPage(props) {
                   }}
                 >
                   <h1 className="search-artist">{artist}</h1>
-                  {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+                  {/* {tour && <h3 className="search-tour">Tour: {tour}</h3>} */}
                 </div>
 
                 <FontAwesomeIcon
