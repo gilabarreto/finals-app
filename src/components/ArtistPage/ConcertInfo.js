@@ -26,9 +26,7 @@ export default function ConcertInfo(props) {
     <>
       <ol>
         <ConcertDate 
-        // previousConcertId={previousConcertId} // Victor
-        // nextConcertId={nextConcertId} // Victor
-        concert={concert} // Victor
+        concert={concert}
         setlist={props.setlist} 
         artistInfo={artistInfo} />
         <h2>

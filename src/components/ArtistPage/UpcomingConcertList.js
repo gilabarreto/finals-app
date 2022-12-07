@@ -50,7 +50,7 @@ export default function UpcomingConcertList(props) {
 
   return (
     <>
-      {upcomingConcerts === undefined
+      {upcomingConcerts.length === 0
         ? "There are no upcoming concerts.\n Please come back later"
         : mapConcerts}
     </>

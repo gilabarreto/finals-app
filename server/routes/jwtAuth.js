@@ -60,8 +60,6 @@ router.post("/login", validInfo, async (req, res) => {
       email,
     ]);
 
-    console.log("user", user.rows[0]);
-
     if (user.rows.length === 0) {
       return res.status(401).json({error: "Password or email is incorrect"});
     }

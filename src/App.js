@@ -11,8 +11,6 @@ import SearchPage from "./components/SearchPage";
 import Favourites from "./components/Favourites";
 import Main from "./components/Main";
 import BackgroundImage from "./components/BackgroundImage";
-
-import SpotifyAuth from "./components/SpotifyAuth";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -38,7 +36,6 @@ function App() {
         },
       })
       .then((res) => {
-        // console.log("res.data:", res.data);
         setLoadingfavourites(false);
         setFavourites(res.data);
       })
@@ -76,23 +73,8 @@ function App() {
               />
             }
           ></Route>
-          {/* <Route
-            path="/"
-            element={
-              <>
-                <Main
-                  setSetlist={setSetlist}
-                  setTicketmaster={setTicketmaster}
-                  setLat={setLat}
-                  setLong={setLong}
-                  value={value}
-                  setValue={setValue}
-                  setlist={setlist}
-                  ticketmaster={ticketmaster}
-                />
-              </>
-            }
-          ></Route> */}
+
+          <Route path="/" element={null}></Route>
 
           <Route
             path="/search"

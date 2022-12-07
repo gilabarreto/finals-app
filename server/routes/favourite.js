@@ -8,21 +8,20 @@ router.post("/add", authorization, async (req, res) => {
   checkForArtist(req.body.artistId, req.body.artistName, req.body.image).then(
     (result) => {
       const artistID = result;
-      console.log("SearchPage result:", result);
       pool
         .query(
           `SELECT * FROM favourites WHERE artist_id = $1 AND user_id = $2`,
           [result, req.user.id]
         )
         .then((favresult) => {
-          if (!favresult.rows.length) {
+          if (!favresult.rows[0]) {
             pool
               .query(
-                `INSERT INTO favourites (user_id, artist_id) VALUES ($1, $2)`,
+                `INSERT INTO favourites (user_id, artist_id) VALUES ($1, $2) RETURNING *`,
                 [req.user.id, artistID]
               )
-              .then(() => {
-                res.json({ result: 1 });
+              .then((data) => {
+                res.json({ favourite: data.rows[0] });
               });
           } else {
             res.json({ result: 0 });
@@ -30,15 +29,9 @@ router.post("/add", authorization, async (req, res) => {
         });
     }
   );
-  // console.log("we're hitting the end route");
-  // console.log("user:", req.user);
-  // console.log("req.body:", req.body);
-  // res.sendStatus(204);
 });
 
 router.post("/delete", authorization, async (req, res) => {
-  console.log("req", req.body);
-  console.log("req", req.user);
   pool
     .query(`DELETE FROM favourites WHERE artist_id = $1 AND user_id = $2`, [
       req.body.artist_id,
@@ -68,7 +61,6 @@ router.get("/", authorization, async (req, res) => {
       [req.user.user_email]
     )
     .then((sqlresults) => {
-      console.log("sqlresults:", sqlresults.rows);
       res.json(sqlresults.rows);
     });
 

@@ -31,9 +31,14 @@ export default function BackgroundImage(props) {
     <>
       {background.map((img, index) =>
         activeImageIndex === index ? (
-          <img src={background[activeImageIndex]} className="background-img" />
+          <img
+            key={index}
+            src={background[activeImageIndex]}
+            className="background-img"
+          />
         ) : (
           <img
+            key={index}
             src={background[activeImageIndex]}
             className="background-img hidden"
           />

@@ -1,4 +1,3 @@
-import SpotifyAuth from "./SpotifyAuth";
 import "./Main.css";
 import SearchBar from "./SearchBar";
 

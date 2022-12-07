@@ -18,9 +18,6 @@ export default function Setlist(props) {
             ))}
         </p>
       </ul>
-      <p>
-        <h1>Listen to the Setlist songs here</h1>
-      </p>
     </>
   )
 }
