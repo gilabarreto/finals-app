@@ -160,7 +160,7 @@ export default function SearchPage(props) {
         <div className="last-concert">Last concert</div>
         <div className="play-now">Play now</div>
       </div>
-      <div class="search-card-container">
+      <div className="search-card-container">
         {uniqueSetlist
           .map((setlist, index) => {
             const concert = setlist;
