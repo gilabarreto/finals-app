@@ -117,7 +117,7 @@ function Navbar(props) {
           <div className="social-media-icons">
             <SocialIcon network="instagram" style={{ height: 35, width: 35 }} />
             <SocialIcon network="twitter" style={{ height: 35, width: 35 }} />
-            <SocialIcon network="spotify" style={{ height: 35, width: 35 }} />
+            <SocialIcon network="facebook" style={{ height: 35, width: 35 }} />
           </div>
           <img src={loginIcon} className="loginIcon" onClick={toggleLogin} />
           {dropdownLogin && (
