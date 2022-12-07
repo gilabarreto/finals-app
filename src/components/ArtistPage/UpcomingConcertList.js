@@ -1,4 +1,5 @@
 import { ticketFinder } from "../../helpers/selectors";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function UpcomingConcertList(props) {
   const ticketmasterEvents = props.ticketmaster.events
@@ -59,11 +60,10 @@ export default function UpcomingConcertList(props) {
 
 function UpcomingConcertListItem(props) {
   return (
-    <li>
-      {props.upcomingConcert.split("-").reverse().join("-")}-{" "}
-      <a href={props.ticketsUrl} target="_blank" rel="noopener noreferrer">
-        Get Tickets!
-      </a>
-    </li>
+    <div className="upcoming-concerts-container">
+    <FontAwesomeIcon icon="fa-solid fa-music" />&ensp;
+    {props.upcomingConcert.split("-").reverse().join("-")}&ensp;{" "}
+    <span className="get-tickets" onClick={()=>window.open(props.ticketsUrl,'_blank')}>Get Tickets!</span>
+    </div>
   );
 }

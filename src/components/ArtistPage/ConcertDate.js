@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+
+
 export default function ConcertDate(props) {
   let previousConcertId;
   let nextConcertId;
@@ -45,25 +48,25 @@ export default function ConcertDate(props) {
     <>
       <h2 className="artist-page-button-aligner">
         {previousConcertId && (
-          <button
+          <BsFillArrowLeftCircleFill
             className="artist-page-increase-decrease"
             onClick={() => {
               navigate(`/artists/${artistId}/concerts/${previousConcertId}`);
             }}
           >
             &lt;
-          </button>
+          </BsFillArrowLeftCircleFill>
         )}
-        Concert Date: {concertDate()}&ensp;
+        Concert date:&ensp;{concertDate()}&ensp;
         {nextConcertId && (
-          <button
+          <BsFillArrowRightCircleFill
             className="artist-page-increase-decrease"
             onClick={() => {
               navigate(`/artists/${artistId}/concerts/${nextConcertId}`);
             }}
           >
             &gt;
-          </button>
+          </BsFillArrowRightCircleFill>
         )}
       </h2>
     </>

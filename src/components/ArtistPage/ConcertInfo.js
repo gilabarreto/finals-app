@@ -30,8 +30,15 @@ export default function ConcertInfo(props) {
         setlist={props.setlist} 
         artistInfo={artistInfo} />
         <h2>
-          Artist: {artist}
-          {props.ticketmaster.attractions ? (
+          Artist:&ensp;{artist}
+        </h2>
+          <h2 className="tour">Tour:&ensp;{tour}</h2>
+          <h2>Venue:&ensp;{venue}</h2>
+          <h2>
+          Location:&ensp;{city}, {state}, {country}
+        </h2>
+        <div className="socials-icons">
+        {props.ticketmaster.attractions ? (
             <a
               href={
                 props.ticketmaster.attractions[0].externalLinks.youtube[0].url
@@ -39,7 +46,7 @@ export default function ConcertInfo(props) {
               target="_blank"
             >
               <FaYoutube
-                style={{ color: "red", paddingLeft: 5, paddingRight: 5 }}
+                style={{ color: "red", paddingLeft: 5, paddingRight: "2em", height: "2em", width: "2em"}}
               />
             </a>
           ) : null}
@@ -50,7 +57,7 @@ export default function ConcertInfo(props) {
               }
               target="_blank"
             >
-              <FaInstagram style={{ color: "hotpink", paddingRight: 5 }} />
+              <FaInstagram style={{ color: "hotpink", paddingRight: "2em", height: "2em", width: "2em"}} />
             </a>
           ) : null}
           {props.ticketmaster.attractions ? (
@@ -60,15 +67,10 @@ export default function ConcertInfo(props) {
               }
               target="_blank"
             >
-              <FaTwitter style={{ color: "#1DA1F2" }} />
+              <FaTwitter style={{ color: "#1DA1F2", height: "2em", width: "2em", paddingRight: "2em"}} />
             </a>
           ) : null}
-        </h2>
-        <h2 className="tour">Tour: {tour}</h2>
-        <h2>Venue: {venue}</h2>
-        <h2>
-          Location: {city}, {state}, {country}
-        </h2>
+         </div>
       </ol>
     </>
   );

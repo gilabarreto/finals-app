@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import axios from "axios";
 import logo from "../icons/logo-small.png";
 import { useNavigate } from "react-router-dom";
@@ -155,12 +154,7 @@ export default function SearchPage(props) {
 
   return (
     <>
-      <div className="column-labels">
-        <div className="next-concert">Next concert</div>
-        <div className="last-concert">Last concert</div>
-        <div className="play-now">Play now</div>
-      </div>
-      <div className="search-card-container">
+      <div class="search-card-container">
         {uniqueSetlist
           .map((setlist, index) => {
             const concert = setlist;
@@ -236,7 +230,7 @@ export default function SearchPage(props) {
                   }}
                 >
                   <h1 className="search-artist">{artist}</h1>
-                  {tour && <h3 className="search-tour">Tour: {tour}</h3>}
+                  {/* {tour && <h3 className="search-tour">Tour: {tour}</h3>} */}
                 </div>
 
                 <FontAwesomeIcon
@@ -249,19 +243,21 @@ export default function SearchPage(props) {
                   }`}
                   onClick={() => handleFavourite(artistId, artist, artistImage)}
                 />
-
                 <div className="search-page-box">
-                  <button className="search-page-button">Next concert</button>
+                <div className="next-concert">Next concert</div>
                   <h3>
                     {localDate ? nextConcertDate(localDate) : "Unavailable"}
                   </h3>
                 </div>
                 <div className="search-page-box">
-                  <button className="search-page-button">Last Concert</button>
+                <div className="last-concert">Last concert</div>
                   <h3>{lastConcertDate(setlist.eventDate)}</h3>
                 </div>
                 <div className="search-page-box">
+                {/* <div className="play-now"> */}
                   {spotify ? (
+                    <>
+                    <span className="spotify-play-now">Play now</span>
                     <a href={spotify} target="_blank" rel="noopener noreferrer">
                       <FontAwesomeIcon
                         icon="fa-brands fa-spotify"
@@ -270,9 +266,11 @@ export default function SearchPage(props) {
                         className="spotify-true"
                       />
                     </a>
+                    </>
                   ) : (
                     <FontAwesomeIcon icon="fa-brands fa-spotify" size="3x" />
                   )}
+                {/* </div> */}
                 </div>
               </div>
             );

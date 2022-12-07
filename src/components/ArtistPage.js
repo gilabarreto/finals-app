@@ -50,7 +50,7 @@ export default function ArtistPage(props) {
         </div>
         <div className="artist-page-bottom-right-container">
           <div className="artist-page-upcoming-concerts">
-            <span style={{ fontWeight: "bold" }}>Upcoming Concerts:</span>
+            <span className="next-concerts">Upcoming Concerts</span>
             <p>
               <UpcomingConcertList
                 ticketmaster={props.ticketmaster}
@@ -60,7 +60,7 @@ export default function ArtistPage(props) {
             </p>
           </div>
           <div className="artist-page-previous-concerts">
-            <span style={{ fontWeight: "bold" }}>Previous Concerts:</span>
+            <span className="prevConc-title">Previous Concerts</span>
             <p>
               <div>
                 <PreviousConcerts

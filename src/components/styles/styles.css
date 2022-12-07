@@ -1,18 +1,28 @@
-a.prevConc {
-  color: #555;
+@import url('https://fonts.googleapis.com/css2?family=Road+Rage&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.prevConc {
+  color: #FAF9F6;
   cursor: pointer;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
 
-a.prevConc:visited {
-  color: white
+.prevConc-title {
+  font-size: 3em;
+  color: #FAF9F6;
+  font-family: 'Road Rage', cursive;
 }
 
-a.prevConc:hover {
-  color: #75ABBC;
+.prevConc-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-a.prevConc:active {
-  color: black;
+.prevConc:hover {
+  color: red;
 }
 
 .map-container {
@@ -24,23 +34,209 @@ a.prevConc:active {
   margin-top: 0%;
 }
 
-.next-concert-button {
+.next-concerts {
+  font-size: 3em;
+  font-family: 'Road Rage', cursive;
+  color: #FAF9F6;
+}
+
+.setlist-title {
+  font-size: 3em;
+  color: #FAF9F6;
+  font-family: 'Road Rage', cursive;
+}
+
+.setlist-songs-ul {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #FAF9F6;
+}
+
+.upcoming-concerts-container {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #FAF9F6;
+}
+
+.get-tickets {
+  text-decoration: underline;
+}
+
+.get-tickets:hover {
+  color: red;
+}
+
+.artist-page-upcoming-concerts {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5em;
+  padding: 2em;
+  margin-right: 1em;
+  background: none;
+  display: flex;
   align-items: center;
-  background-color: #75ABBC;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.85);
+  justify-content: center;
+  flex-direction: column;
+  color: #FAF9F6;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+.artist-page-upcoming-concerts li {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #FAF9F6;
+}
+
+.artist-page-top-container {
+  /* border-color: blue; */
+  /* border-style: solid; */
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+.artist-page-bottom-container {
+  /* border-color: blue; */
+  /* border-style: solid; */
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-page-concert-info {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5em;
+  padding-right: 2em;
+  margin: 1em;
+  min-height: 100%;
+  word-break: break-word;
+  background: none;
+  /* transition: all 300ms; */
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+.artist-page-map {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5em;
+  margin: 1em;
+  min-width: 50%;
+  min-height: 100%;
+  background: #fff;
+  /* transition: all 300ms; */
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.artist-page-bottom-left-container {
+  /* border-color: red; */
+  /* border-style: solid; */
+  padding: 1em;
+  display: flex;
+  width: 60%;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+.artist-page-setlist {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5em;
+  padding-right: 2em;
+  margin-left: 1em;
+  min-height: 100%;
+  width: 50%;
+  background: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.artist-page-spotify {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5em;
+  margin-left: 1em;
+  min-height: 100%;
+  width: 50%;
+  background: #000;
+  /* transition: all 300ms; */
+  color: #fff;
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.artist-page-bottom-right-container {
+  /* border-color: red; */
+  /* border-style: solid; */
+  padding: 1em;
+  /* display: flex; */
+  width: 40%;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+.artist-page-previous-concerts {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5em;
+  margin-top: 1em;
+  margin-right: 1em;
+  padding: 2em;
+  background: none;
+  /* transition: all 300ms; */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.artist-page-previous-concerts p {
+  flex-direction: column;
+}
+
+.socials-icons {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  justify-content: center;
+}
+
+.artist-page-increase-decrease {
+  align-items: center;
+  /* background-color: #75ABBC; */
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  /* border-radius: .25rem; */
+  height: 2em;
+  width: 2em;
+  color: rgba(230, 230, 230, 0.5);
+  cursor: pointer;
   display: inline-flex;
-  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.1em;
-  font-weight: 600;
+  /* font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  /* font-weight: 600; */
   justify-content: center;
   margin: 0;
-  min-height: 2rem;
+  /* min-height: 2rem; */
   padding: calc(.675rem - 1px) calc(1rem - 1px);
-  text-decoration: none;
+  position: relative;
+  /* text-decoration: none; */
   transition: all 250ms;
   user-select: none;
   -webkit-user-select: none;
@@ -49,57 +245,136 @@ a.prevConc:active {
   width: auto;
 }
 
-.search-page-button {
-  align-items: center;
-  background-color: #75ABBC;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.85);
-  display: inline-flex;
-  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.1em;
-  font-weight: 600;
-  justify-content: center;
-  margin: 0;
-  min-height: 2rem;
-  padding: calc(.675rem - 1px) calc(1rem - 1px);
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
+.artist-page-increase-decrease:hover,
+.artist-page-increase-decrease:focus {
+  border-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: white;
 }
+
+.artist-page-increase-decrease:hover {
+  transform: translateY(-1px);
+}
+
+.artist-page-increase-decrease:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.artist-page-button-aligner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+}
+
+
+/* SEARCH PAGE */
 
 .spotify-true:hover {
   color: rgb(153, 255, 1);
 }
 
-.column-labels {
-  color: white;
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 25px;
-  font-weight: 600;
-  display: flex;
-  /* justify-content: space-around; */
-  justify-content: flex-end;
-}
-
 .next-concert {
-  margin-right: 128px;
+  font-family: 'Rock Salt';
+  align-items: center;
+  display: inline-flex;
+  font-size: 1em;
+  font-weight: 600;
+  justify-content: center;
+  margin: 0;
+  min-height: 2rem;
+  padding: calc(.675rem - 1px) calc(1rem - 1px);
+  text-decoration: none;
+  vertical-align: baseline;
+  width: auto;
+  color: #fff;
+  /* -webkit-animation: glow-next 1s ease-in-out infinite alternate;
+  -moz-animation: glow-next 1s ease-in-out infinite alternate;
+  animation: glow-next 1s ease-in-out infinite alternate; */
 }
 
-.past-concert {
-  /* margin-left: 50px;
-  margin-right: 100px; */
+/* @keyframes glow-next {
+  from {
+    text-shadow: 0 0 7px, 0 0 10px, 0 0 21px;
+    ;
+  }
+
+  to {
+    text-shadow: 0 0 7px, 0 0 10px, 0 0 21px;
+    ;
+  }
+} */
+
+.last-concert {
+  font-family: 'Rock Salt';
+  align-items: center;
+  display: inline-flex;
+  font-size: 1em;
+  font-weight: 600;
+  justify-content: center;
+  margin: 0;
+  min-height: 2rem;
+  padding: calc(.675rem - 1px) calc(1rem - 1px);
+  /* text-decoration: none; */
+  vertical-align: baseline;
+  width: auto;
+  color: #fff;
+  /* -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate; */
+}
+
+/* @keyframes glow {
+  from {
+    text-shadow: 0 0 7px, 0 0 10px, 0 0 21px;
+    ;
+  }
+
+  to {
+    text-shadow: 0 0 7px, 0 0 10px, 0 0 21px;
+    ;
+  }
+} */
+
+.spotify-play-now {
+  font-family: 'Rock Salt', cursive;
+  font-size: 1em;
+  padding-bottom: 15px;
+  font-weight: 600;
+  color: #fff;
+  -webkit-animation: play 1s ease-in-out infinite alternate;
+  -moz-animation: play 1s ease-in-out infinite alternate;
+  animation: play 1s ease-in-out infinite alternate;
+}
+
+@keyframes play {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1DB954, 0 0 40px #1DB954, 0 0 50px #1DB954, 0 0 60px #1DB954, 0 0 70px #1DB954;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #24d361, 0 0 40px #24d361, 0 0 50px #24d361, 0 0 60px #24d361, 0 0 70px #24d361, 0 0 80px #24d361;
+  }
 }
 
 .play-now {
-  margin-left: 178px;
-  margin-right: 110px;
+  align-items: center;
+  display: inline-flex;
+  font-size: 1.1em;
+  font-weight: 600;
+  justify-content: center;
+  margin: 0;
+  min-height: 2rem;
+  padding: calc(.675rem - 1px) calc(1rem - 1px);
+  text-decoration: none;
+  vertical-align: baseline;
+  width: auto;
+
 }
 
 /* .search-page-button:hover,
@@ -121,55 +396,7 @@ a.prevConc:active {
   transform: translateY(0);
 } */
 
-.artist-page-increase-decrease {
-  align-items: center;
-  background-color: #75ABBC;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.85);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  justify-content: center;
-  margin: 0;
-  min-height: 2rem;
-  padding: calc(.675rem - 1px) calc(1rem - 1px);
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-}
 
-.artist-page-increase-decrease:hover,
-.artist-page-increase-decrease:focus {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  color: rgba(0, 0, 0, 0.65);
-}
-
-.artist-page-increase-decrease:hover {
-  transform: translateY(-1px);
-}
-
-.artist-page-increase-decrease:active {
-  background-color: #F0F0F1;
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  color: rgba(0, 0, 0, 0.65);
-  transform: translateY(0);
-}
-
-.artist-page-button-aligner {
-  display: flex;
-  justify-content: space-between;
-}
 
 .search-page-card {
   background: rgba(5, 5, 5, 0.3);
@@ -247,7 +474,8 @@ a.prevConc:active {
   align-items: flex-start;
   justify-content: center;
   flex-direction: row;
-  margin: auto
+  margin: auto;
+  font-family: 'Rock Salt';
 }
 
 .search-artist:hover {
@@ -271,138 +499,6 @@ a.prevConc:active {
 
 }
 
-.artist-page-top-container {
-  /* border-color: blue; */
-  /* border-style: solid; */
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-}
-
-.artist-page-bottom-container {
-  /* border-color: blue; */
-  /* border-style: solid; */
-  display: flex;
-  flex-direction: row;
-}
-
-.artist-page-concert-info {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5em;
-  padding-right: 2em;
-  margin: 1em;
-  min-height: 100%;
-  word-break: break-word;
-  background: none;
-  /* transition: all 300ms; */
-  color: white;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.artist-page-map {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5em;
-  margin: 1em;
-  min-width: 50%;
-  min-height: 100%;
-  background: #fff;
-  /* transition: all 300ms; */
-  color: #555;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.artist-page-bottom-left-container {
-  /* border-color: red; */
-  /* border-style: solid; */
-  padding: 1em;
-  display: flex;
-  width: 60%;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-}
-
-.artist-page-setlist {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5em;
-  padding-right: 2em;
-  margin-left: 1em;
-  min-height: 100%;
-  width: 50%;
-  background: none;
-  /* transition: all 300ms; */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.artist-page-spotify {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5em;
-  margin-left: 1em;
-  min-height: 100%;
-  width: 50%;
-  background: #000;
-  /* transition: all 300ms; */
-  color: #fff;
-  display: flex;
-  align-content: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.artist-page-bottom-right-container {
-  /* border-color: red; */
-  /* border-style: solid; */
-  padding: 1em;
-  /* display: flex; */
-  width: 40%;
-  align-content: center;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
-.artist-page-upcoming-concerts {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5em;
-  padding: 2em;
-  margin-right: 1em;
-  background: none;
-  /* transition: all 300ms; */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.artist-page-previous-concerts {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5em;
-  margin-top: 1em;
-  margin-right: 1em;
-  padding: 2em;
-  background: none;
-  /* transition: all 300ms; */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .favourite-icon {
   color: white;
   cursor: pointer;
@@ -413,6 +509,19 @@ a.prevConc:active {
 }
 
 .favourite-icon.active {
+  color: red
+}
+
+.favourite-text {
+  color: white;
+}
+
+.delete-icon {
+  color: white;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
   color: red
 }
 

@@ -13,7 +13,7 @@ import Main from "./components/Main";
 import BackgroundImage from "./components/BackgroundImage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faMusic } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
       });
   }, []);
 
-  library.add(fab, faHeart);
+  library.add(fab, faHeart, faMusic);
 
   return (
     <Router>
