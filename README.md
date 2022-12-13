@@ -20,23 +20,22 @@ Welcome to ConcertFyi, a multi-page app that allows users to keep track of their
 
 https://user-images.githubusercontent.com/92469359/207180441-2fcab45d-9809-4a5c-866c-29b686b81aff.mp4
 
-When you first visit the website, you can look for a artist and you will see various options that match your search results.  Clicking on the image or name will bring you to the artist's detail page.
+When you first visit the website, you can look for an artist and you will see various options that match your search results.  Clicking on the image or name will bring you to the artist's detail page.
 
 https://user-images.githubusercontent.com/92469359/207181817-68d7769d-0b13-4b3b-a7dc-1c48d0b6d427.mp4
 
+As a registered user, you can save artists to your favourites list.
 
 ## Dependencies
-
--express
--axios
--jwt-decode
--fontawesome
+- express
+- axios
+- jwt-decode
+- fontawesome
 
 ## Tech Stack
-
--Express.js
--React
--Postgres
--Node.js
--HTML
--CSS
+- Express.js
+- React
+- Postgres
+- Node.js
+- HTML
+- CSS
