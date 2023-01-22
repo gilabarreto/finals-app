@@ -151,6 +151,7 @@ export default function SearchPage(props) {
   if (props.setlist.length === 0 || props.ticketmaster === undefined) {
     return null;
   }
+  console.log("props", props.ticketmaster)
 
   return (
     <div class="search-card-container">
